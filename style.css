@@ -1,0 +1,252 @@
+/* Primary colors */
+:root {
+  --bg: #0b1120;
+  --card: #111a2e;
+  --border: #1e293b;
+  --text: #cbd5e1;
+  --heading: #f1f5f9;
+  --accent: #facc15;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* Header: (Hero) */
+.hero {
+  min-height: 90hv;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent);
+  margin-bottom: 24px;
+}
+
+.hero .hello {
+  color: var(--accent);
+  font-weight: 600px;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  color: var(--heading);
+  line-height: 1.2;
+}
+
+.hero h2 {
+  font-size: 1.6rem;
+  color: var(--accent);
+  font-weight: 600px;
+  margin-bottom: 16px;
+}
+
+.hero .tagline {
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  background-color: var(--accent);
+  color: #0b1120;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Overview: (General Sections) */
+.section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 70px 20px;
+}
+
+.section h3 {
+  font-size: 2rem;
+  color: var(--heading);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.section h3::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: var(--accent);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Overview And Skills */
+#about p {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.skills li {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+/* Project Cards: (Card-1) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card h4 {
+  color: var(--heading);
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.card .tech {
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin: 10px 0 16px;
+}
+
+.links a {
+  color: var(--heading);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.links a:hover {
+  background-color: var(--accent);
+  color: #0b1120;
+}
+
+/* Card-2 */
+.coming {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-style: dashed;
+  min-height: 200px;
+}
+
+/* Contact */
+#contact {
+  text-align: center;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.contact-links a {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  color: var(--heading);
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+/* Mobile Optimization: (Touch Interaction) */
+.btn:active,
+.links a:active,
+.contact-links a:active {
+  background-color: var(--accent);
+  color: #0b1120;
+  transform: scale(0.97);
+}
+
+.card:active {
+  border-color: var(--accent);
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-3px);
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+  }
+  .links a:hover,
+  .contact-links a:hover {
+    background-color: var(--accent);
+    color: #0b1120;
+  }
+}
+
+/* Footer: (Page Rights) */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
