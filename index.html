@@ -4,18 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ahmed Hassan | Front-End Developer</title>
+    <meta
+      name="description"
+      content="Ahmed Hassan, Front-End Developer building responsive websites and web tools with HTML, CSS, and JavaScript. See projects and get in touch."
+    />
+    <meta name="theme-color" content="#0b1120" />
+
+    <!-- Link preview (WhatsApp, LinkedIn, ...) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ahmed Hassan | Front-End Developer" />
+    <meta
+      property="og:description"
+      content="Responsive websites and web tools built with HTML, CSS, and JavaScript."
+    />
+    <meta
+      property="og:url"
+      content="https://ahmedhassanhamed.github.io/AhmedHassanHamed/"
+    />
+    <meta
+      property="og:image"
+      content="https://ahmedhassanhamed.github.io/AhmedHassanHamed/Project_Screen_Shots/Ahmed.jpeg"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="Project_Screen_Shots/profile.jpg.png" />
+    <link rel="icon" href="Project_Screen_Shots/Ahmed.jpeg" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Header -->
+    <!-- Header: (Hero) -->
     <header class="hero">
       <img
-        src="Project_Screen_Shots/profile.jpg.png"
+        src="Project_Screen_Shots/Ahmed.jpeg"
         alt="Ahmed Hassan profile picture"
         class="avatar"
       />
@@ -23,18 +47,22 @@
       <h1>Ahmed Hassan</h1>
       <h2>Front-End Developer</h2>
       <p class="tagline">
-        I build clean, responsive websites with HTML, CSS, and JavaScript.
+        I build clean, responsive websites and web tools with HTML, CSS, and
+        JavaScript.
       </p>
-      <a href="#projects" class="btn">View Projects</a>
+      <div class="hero-actions">
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
     </header>
 
     <!-- Overview -->
     <section class="section" id="about">
       <h3>About Me</h3>
       <p>
-        I'm a Front-End Developer learning React and Back-End development. I
-        started coding in 2026 and have already published real projects online.
-        I'm always learning and looking for opportunities to grow.
+        Front-End Developer building responsive websites and web tools with
+        HTML, CSS, and JavaScript. I started coding in 2026 and have published
+        real projects online. Currently learning React and back-end development.
       </p>
       <ul class="skills">
         <li>HTML5</li>
@@ -49,11 +77,48 @@
     <section class="section" id="projects">
       <h3>Projects</h3>
       <div class="cards">
-        <!-- Card-1 -->
+        <!-- Card-1: Invoice Generator -->
+        <article class="card">
+          <img
+            src="Project_Screen_Shots/invoice_generat.png"
+            alt="Invoice Generator screenshot"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="card-body">
+            <h4>Invoice Generator (AR/EN)</h4>
+            <p>
+              A bilingual (Arabic/English) invoice generator with PDF and PNG
+              export, WhatsApp sharing, dark mode, deposit calculator, client
+              autocomplete, and backup/restore. Data is saved in the browser.
+            </p>
+            <p class="tech">
+              HTML · CSS · JavaScript · localStorage · html2pdf.js
+            </p>
+            <div class="links">
+              <a
+                href="https://ahmedhassanhamed.github.io/Invoice_Generator/"
+                target="_blank"
+                rel="noopener"
+                >Live Demo</a
+              >
+              <a
+                href="https://github.com/AhmedHassanHamed/Invoice_Generator"
+                target="_blank"
+                rel="noopener"
+                >Code</a
+              >
+            </div>
+          </div>
+        </article>
+
+        <!-- Card-2: Expense Tracker -->
         <article class="card">
           <img
             src="Project_Screen_Shots/desktop-2.png"
             alt="Expense Tracker screenshot"
+            loading="lazy"
+            decoding="async"
           />
           <div class="card-body">
             <h4>Expense Tracker</h4>
@@ -78,14 +143,6 @@
             </div>
           </div>
         </article>
-
-        <!-- Card-2 -->
-        <article class="card coming">
-          <div class="card-body">
-            <h4>More coming soon...</h4>
-            <p>I'm working on new projects. Stay tuned.</p>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -94,19 +151,50 @@
       <h3>Contact</h3>
       <p>Let's work together. Feel free to reach out.</p>
       <div class="contact-links">
-        <a href="mailto:ahmed.hassan.dev77@gmail.com">Email</a>
         <a
-          href="https://github.com/AhmedHassanHamed"
+          href="https://wa.me/201147729020"
+          class="contact-links-img"
           target="_blank"
           rel="noopener"
-          >GitHub</a
+          ><img src="Project_Screen_Shots/WhatsApp.jpeg" alt="WhatsApp" />
+          <span>WhatsApp</span></a
+        >
+        <a href="mailto:ahmed.hassan.dev77@gmail.com" class="contact-links-img"
+          ><img src="Project_Screen_Shots/Email.jpeg" alt="Email" />
+          <span>Email</span></a
+        >
+        <a
+          href="https://github.com/AhmedHassanHamed"
+          class="contact-links-img"
+          target="_blank"
+          rel="noopener"
+          ><img src="Project_Screen_Shots/GitHub.jpeg" alt="GitHub" />
+          <span>GitHub</span></a
+        >
+        <a
+          href="https://khamsat.com/user/hassanhamed_cz"
+          class="contact-links-img"
+          target="_blank"
+          rel="noopener"
+          ><img src="Project_Screen_Shots/Khmsat.jpeg" alt="Khamsat" />
+          <span>Khamsat</span></a
+        >
+        <!-- TODO: replace YOUR_USERNAME with your public Mostaql profile link -->
+        <a
+          href="https://mostaql.com/u/YOUR_USERNAME"
+          class="contact-links-img"
+          target="_blank"
+          rel="noopener"
+          ><img src="Project_Screen_Shots/Mostaql.jpeg" alt="Mostaql" />
+          <span>Mostaql</span></a
         >
       </div>
     </section>
 
     <!-- Footer: (Page Rights) -->
     <footer>
-      <p>&copy; 2026 Ahmed Hassan</p>
+      <p>&copy; 2026 Ahmed Hassan. All rights reserved.</p>
     </footer>
   </body>
 </html>
+

@@ -14,6 +14,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--bg);
@@ -21,9 +25,15 @@ body {
   line-height: 1.7;
 }
 
+/* Keyboard focus (accessibility) */
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 /* Header: (Hero) */
 .hero {
-  min-height: 90hv;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,12 +53,12 @@ body {
 
 .hero .hello {
   color: var(--accent);
-  font-weight: 600px;
+  font-weight: 600;
   letter-spacing: 2px;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.4rem, 8vw, 3.5rem);
   color: var(--heading);
   line-height: 1.2;
 }
@@ -56,7 +66,7 @@ body {
 .hero h2 {
   font-size: 1.6rem;
   color: var(--accent);
-  font-weight: 600px;
+  font-weight: 600;
   margin-bottom: 16px;
 }
 
@@ -65,18 +75,28 @@ body {
   margin-bottom: 30px;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
 .btn {
+  display: inline-block;
   background-color: var(--accent);
   color: #0b1120;
   padding: 12px 28px;
+  border: 2px solid var(--accent);
   border-radius: 8px;
-  font-weight: 600px;
+  font-weight: 600;
   text-decoration: none;
   transition: 0.2s;
 }
 
-.btn:hover {
-  transform: translateY(-3px);
+.btn-outline {
+  background-color: transparent;
+  color: var(--heading);
 }
 
 /* Overview: (General Sections) */
@@ -126,7 +146,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* Project Cards: (Card-1) */
+/* Project Cards */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -134,6 +154,8 @@ body {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -141,18 +163,19 @@ body {
   transition: 0.25s;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-}
-
 .card img {
   width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
   display: block;
   border-bottom: 1px solid var(--border);
 }
 
 .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 20px;
 }
 
@@ -168,29 +191,22 @@ body {
   margin: 10px 0 16px;
 }
 
+/* Buttons stay at the bottom so cards line up */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
 .links a {
   color: var(--heading);
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent);
   padding: 8px 18px;
   border-radius: 8px;
   text-decoration: none;
   font-size: 0.9rem;
   transition: 0.2s;
-}
-
-.links a:hover {
-  background-color: var(--accent);
-  color: #0b1120;
-}
-
-/* Card-2 */
-.coming {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-style: dashed;
-  min-height: 200px;
 }
 
 /* Contact */
@@ -200,19 +216,32 @@ body {
 
 .contact-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
   margin-top: 24px;
 }
 
 .contact-links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 96px;
   background-color: var(--card);
   border: 1px solid var(--border);
   color: var(--heading);
-  padding: 12px 28px;
+  padding: 12px 16px;
   border-radius: 8px;
   text-decoration: none;
   transition: 0.2s;
+}
+
+.contact-links-img img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* Mobile Optimization: (Touch Interaction) */
@@ -228,9 +257,14 @@ body {
   border-color: var(--accent);
 }
 
+/* Hover only on devices that really support it (no sticky hover on phones) */
 @media (hover: hover) {
   .btn:hover {
     transform: translateY(-3px);
+  }
+  .btn-outline:hover {
+    background-color: var(--accent);
+    color: #0b1120;
   }
   .card:hover {
     transform: translateY(-6px);
@@ -245,8 +279,19 @@ body {
 
 /* Footer: (Page Rights) */
 footer {
+  display: flex;
   text-align: center;
+  justify-content: center;
   padding: 30px 20px;
   border-top: 1px solid var(--border);
   font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .contact-links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
 }
