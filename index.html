@@ -1,25 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ahmed Hassan | Front-End Developer</title>
     <meta
       name="description"
-      content="Ahmed Hassan, Front-End Developer building responsive websites and web tools with HTML, CSS, and JavaScript. See projects and get in touch."
+      content="Ahmed Hassan, Front-End Developer building responsive websites, stores and web tools in Arabic and English. Fixed prices from $20."
     />
-    <meta name="theme-color" content="#0b1120" />
+    <meta name="theme-color" content="#0c1222" />
     <link
       rel="canonical"
       href="https://ahmedhassanhamed.github.io/AhmedHassanHamed/"
     />
-
-    <!-- Link preview (WhatsApp, Facebook, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Ahmed Hassan | Front-End Developer" />
     <meta
       property="og:description"
-      content="Responsive websites and web tools built with HTML, CSS, and JavaScript."
+      content="Responsive websites, stores and web tools in Arabic and English."
     />
     <meta
       property="og:url"
@@ -30,290 +28,296 @@
       content="https://ahmedhassanhamed.github.io/AhmedHassanHamed/imgs1/Ahmed.jpeg"
     />
     <meta name="twitter:card" content="summary" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="imgs1/Ahmed.jpeg" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pricing.css" />
     <script src="script.js" defer></script>
+    <script src="pricing.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
-    <!-- Navbar -->
-    <nav class="navbar" aria-label="Main navigation">
-      <a href="#top" class="brand">Ahmed Hassan</a>
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="navLinks"
-      >
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li>
+    <nav class="nav" aria-label="Main">
+      <div class="wrap">
+        <a href="#top" class="brand" data-i18n="brand">Ahmed Hassan</a>
+        <ul class="links" id="links">
+          <li><a href="#services" data-i18n="nav1">Services</a></li>
+          <li><a href="#work" data-i18n="nav2">Work</a></li>
+          <li><a href="#about" data-i18n="nav3">About</a></li>
+          <li><a href="#contact" data-i18n="nav4">Contact</a></li>
+        </ul>
+        <div class="tools">
+          <button class="pill" id="langBtn" type="button">العربية</button>
+          <button class="pill" id="themeBtn" type="button">☾</button>
           <button
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Switch to light theme"
+            class="pill menu"
+            id="menuBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="links"
           >
-            ☾
+            ☰
           </button>
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
 
     <main id="main">
-      <!-- Hero -->
       <header class="hero" id="top">
-        <img
-          src="imgs1/Ahmed.jpeg"
-          alt="Ahmed Hassan profile picture"
-          class="avatar"
-          width="160"
-          height="160"
-        />
-        <p class="hello">Hi, I'm</p>
-        <h1>Ahmed Hassan</h1>
-        <p class="role">
-          <span id="typed" aria-hidden="true">Front-End Developer</span>
-          <span class="sr-only">Front-End Developer</span>
-        </p>
-        <p class="tagline">
-          I build clean, responsive websites and web tools with HTML, CSS, and
-          JavaScript.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn">View Projects</a>
-          <a href="#contact" class="btn btn-outline">Contact Me</a>
+        <div class="wrap">
+          <div>
+            <p class="badge" data-i18n="badge">Available for freelance work</p>
+            <h1 data-i18n="h1">
+              I build fast websites that work in Arabic and English.
+            </h1>
+            <p class="sub" data-i18n="sub">
+              Front-end developer. Landing pages, stores, and web tools made
+              with HTML, CSS, and JavaScript.
+            </p>
+            <div class="cta">
+              <a class="btn" href="#order" data-i18n="cta1">Get a quote</a>
+              <a class="btn ghost" href="#work" data-i18n="cta3">See my work</a>
+            </div>
+            <ul class="facts">
+              <li>
+                <b id="nProjects">4</b><span data-i18n="f1">Live projects</span>
+              </li>
+              <li><b>24h</b><span data-i18n="f2">Reply time</span></li>
+              <li><b>2</b><span data-i18n="f4">Free revision rounds</span></li>
+            </ul>
+          </div>
+          <div class="portrait">
+            <div class="ph">
+              <img
+                src="imgs1/Ahmed.jpeg"
+                alt="Ahmed Hassan"
+                width="340"
+                height="425"
+              />
+            </div>
+            <span class="chip c1" aria-hidden="true">HTML</span>
+            <span class="chip c2" aria-hidden="true">CSS</span>
+            <span class="chip c3" aria-hidden="true">JS</span>
+          </div>
         </div>
       </header>
 
-      <!-- About -->
-      <section class="section reveal" id="about">
-        <h2>About Me</h2>
-        <p>
-          Front-End Developer building responsive websites and web tools with
-          HTML, CSS, and JavaScript. I started coding in 2026 and have published
-          real projects online. Currently learning React and back-end
-          development.
-        </p>
-        <ul class="stats">
-          <li><strong data-count="3">0</strong><span>Live projects</span></li>
-          <li>
-            <strong data-count="2">0</strong><span>Languages (AR/EN)</span>
-          </li>
-          <li><strong data-count="5">0</strong><span>Technologies</span></li>
-        </ul>
-        <ul class="skills">
-          <li>HTML5</li>
-          <li>CSS3</li>
-          <li>JavaScript</li>
-          <li>Git &amp; GitHub</li>
-          <li>Responsive Design</li>
-        </ul>
-      </section>
-
-      <!-- Projects -->
-      <section class="section" id="projects">
-        <h2>Projects</h2>
-        <div class="cards">
-          <!-- Card 1: CV Builder -->
-          <article class="card reveal">
-            <img
-              src="imgs1/CV.png"
-              alt="CV Builder screenshot"
-              width="640"
-              height="360"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="card-body">
-              <h3>CV Builder (AR/EN)</h3>
-              <p>
-                A bilingual (Arabic/English) CV builder with 7 templates, live
-                preview, PDF and Word (.docx) export, a cover letter generator,
-                an ATS checklist, and drag-and-drop sections. Data is saved in
-                the browser.
-              </p>
-              <p class="tech">
-                HTML · CSS · JavaScript · localStorage · docx.js ·
-                qrcode-generator
-              </p>
-              <div class="links">
-                <a
-                  href="https://ahmedhassanhamed.github.io/CV_Builder/"
-                  target="_blank"
-                  rel="noopener"
-                  >Live Demo</a
-                >
-                <a
-                  href="https://khamsat.com/programming/scripting/4473545-%D8%A3%D8%AF%D8%A7%D8%A9-%D8%AC%D8%A7%D9%87%D8%B2%D8%A9-%D9%84%D8%A5%D9%86%D8%B4%D8%A7%D8%A1-%D8%B3%D9%8A%D8%B1%D8%A9-%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9-%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-%D9%88%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A"
-                  target="_blank"
-                  rel="noopener"
-                  >Buy on Khamsat</a
-                >
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 2: Invoice Generator -->
-          <article class="card reveal">
-            <img
-              src="imgs1/cover.png"
-              alt="Invoice Generator screenshot"
-              width="640"
-              height="360"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="card-body">
-              <h3>Invoice Generator (AR/EN)</h3>
-              <p>
-                A bilingual (Arabic/English) invoice generator with PDF and PNG
-                export, WhatsApp sharing, dark mode, deposit calculator, client
-                autocomplete, and backup/restore. Data is saved in the browser.
-              </p>
-              <p class="tech">
-                HTML · CSS · JavaScript · localStorage · html2pdf.js
-              </p>
-              <div class="links">
-                <a
-                  href="https://ahmedhassanhamed.github.io/Invoice_Generator/"
-                  target="_blank"
-                  rel="noopener"
-                  >Live Demo</a
-                >
-                <a
-                  href="https://khamsat.com/programming/custom-website-development/4472031-%D9%86%D8%B8%D8%A7%D9%85-%D9%81%D9%88%D8%A7%D8%AA%D9%8A%D8%B1-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D8%B9%D8%B1%D8%A8%D9%8A-%D9%88%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A-%D9%85%D8%B9-%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%A9-%D9%88%D8%A7%D8%AA%D8%B3%D8%A7%D8%A8-%D9%88%D9%88%D8%B6%D8%B9-%D9%84%D9%8A%D9%84%D9%8A"
-                  target="_blank"
-                  rel="noopener"
-                  >Buy on Khamsat</a
-                >
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3: Expense Tracker -->
-          <article class="card reveal">
-            <img
-              src="imgs1/expense.png"
-              alt="Expense Tracker screenshot"
-              width="640"
-              height="360"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="card-body">
-              <h3>Expense Tracker</h3>
-              <p>
-                A responsive expense tracker to record your daily spending,
-                organize it by category, and see the running total at a glance.
-                A category breakdown with progress bars shows where your money
-                goes. Data is saved privately in your browser.
-              </p>
-              <p class="tech">HTML · CSS · JavaScript · localStorage</p>
-              <div class="links">
-                <a
-                  href="https://ahmedhassanhamed.github.io/expense-tracker/"
-                  target="_blank"
-                  rel="noopener"
-                  >Live Demo</a
-                >
-                <a
-                  href="https://khamsat.com/programming/custom-website-development/4477123-%D9%85%D9%88%D9%82%D8%B9-%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84-%D9%88%D9%85%D8%AA%D8%A7%D8%A8%D8%B9%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%88%D9%81%D8%A7%D8%AA-%D8%A8%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A"
-                  target="_blank"
-                  rel="noopener"
-                  >Buy on Khamsat</a
-                >
-              </div>
-            </div>
-          </article>
+      <section class="sec pitch" id="pitch">
+        <div class="wrap">
+          <h2 data-i18n="ptTitle"></h2>
+          <p class="lead" data-i18n="ptLead"></p>
+          <ul class="trust">
+            <li data-i18n="pt1"></li>
+            <li data-i18n="pt2"></li>
+            <li data-i18n="pt3"></li>
+          </ul>
+          <a class="btn" href="#order" data-i18n="ptCta"></a>
         </div>
       </section>
 
-      <!-- Contact -->
-      <section class="section reveal" id="contact">
-        <h2>Contact</h2>
-        <p>Let's work together. Feel free to reach out.</p>
-        <div class="contact-links">
-          <a href="https://wa.me/201147729020" target="_blank" rel="noopener">
-            <img src="imgs1/WhatsApp.jpeg" alt="" width="50" height="50" />
-            <span>WhatsApp</span>
-          </a>
-          <a href="mailto:ahmed.hassan.dev77@gmail.com">
-            <img src="imgs1/Email.jpeg" alt="" width="50" height="50" />
-            <span>Email</span>
-          </a>
-          <a
-            href="https://github.com/AhmedHassanHamed"
-            target="_blank"
-            rel="noopener"
-          >
-            <img src="imgs1/GitHub.jpeg" alt="" width="50" height="50" />
-            <span>GitHub</span>
-          </a>
-          <a
-            href="https://khamsat.com/user/hassanhamed_cz"
-            target="_blank"
-            rel="noopener"
-          >
-            <img src="imgs1/Khmsat.jpeg" alt="" width="50" height="50" />
-            <span>Khamsat</span>
-          </a>
-          <a
-            href="https://mostaql.com/u/Ahmed_Hassan_CZ"
-            target="_blank"
-            rel="noopener"
-          >
-            <img src="imgs1/Mostaql.jpeg" alt="" width="50" height="50" />
-            <span>Mostaql</span>
-          </a>
+      <section class="sec" id="work">
+        <div class="wrap">
+          <h2 data-i18n="wTitle">Selected work</h2>
+          <p class="lead" data-i18n="wLead">
+            Real projects with live demos you can open and try.
+          </p>
+          <div id="cases"></div>
         </div>
-        <button class="copy-email" id="copyEmail" type="button">
-          Copy email address
-        </button>
-        <p class="copy-status" id="copyStatus" role="status"></p>
+      </section>
+
+      <section class="sec" id="services">
+        <div class="wrap">
+          <h2 data-i18n="sTitle">Services and prices</h2>
+          <p class="lead" data-i18n="sLead">Fixed prices.</p>
+          <div class="tabs" id="tabs" role="tablist"></div>
+          <div id="svcPanel"></div>
+          <p class="note" data-i18n="hourly"></p>
+          <h3 class="subh" data-i18n="pTitle"></h3>
+          <ol class="steps">
+            <li data-i18n="p1"></li>
+            <li data-i18n="p2"></li>
+            <li data-i18n="p3"></li>
+            <li data-i18n="p4"></li>
+          </ol>
+          <ul class="trust">
+            <li data-i18n="tr1"></li>
+            <li data-i18n="tr2"></li>
+            <li data-i18n="tr3"></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec" id="reviews">
+        <div class="wrap">
+          <h2 data-i18n="rvTitle"></h2>
+          <div class="rate">
+            <p data-i18n="rateQ"></p>
+            <div id="stars" role="group"></div>
+            <p id="rateMsg" role="status"></p>
+          </div>
+          <div id="reviewList"></div>
+        </div>
+      </section>
+
+      <section class="sec" id="order">
+        <div class="wrap">
+          <div class="box form-box">
+            <h2 data-i18n="oTitle">Tell me about your project</h2>
+            <p class="lead" data-i18n="oLead"></p>
+            <form id="orderForm" class="form">
+              <label
+                ><span data-i18n="fName">Your name</span
+                ><input id="fName" required autocomplete="name"
+              /></label>
+              <label
+                ><span data-i18n="fSvc">Service</span
+                ><select id="fSvc"></select
+              ></label>
+              <label
+                ><span data-i18n="fMsg">What do you need?</span
+                ><textarea id="fMsg" rows="4" required></textarea>
+              </label>
+              <button class="btn" type="submit" data-i18n="fSend">
+                Send on WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="about">
+        <div class="wrap about">
+          <div>
+            <h2 data-i18n="aTitle">About me</h2>
+            <p class="lead" data-i18n="aText">I started coding in 2026.</p>
+          </div>
+          <div>
+            <h3 data-i18n="aTools">Tools I use</h3>
+            <ul class="tech">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Git &amp; GitHub</li>
+              <li>Responsive design</li>
+              <li>RTL / LTR</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="contact">
+        <div class="wrap">
+          <div class="box">
+            <h2 data-i18n="cTitle">Let's work together</h2>
+            <p class="lead" data-i18n="cText">
+              Tell me about your project and I'll get back to you.
+            </p>
+            <div class="contact-links">
+              <a
+                href="https://wa.me/201147729020"
+                target="_blank"
+                rel="noopener"
+                ><img
+                  src="imgs1/WhatsApp.jpeg"
+                  alt=""
+                  width="48"
+                  height="48"
+                /><span>WhatsApp</span></a
+              >
+              <a href="mailto:ahmed.hassan.dev77@gmail.com"
+                ><img
+                  src="imgs1/Email.jpeg"
+                  alt=""
+                  width="48"
+                  height="48"
+                /><span data-i18n="email">Email</span></a
+              >
+              <a
+                href="https://github.com/AhmedHassanHamed"
+                target="_blank"
+                rel="noopener"
+                ><img
+                  src="imgs1/GitHub.jpeg"
+                  alt=""
+                  width="48"
+                  height="48"
+                /><span>GitHub</span></a
+              >
+              <a
+                href="https://khamsat.com/user/hassanhamed_cz"
+                target="_blank"
+                rel="noopener"
+                ><img
+                  src="imgs1/Khmsat.jpeg"
+                  alt=""
+                  width="48"
+                  height="48"
+                /><span data-i18n="khamsat">Khamsat</span></a
+              >
+              <a
+                href="https://mostaql.com/u/Ahmed_Hassan_CZ"
+                target="_blank"
+                rel="noopener"
+                ><img
+                  src="imgs1/Mostaql.jpeg"
+                  alt=""
+                  width="48"
+                  height="48"
+                /><span data-i18n="mostaql">Mostaql</span></a
+              >
+            </div>
+            <p class="also">
+              <span data-i18n="also">Also find me on</span>
+              <a
+                href="https://www.upwork.com/freelancers/~017e71c52f4947b2a6"
+                target="_blank"
+                rel="noopener"
+                >Upwork</a
+              >
+              <a
+                href="https://www.freelancer.com/u/hassanhamed3"
+                target="_blank"
+                rel="noopener"
+                >Freelancer</a
+              >
+              <a
+                href="https://www.fiverr.com/s/ZooZpjQ"
+                target="_blank"
+                rel="noopener"
+                >Fiverr</a
+              >
+              <a
+                href="https://www.linkedin.com/in/hassan-hamed-undefined-42180a445/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+            </p>
+            <button
+              class="btn ghost copy"
+              id="copyBtn"
+              type="button"
+              data-i18n="copy"
+            >
+              Copy email address
+            </button>
+            <p class="status" id="status" role="status"></p>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer>
       <p>
-        &copy; <span id="year">2026</span> Ahmed Hassan. All rights reserved.
+        &copy; <span id="year">2026</span>
+        <span data-i18n="foot">Ahmed Hassan. All rights reserved.</span>
       </p>
     </footer>
-
-    <div
-      class="modal"
-      id="projectModal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modalTitle"
-      hidden
-    >
-      <div class="modal-box">
-        <button class="modal-close" id="modalClose" aria-label="Close">
-          ×
-        </button>
-        <img id="modalImg" src="" alt="" />
-        <div class="modal-body">
-          <h3 id="modalTitle"></h3>
-          <p id="modalDesc"></p>
-          <p class="tech" id="modalTech"></p>
-          <div class="links" id="modalLinks"></div>
-        </div>
-      </div>
-    </div>
-
-    <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
   </body>
 </html>
