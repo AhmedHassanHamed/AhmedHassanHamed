@@ -423,3 +423,42 @@ body::before {
     grid-template-columns: 260px 1fr;
   }
 }
+
+/* click-to-zoom */
+.frame img {
+  cursor: zoom-in;
+}
+.lb {
+  width: min(96vw, 1200px);
+  max-height: 92vh;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.lb::backdrop {
+  background: rgba(5, 8, 20, 0.82);
+}
+.lb-box {
+  max-height: 92vh;
+  overflow: auto;
+}
+.lb-box img {
+  width: 100%;
+  height: auto;
+}
+.lb-x {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 10px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 1.5rem;
+  cursor: pointer;
+}

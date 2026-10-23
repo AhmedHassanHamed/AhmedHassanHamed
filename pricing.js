@@ -135,7 +135,11 @@
         [
           ["صفحة بسيطة", "HTML/CSS نظيف", "متجاوب"],
           ["قوائم وتفاعلات", "دعم RTL للعربي", "مطابق للتصميم"],
-          ["تخطيطات معقدة وحركة", "RTL وLTR", "أولوية في التعديلات"],
+          [
+            "تخطيطات معقدة وحركة",
+            "دعم الاتجاهين (عربي وإنجليزي)",
+            "أولوية في التعديلات",
+          ],
         ],
       ],
     },
@@ -277,17 +281,24 @@
     sel.innerHTML = "";
     SERVICES.forEach((x) =>
       t.tn.forEach((n, i) =>
-        sel.add(new Option(`${x[lang][0]} - ${n}`, `${x.id}-${i}`)),
+        sel.add(
+          new Option(
+            `${x[lang][0]} - ${n} (${t.usd}${x.prices[i]}${x.per ? " " + t.perPage : ""})`,
+            `${x.id}-${i}`,
+          ),
+        ),
       ),
     );
     sel.add(new Option(t.other, "other"));
     if (keep) sel.value = keep;
+    markZoom();
     renderReviews();
     showRate();
   }
 
   const stars = (n) => "★".repeat(n) + "☆".repeat(5 - n);
   function renderReviews() {
+    q("#reviews").hidden = !REVIEWS.length;
     const t = T[lang];
     const avg = REVIEWS.length
       ? (REVIEWS.reduce((a, r) => a + r.stars, 0) / REVIEWS.length).toFixed(1)
@@ -308,9 +319,6 @@
     q("#rateMsg").textContent = n ? T[lang].rateThanks(n) : "";
   }
 
-  ["store", "cv", "invoice", "expense"].forEach((n, i) => {
-    PROJECTS[i].img = `imgs1/proj-${n}.svg`;
-  });
   const baseSetLang = setLang;
   setLang = function (l) {
     baseSetLang(l);
@@ -366,6 +374,39 @@
         "--py",
         ((e.clientY / innerHeight - 0.5) * 12).toFixed(1) + "px",
       );
+    });
+  }
+
+  /* click-to-zoom for project screenshots */
+  const lb = document.createElement("dialog");
+  lb.className = "lb";
+  lb.innerHTML =
+    '<button type="button" class="lb-x" aria-label="Close">×</button><div class="lb-box"><img alt="" /></div>';
+  document.body.append(lb);
+  const lbImg = lb.querySelector("img");
+  const zoom = (im) => {
+    lbImg.src = im.src;
+    lbImg.alt = im.alt;
+    lb.showModal();
+  };
+  q("#cases").addEventListener("click", (e) => {
+    const im = e.target.closest(".frame img");
+    if (im) zoom(im);
+  });
+  q("#cases").addEventListener("keydown", (e) => {
+    const im = e.target.closest(".frame img");
+    if (im && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault();
+      zoom(im);
+    }
+  });
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb || e.target.closest(".lb-x")) lb.close();
+  });
+  function markZoom() {
+    document.querySelectorAll(".frame img").forEach((im) => {
+      im.tabIndex = 0;
+      im.setAttribute("role", "button");
     });
   }
 })();
