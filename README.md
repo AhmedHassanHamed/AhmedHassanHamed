@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="imgs1/Profile.png" alt="Ahmed Hassan, Front-End Developer" width="100%" />
+<img src="imgs1/profile.png" alt="Ahmed Hassan, Front-End Developer" width="100%" />
 
 # Hi, I'm Ahmed Hassan 👋
 
