@@ -1,6 +1,13 @@
 /* Loads after script.js. Edit SERVICES (prices, texts, images) and REVIEWS. */
 (function () {
   const WA = "201147729020";
+  const OFFER = { left: 3, pct: 15 };
+  const disc = (p) =>
+    OFFER.left > 0 ? Math.round((p * (100 - OFFER.pct)) / 100) : p;
+  const offerBox = (t) =>
+    OFFER.left > 0
+      ? `<p class="offer"><b>${t.offerT(OFFER.pct, OFFER.left)}</b>${t.offerD}</p>`
+      : "";
   const SERVICES = [
     {
       id: "store",
@@ -131,7 +138,7 @@
       ],
       ar: [
         "من التصميم إلى الكود",
-        "تصميمك من Figma أو PSD يتحول إلى HTML وCSS نظيف. السعر للصفحة.",
+        "تصميمك من Figma أو PSD يتحول إلى HTML و CSS نظيف. السعر للصفحة.",
         [
           ["صفحة بسيطة", "HTML/CSS نظيف", "متجاوب"],
           ["قوائم وتفاعلات", "دعم RTL للعربي", "مطابق للتصميم"],
@@ -178,7 +185,7 @@
     noRev: "Client reviews will appear here after my first projects.",
     of5: "out of 5",
     hourly:
-      "Small fixes and edits to an existing site: $12 per hour, minimum 1 hour.",
+      "Need a small change on a site you already have? Updating text or images, fixing a layout problem, or adding a section is $12 per hour, with a 1-hour minimum. I'll tell you the estimated hours before I start. Bigger work, like new pages or a redesign, gets a fixed quote instead.",
     fSvc: "Package",
     pTitle: "How it works",
     p1: "1. You send the details. I reply within 24 hours.",
@@ -195,6 +202,20 @@
     fSend: "Send on WhatsApp",
     other: "Something else",
     wa: (n, s, m) => `Hi Ahmed, I'm ${n}. I'm interested in: ${s}.\n${m}`,
+
+    hi: "Welcome! I'm Ahmed, a front-end developer.",
+    sub: "I design and build fast, good-looking websites, stores, and landing pages that work on every screen, in Arabic and English.",
+    p1: "1. Tell me about your project. I reply within 24 hours.",
+    p2: "2. You get a fixed quote with the price and delivery date.",
+    p3: "3. You pay 50% to start, and the rest on delivery.",
+    p4: "4. I deliver, make 2 free revisions, and fix any bug within 7 days (30 days in Premium).",
+    aText:
+      "I'm Ahmed Hassan, a front-end developer who builds fast, good-looking websites, stores, and landing pages for Arabic and English audiences. I care about the details, I keep to the agreed delivery date, and every project I show has a live demo you can test first.",
+    offerT: (p, n) => `Launch offer: ${p}% off for my first ${n} clients`,
+    offerD:
+      "Includes free deployment of your site and a 15-minute consultation before we start. After delivery, I'd appreciate an honest review.",
+    offerWa: "\nI'd like to use the launch offer.",
+    sent: "Thank you! WhatsApp is opening with your message. I'll reply within 24 hours.",
   });
   Object.assign(T.ar, {
     nav1: "الخدمات والأسعار",
@@ -227,7 +248,7 @@
     noRev: "ستظهر آراء العملاء هنا بعد أولى مشاريعي.",
     of5: "من 5",
     hourly:
-      "التعديلات الصغيرة على موقع موجود: 12 دولاراً للساعة، بحد أدنى ساعة.",
+      "تحتاج تعديلاً بسيطاً على موقع موجود عندك؟ تغيير النصوص أو الصور، أو إصلاح مشكلة في الشكل، أو إضافة قسم، تُحسب بـ 12 دولاراً للساعة بحد أدنى ساعة واحدة. أخبرك بعدد الساعات المتوقع قبل أن أبدأ. أما الأعمال الأكبر مثل صفحات جديدة أو إعادة تصميم فلها عرض سعر ثابت.",
     fSvc: "الباقة",
     pTitle: "كيف نعمل",
     p1: "1. ترسل لي التفاصيل وأرد خلال 24 ساعة.",
@@ -244,6 +265,20 @@
     fSend: "أرسل على واتساب",
     other: "شيء آخر",
     wa: (n, s, m) => `مرحباً أحمد، أنا ${n}. مهتم بـ: ${s}.\n${m}`,
+
+    hi: "أهلاً بك! أنا أحمد، مطوّر واجهات أمامية.",
+    sub: "أصمّم وأبني مواقع ومتاجر وصفحات هبوط سريعة وأنيقة، تعمل بسلاسة على كل الشاشات وبالعربية والإنجليزية.",
+    p1: "1. تحكي لي عن مشروعك، وأرد عليك خلال 24 ساعة.",
+    p2: "2. تستلم عرضاً ثابتاً بالسعر وموعد التسليم.",
+    p3: "3. تدفع 50% للبدء، والباقي عند التسليم.",
+    p4: "4. أسلّم لك العمل، وأنفّذ تعديلين مجانيين، وأصلح أي خطأ خلال 7 أيام (30 يوماً في المتكاملة).",
+    aText:
+      "أنا أحمد حسن، مطوّر واجهات أمامية. أبني مواقع ومتاجر وصفحات هبوط سريعة وأنيقة لجمهور عربي وإنجليزي. أهتم بالتفاصيل، وألتزم بموعد التسليم المتفق عليه، ولكل مشروع أعرضه نسخة تجريبية تجربها بنفسك قبل أن تطلب.",
+    offerT: (p, n) => `عرض الإطلاق: خصم ${p}% لأول ${n} عملاء`,
+    offerD:
+      "يشمل نشر موقعك مجاناً واستشارة قصيرة (15 دقيقة) قبل البدء. وبعد التسليم أكون ممتناً لرأيك الصريح.",
+    offerWa: "\nأرغب في الاستفادة من عرض الإطلاق.",
+    sent: "شكراً لك! سيفتح واتساب برسالتك، وسأرد عليك خلال 24 ساعة.",
   });
 
   const q = (s) => document.querySelector(s);
@@ -265,12 +300,13 @@
     const s = SERVICES.find((x) => x.id === cur);
     const [name, pitch, tiers] = s[lang];
     q("#svcPanel").innerHTML =
+      offerBox(t) +
       `<div class="svc-head"><img src="${s.img}" alt="" loading="lazy" onerror="this.remove()" /><div><h3>${name}</h3><p>${pitch}</p></div></div>
       <div class="pkgs">${tiers
         .map(
           (f, i) => `<article class="pkg${i === 1 ? " pop" : ""}">
         ${i === 1 ? `<span class="tag">${t.pop}</span>` : ""}<h3>${t.tn[i]}</h3>
-        <p class="price"><b>${t.usd}${s.prices[i]}</b>${s.per ? `<small>${t.perPage}</small>` : ""}</p>
+        <p class="price">${OFFER.left > 0 ? `<s>${t.usd}${s.prices[i]}</s>` : ""}<b>${t.usd}${disc(s.prices[i])}</b>${s.per ? `<small>${t.perPage}</small>` : ""}</p>
         <p class="eta">${s.days[i]} ${t.days}</p>
         <ul>${i ? `<li class="all">${t["all" + i]}</li>` : ""}${f.map((x) => `<li>${x}</li>`).join("")}</ul>
         <a class="btn${i === 1 ? "" : " ghost"}" href="#order" data-svc="${s.id}-${i}">${t.order}</a></article>`,
@@ -283,7 +319,7 @@
       t.tn.forEach((n, i) =>
         sel.add(
           new Option(
-            `${x[lang][0]} - ${n} (${t.usd}${x.prices[i]}${x.per ? " " + t.perPage : ""})`,
+            `${x[lang][0]} - ${n} (${t.usd}${disc(x.prices[i])}${x.per ? " " + t.perPage : ""})`,
             `${x.id}-${i}`,
           ),
         ),
@@ -347,16 +383,19 @@
 
   q("#orderForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    const text = T[lang].wa(
-      q("#fName").value.trim(),
-      q("#fSvc").selectedOptions[0].textContent,
-      q("#fMsg").value.trim(),
-    );
+    const text =
+      T[lang].wa(
+        q("#fName").value.trim(),
+        q("#fSvc").selectedOptions[0].textContent,
+        q("#fMsg").value.trim(),
+      ) + (OFFER.left > 0 ? T[lang].offerWa : "");
     window.open(
       `https://wa.me/${WA}?text=${encodeURIComponent(text)}`,
       "_blank",
       "noopener",
     );
+    q("#orderMsg").textContent = T[lang].sent;
+    q("#fMsg").value = "";
   });
 
   /* gentle pointer parallax for the portrait */
