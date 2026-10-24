@@ -485,3 +485,41 @@ body::before {
   font-size: 1rem;
   opacity: 0.6;
 }
+.wa-float {
+  position: fixed;
+  inset-inline-end: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #062b12;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+}
+.wa-float img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.wa-float span {
+  display: none;
+  padding-inline-end: 14px;
+}
+@media (min-width: 760px) {
+  .wa-float span {
+    display: inline;
+  }
+}
+@media (hover: hover) {
+  .wa-float:hover {
+    transform: translateY(-3px);
+  }
+}

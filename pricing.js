@@ -216,6 +216,8 @@
       "Includes free deployment of your site and a 15-minute consultation before we start. After delivery, I'd appreciate an honest review.",
     offerWa: "\nI'd like to use the launch offer.",
     sent: "Thank you! WhatsApp is opening with your message. I'll reply within 24 hours.",
+    waChat: "Chat on WhatsApp",
+    waHi: "Hi Ahmed, I saw your portfolio and I'd like to ask about a project.",
   });
   Object.assign(T.ar, {
     nav1: "الخدمات والأسعار",
@@ -279,6 +281,8 @@
       "يشمل نشر موقعك مجاناً واستشارة قصيرة (15 دقيقة) قبل البدء. وبعد التسليم أكون ممتناً لرأيك الصريح.",
     offerWa: "\nأرغب في الاستفادة من عرض الإطلاق.",
     sent: "شكراً لك! سيفتح واتساب برسالتك، وسأرد عليك خلال 24 ساعة.",
+    waChat: "تحدث معي على واتساب",
+    waHi: "مرحباً أحمد، شاهدت معرض أعمالك وأريد الاستفسار عن مشروع.",
   });
 
   const q = (s) => document.querySelector(s);
@@ -293,6 +297,8 @@
 
   function render() {
     const t = T[lang];
+    q("#waFloat").href =
+      `https://wa.me/${WA}?text=${encodeURIComponent(t.waHi)}`;
     q("#tabs").innerHTML = SERVICES.map(
       (s) =>
         `<button type="button" role="tab" aria-selected="${s.id === cur}" data-tab="${s.id}">${s[lang][0]}</button>`,
