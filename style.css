@@ -1,3 +1,9 @@
+/* =====================================================
+   style.css: التنسيق الأساسي للبورتفوليو
+   ملحوظة: pricing.css بيتحمل بعد الملف ده وبيغيّر الألوان،
+   فلتغيير الألوان عدّل في pricing.css مش هنا.
+   ===================================================== */
+/* ===== 1. المتغيرات (الألوان والمقاسات): الوضع الليلي والنهاري ===== */
 :root {
   --bg: #0c1222;
   --surface: #131c33;
@@ -21,6 +27,7 @@
   --ok: #047857;
   color-scheme: light;
 }
+/* إعادة ضبط عامة (Reset) وعناصر أساسية */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -59,6 +66,7 @@ a {
   width: min(100% - 40px, 1080px);
   margin-inline: auto;
 }
+/* رابط "تخطّى إلى المحتوى" (لقارئات الشاشة والكيبورد) */
 .skip {
   position: absolute;
   inset-inline-start: 12px;
@@ -73,7 +81,7 @@ a {
   top: 10px;
 }
 
-/* nav */
+/* ===== 2. شريط التنقل العلوي (Nav) ===== */
 .nav {
   position: sticky;
   top: 0;
@@ -150,7 +158,7 @@ a {
   }
 }
 
-/* hero */
+/* ===== 3. القسم الأول (Hero): العنوان والصورة ===== */
 .hero {
   padding: 72px 0 40px;
 }
@@ -176,6 +184,7 @@ a {
     transform: translateY(16px);
   }
 }
+/* شارة "متاح للعمل" */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -236,6 +245,7 @@ h1 {
     transform: translateY(-2px);
   }
 }
+/* الأرقام السريعة تحت الأزرار */
 .facts {
   display: flex;
   flex-wrap: wrap;
@@ -252,6 +262,7 @@ h1 {
 .facts span {
   font-size: 0.85rem;
 }
+/* صورتك والشارات الصغيرة (HTML / CSS / JS) حولها */
 .portrait {
   position: relative;
   width: min(100%, 340px);
@@ -287,7 +298,7 @@ h1 {
   inset-inline-start: -4%;
 }
 
-/* sections */
+/* ===== 4. تنسيق الأقسام العامة (العناوين والمسافات) ===== */
 .sec {
   padding: 72px 0;
 }
@@ -303,28 +314,7 @@ h1 {
 h3 {
   color: var(--head);
 }
-.svc {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--line);
-}
-.svc > div {
-  padding: 26px;
-  background: var(--surface);
-}
-.svc h3 {
-  margin-bottom: 8px;
-  font-size: 1.1rem;
-}
-.svc p {
-  font-size: 0.95rem;
-}
-
-/* case studies */
+/* ===== 5. كروت الأعمال (إطار المتصفح + الوصف) ===== */
 .case {
   display: grid;
   gap: 28px;
@@ -400,23 +390,7 @@ h3 {
   font-size: 0.9rem;
 }
 
-.about {
-  display: grid;
-  gap: 40px;
-}
-@media (min-width: 900px) {
-  .about {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-.about .lead {
-  margin-bottom: 0;
-}
-.about h3 {
-  margin-bottom: 4px;
-}
-
-/* contact */
+/* ===== 6. قسم التواصل ===== */
 .box {
   padding: 48px 24px;
   text-align: center;
@@ -477,6 +451,7 @@ h3 {
   font-size: 0.9rem;
   color: var(--accent);
 }
+/* ===== 7. الفوتر ===== */
 footer {
   padding: 28px 0;
   border-top: 1px solid var(--line);
@@ -484,6 +459,7 @@ footer {
   font-size: 0.9rem;
 }
 
+/* ===== 8. تقليل الحركة لمن يفضّل ذلك في جهازه ===== */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

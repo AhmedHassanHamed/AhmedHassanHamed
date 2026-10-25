@@ -1,3 +1,8 @@
+/* =====================================================
+   script.js: المنطق الأساسي للصفحة
+   فيه: الترجمات (عربي/إنجليزي) + بيانات المشاريع + اللغة + الثيم + القائمة
+   الأسعار والخدمات والنموذج في pricing.js
+   ===================================================== */
 "use strict";
 
 const $ = (s) => document.querySelector(s);
@@ -17,7 +22,9 @@ const set = (k, v) => {
   } catch (e) {}
 };
 
-/* ---------- Translations ---------- */
+/* ===== 1. الترجمات: كل مفتاح له نص إنجليزي (en) وعربي (ar) =====
+   الربط: أي عنصر في index.html عليه data-i18n="المفتاح" بياخد النص من هنا.
+   نصوص الأسعار والنبذة والنموذج الإضافية في pricing.js */
 const T = {
   en: {
     title: "Ahmed Hassan | Front-End Developer",
@@ -34,27 +41,15 @@ const T = {
     h1: "I build fast websites that work in Arabic and English.",
     sub: "Front-end developer. Landing pages, stores, and web tools made with HTML, CSS, and JavaScript.",
     cta1: "See my work",
-    cta2: "Hire me on WhatsApp",
     f1: "Live projects",
     f2: "Languages in every project",
-    f3: "Coding since",
     sTitle: "What I can build for you",
     sLead: "Clear, fast, and easy to use on any screen.",
-    s1t: "Landing pages",
-    s1d: "One focused page that explains your offer and makes it easy to contact you.",
-    s2t: "Business websites",
-    s2d: "Multi-page sites that look right on phones, tablets, and desktops.",
-    s3t: "Store front-ends",
-    s3d: "Products, cart, wishlist, and checkout that sends the order to WhatsApp.",
-    s4t: "Design to code",
-    s4d: "Your Figma or PSD design turned into clean HTML and CSS.",
     wTitle: "Selected work",
     wLead: "Real projects with live demos you can open and try.",
     live: "Live demo",
     buy: "Buy on Khamsat",
     aTitle: "About me",
-    aText:
-      "I started coding in 2026 and publish everything I build. Next I'm learning React and back-end development, so I can build full web apps.",
     aTools: "Tools I use",
     cTitle: "Let's work together",
     cText: "Tell me about your project and I'll get back to you.",
@@ -82,27 +77,15 @@ const T = {
     h1: "أبني مواقع سريعة تعمل بالعربية والإنجليزية.",
     sub: "مطوّر واجهات أمامية. صفحات هبوط ومتاجر وأدوات ويب بـ HTML، CSS، JavaScript.",
     cta1: "شاهد أعمالي",
-    cta2: "تواصل معي على واتساب",
     f1: "مشاريع منشورة",
     f2: "لغتان في كل مشروع",
-    f3: "أبرمج منذ",
     sTitle: "ماذا أستطيع أن أبني لك",
     sLead: "مواقع واضحة وسريعة وسهلة الاستخدام على أي شاشة.",
-    s1t: "صفحات الهبوط",
-    s1d: "صفحة واحدة مركّزة تشرح عرضك وتسهّل التواصل معك.",
-    s2t: "مواقع الشركات",
-    s2d: "مواقع متعددة الصفحات تظهر بشكل سليم على الموبايل والتابلت والكمبيوتر.",
-    s3t: "واجهات المتاجر",
-    s3d: "منتجات وسلة ومفضلة وإتمام طلب يرسل الطلب إلى واتساب.",
-    s4t: "من التصميم إلى الكود",
-    s4d: "تصميمك من Figma أو PSD يتحول إلى HTML وCSS نظيف.",
     wTitle: "أعمال مختارة",
     wLead: "مشاريع حقيقية بنسخ تجريبية يمكنك فتحها وتجربتها.",
     live: "النسخة التجريبية",
     buy: "اشترِ من خمسات",
     aTitle: "نبذة عني",
-    aText:
-      "بدأت البرمجة في 2026 وأنشر كل ما أبنيه. أتعلّم الآن React وتطوير الخلفية لأبني تطبيقات ويب كاملة.",
     aTools: "الأدوات التي أستخدمها",
     cTitle: "لنعمل معاً",
     cText: "أخبرني عن مشروعك وسأرد عليك.",
@@ -117,7 +100,10 @@ const T = {
   },
 };
 
-/* ---------- Projects ---------- */
+/* ===== 2. بيانات المشاريع (عدّل هنا) =====
+   لإضافة مشروع: انسخ عنصراً كاملاً من القائمة وغيّر:
+   img (صورة اللقطة) ، live (رابط النسخة التجريبية) ، buy (رابط خمسات، اختياري)
+   tech (التقنيات) ، en و ar (الاسم والوصف) */
 const PROJECTS = [
   {
     img: "imgs1/store.png",
@@ -183,9 +169,10 @@ const PROJECTS = [
   },
 ];
 
-/* ---------- Language ---------- */
+/* ===== 3. اللغة والعرض ===== */
 let lang = get("lang", navigator.language.startsWith("ar") ? "ar" : "en");
 
+/* يرسم كروت الأعمال بحسب اللغة الحالية */
 function renderProjects() {
   const t = T[lang];
   $("#cases").innerHTML = PROJECTS.map((p) => {
@@ -208,6 +195,7 @@ function renderProjects() {
   }).join("");
 }
 
+/* يبدّل الوضع الليلي/النهاري ويحدّث لون شريط المتصفح */
 function setTheme(theme) {
   root.dataset.theme = theme;
   $("#themeBtn").textContent = theme === "dark" ? "☾" : "☀";
@@ -216,9 +204,10 @@ function setTheme(theme) {
     theme === "dark" ? T[lang].themeLight : T[lang].themeDark,
   );
   const m = document.querySelector('meta[name="theme-color"]');
-  if (m) m.content = theme === "dark" ? "#0c1222" : "#f6f7fb";
+  if (m) m.content = theme === "dark" ? "#0f1226" : "#f3f4fb";
 }
 
+/* يبدّل اللغة والاتجاه (RTL/LTR) ويعيد كتابة كل النصوص */
 function setLang(l) {
   lang = l;
   set("lang", l);
@@ -233,7 +222,7 @@ function setLang(l) {
   renderProjects();
 }
 
-/* ---------- Init ---------- */
+/* ===== 4. التشغيل وأزرار الهيدر (لغة، ثيم، قائمة الموبايل، نسخ البريد) ===== */
 root.dataset.theme = get("theme", "dark");
 $("#nProjects").textContent = PROJECTS.length;
 $("#year").textContent = new Date().getFullYear();

@@ -1,13 +1,23 @@
-/* Loads after script.js. Edit SERVICES (prices, texts, images) and REVIEWS. */
+/* =====================================================
+   pricing.js: الخدمات والأسعار + عرض الإطلاق + التقييمات + النموذج
+   يتحمل بعد script.js ويستخدم متغيراته (T, lang, EMAIL...)
+   الأماكن اللي بتعدّلها بنفسك: 1 (الإعدادات) و 2 (الخدمات) و 3 (التقييمات)
+   ===================================================== */
 (function () {
-  const WA = "201147729020";
+  /* ===== 1. الإعدادات (عدّل هنا) ===== */
+  const WA = "201147729020"; // رقم واتساب بدون + ، وغيّره لرقم الشغل لما تجيبه
+  // عرض الإطلاق: left = عدد العملاء المتبقين (اجعله 0 لإيقاف العرض)، pct = نسبة الخصم %
   const OFFER = { left: 3, pct: 15 };
+  // disc: يحسب السعر بعد الخصم، offerBox: يرسم شريط العرض فوق الباقات
   const disc = (p) =>
     OFFER.left > 0 ? Math.round((p * (100 - OFFER.pct)) / 100) : p;
   const offerBox = (t) =>
     OFFER.left > 0
       ? `<p class="offer"><b>${t.offerT(OFFER.pct, OFFER.left)}</b>${t.offerD}</p>`
       : "";
+  /* ===== 2. الخدمات والباقات (عدّل الأسعار والمدد والمميزات) =====
+     prices = أسعار الباقات [أساسية، متوسطة، متكاملة] ، days = مدة التسليم
+     per = true لو السعر للصفحة ، en/ar = [الاسم، الوصف، مميزات كل باقة] */
   const SERVICES = [
     {
       id: "store",
@@ -151,15 +161,19 @@
       ],
     },
   ];
-  /* Add real clients here: { name: "Mona", stars: 5, text: "Great work", service: "Store" } */
+  /* ===== 3. آراء العملاء (حقيقية فقط) =====
+     أضف رأياً بعد إذن العميل: { name: "منى", stars: 5, text: "شغل ممتاز", service: "متجر" }
+     القسم مخفي وبيظهر لوحده أول ما تضيف رأياً. */
   const REVIEWS = [];
 
+  /* ===== 4. النصوص الإنجليزية الإضافية (تُضاف إلى T.en في script.js) ===== */
   Object.assign(T.en, {
     nav1: "Services & prices",
     cta1: "Get a quote",
     cta3: "See my work",
     f2: "Reply time",
     f4: "Free revision rounds",
+    f2v: "24h",
     sTitle: "Services and prices",
     sLead:
       "Pick a service, then pick the package that fits your budget. Fixed prices in USD, agreed in writing. Every package includes 2 revision rounds.",
@@ -172,9 +186,9 @@
     all2: "Everything in Standard",
     tn: ["Basic", "Standard", "Premium"],
     pop: "Most chosen",
-    ptTitle: "You built something good. Now it should look like you.",
+    ptTitle: "Your business is good. Your website should show it.",
     ptLead:
-      "Many owners sell well but struggle to show their products online. I design your store around your brand, your customers, and the way you sell, so it feels like yours and not like a template.",
+      "Many owners sell well but struggle to show their products online. I design your website or store around your brand, your customers, and the way you sell, so it feels like yours and not like a template.",
     pt1: "Built around you: your colors, your products, your voice.",
     pt2: "No two clients get the same store. Each one is designed from scratch.",
     pt3: "Easy for your customers: browse, choose, and order on WhatsApp in a few taps.",
@@ -188,10 +202,6 @@
       "Need a small change on a site you already have? Updating text or images, fixing a layout problem, or adding a section is $12 per hour, with a 1-hour minimum. I'll tell you the estimated hours before I start. Bigger work, like new pages or a redesign, gets a fixed quote instead.",
     fSvc: "Package",
     pTitle: "How it works",
-    p1: "1. You send the details. I reply within 24 hours.",
-    p2: "2. I send a fixed quote with the price and delivery date.",
-    p3: "3. You pay 50% to start. The rest is due on delivery.",
-    p4: "4. I deliver, apply 2 revision rounds, and fix bugs for 7 days after delivery (30 days in Premium).",
     tr1: "Prefer a safety net? Order through my Khamsat or Mostaql profile and pay through their escrow.",
     tr2: "You own all the code and files once the job is paid.",
     tr3: "Every project in my portfolio has a live demo you can test first.",
@@ -200,6 +210,7 @@
     fName: "Your name",
     fMsg: "What do you need?",
     fSend: "Send on WhatsApp",
+    fMail: "Send by email",
     other: "Something else",
     wa: (n, s, m) => `Hi Ahmed, I'm ${n}. I'm interested in: ${s}.\n${m}`,
 
@@ -210,21 +221,34 @@
     p3: "3. You pay 50% to start, and the rest on delivery.",
     p4: "4. I deliver, make 2 free revisions, and fix any bug within 7 days (30 days in Premium).",
     aText:
-      "I'm Ahmed Hassan, a front-end developer who builds fast, good-looking websites, stores, and landing pages for Arabic and English audiences. I care about the details, I keep to the agreed delivery date, and every project I show has a live demo you can test first.",
+      "I'm Ahmed Hassan, a front-end developer. I turn your idea or design into a fast, good-looking website that your customers find easy to use, in Arabic, English, or both. You get a clear price, a clear delivery date, and the full code when we finish.",
+    aCta: "Start your project",
+    ab1t: "Built for Arabic and English",
+    ab1d: "Every project I build supports right-to-left and left-to-right layouts properly, so text, fonts, and numbers look right in both languages.",
+    ab2t: "Fast on every screen",
+    ab2d: "Clean code with no heavy libraries, so pages open quickly and work on phones, tablets, and desktops.",
+    ab3t: "Clear and on time",
+    ab3d: "A fixed price and a delivery date agreed in writing, a reply within 24 hours, and 2 free revision rounds.",
+    ab4t: "See it before you buy",
+    ab4d: "Each project in my portfolio has a live demo, so you can test my work yourself before we start.",
     offerT: (p, n) => `Launch offer: ${p}% off for my first ${n} clients`,
     offerD:
       "Includes free deployment of your site and a 15-minute consultation before we start. After delivery, I'd appreciate an honest review.",
     offerWa: "\nI'd like to use the launch offer.",
     sent: "Thank you! WhatsApp is opening with your message. I'll reply within 24 hours.",
+    sentMail:
+      "Your email app is opening with your message. I'll reply within 24 hours.",
     waChat: "Chat on WhatsApp",
     waHi: "Hi Ahmed, I saw your portfolio and I'd like to ask about a project.",
   });
+  /* ===== 5. النصوص العربية الإضافية (تُضاف إلى T.ar) ===== */
   Object.assign(T.ar, {
     nav1: "الخدمات والأسعار",
     cta1: "اطلب عرض سعر",
     cta3: "شاهد أعمالي",
     f2: "زمن الرد",
     f4: "جولتا تعديل مجانيتان",
+    f2v: "24 ساعة",
     sTitle: "الخدمات والأسعار",
     sLead:
       "اختر الخدمة ثم الباقة التي تناسب ميزانيتك. أسعار ثابتة بالدولار نتفق عليها كتابةً، وكل باقة تشمل جولتين تعديل.",
@@ -237,9 +261,9 @@
     all2: "كل ما في المتوسطة",
     tn: ["الأساسية", "المتوسطة", "المتكاملة"],
     pop: "الأكثر اختياراً",
-    ptTitle: "بنيت شيئاً جيداً. الآن يجب أن يظهر بشكل يشبهك.",
+    ptTitle: "نشاطك ممتاز، ويستحق موقعاً يعبّر عنه.",
     ptLead:
-      "كثير من أصحاب الأعمال يبيعون جيداً لكن لا يعرفون كيف يعرضون منتجاتهم على الإنترنت. أصمم متجرك حول علامتك وعملائك وطريقة بيعك، ليكون متجرك أنت وليس قالباً جاهزاً.",
+      "كثير من أصحاب الأعمال يبيعون جيداً لكن لا يعرفون كيف يعرضون منتجاتهم على الإنترنت. أصمم موقعك أو متجرك حول علامتك وعملائك وطريقة بيعك، ليكون لك أنت وليس قالباً جاهزاً.",
     pt1: "مبني حولك: ألوانك ومنتجاتك وأسلوبك.",
     pt2: "لا يوجد عميلان بنفس المتجر. كل تجربة تُصمَّم من الصفر.",
     pt3: "سهل على عملائك: يتصفحون ويختارون ويطلبون عبر واتساب بضغطات قليلة.",
@@ -253,10 +277,6 @@
       "تحتاج تعديلاً بسيطاً على موقع موجود عندك؟ تغيير النصوص أو الصور، أو إصلاح مشكلة في الشكل، أو إضافة قسم، تُحسب بـ 12 دولاراً للساعة بحد أدنى ساعة واحدة. أخبرك بعدد الساعات المتوقع قبل أن أبدأ. أما الأعمال الأكبر مثل صفحات جديدة أو إعادة تصميم فلها عرض سعر ثابت.",
     fSvc: "الباقة",
     pTitle: "كيف نعمل",
-    p1: "1. ترسل لي التفاصيل وأرد خلال 24 ساعة.",
-    p2: "2. أرسل لك عرضاً ثابتاً بالسعر وموعد التسليم.",
-    p3: "3. تدفع 50% للبدء، والباقي عند التسليم.",
-    p4: "4. أسلّم، وأنفّذ جولتي تعديل، وأصلح أي أخطاء لمدة 7 أيام بعد التسليم (30 يوماً في المتكاملة).",
     tr1: "تفضّل ضماناً أكثر؟ اطلب عبر ملفي على خمسات أو مستقل وادفع من خلال نظام الضمان عندهم.",
     tr2: "تملك كل الكود والملفات بعد دفع المشروع.",
     tr3: "كل مشروع في أعمالي له نسخة تجريبية تقدر تجربها أولاً.",
@@ -265,6 +285,7 @@
     fName: "اسمك",
     fMsg: "ماذا تحتاج؟",
     fSend: "أرسل على واتساب",
+    fMail: "أرسل بالبريد الإلكتروني",
     other: "شيء آخر",
     wa: (n, s, m) => `مرحباً أحمد، أنا ${n}. مهتم بـ: ${s}.\n${m}`,
 
@@ -275,16 +296,27 @@
     p3: "3. تدفع 50% للبدء، والباقي عند التسليم.",
     p4: "4. أسلّم لك العمل، وأنفّذ تعديلين مجانيين، وأصلح أي خطأ خلال 7 أيام (30 يوماً في المتكاملة).",
     aText:
-      "أنا أحمد حسن، مطوّر واجهات أمامية. أبني مواقع ومتاجر وصفحات هبوط سريعة وأنيقة لجمهور عربي وإنجليزي. أهتم بالتفاصيل، وألتزم بموعد التسليم المتفق عليه، ولكل مشروع أعرضه نسخة تجريبية تجربها بنفسك قبل أن تطلب.",
+      "أنا أحمد حسن، مطوّر واجهات أمامية. أحوّل فكرتك أو تصميمك إلى موقع سريع وأنيق يسهل على عملائك استخدامه، بالعربية أو الإنجليزية أو الاثنتين. تحصل على سعر واضح وموعد تسليم محدد وكامل الكود عند الانتهاء.",
+    aCta: "ابدأ مشروعك",
+    ab1t: "مصمَّم للعربية والإنجليزية",
+    ab1d: "كل مشروع أبنيه يدعم الكتابة من اليمين لليسار والعكس بشكل سليم، فتظهر النصوص والخطوط والأرقام صحيحة في اللغتين.",
+    ab2t: "سريع على كل الشاشات",
+    ab2d: "كود نظيف بلا مكتبات ثقيلة، فتفتح الصفحات بسرعة وتعمل على الموبايل والتابلت والكمبيوتر.",
+    ab3t: "واضح وفي موعده",
+    ab3d: "سعر ثابت وموعد تسليم متفق عليهما كتابةً، ورد خلال 24 ساعة، وجولتا تعديل مجانيتان.",
+    ab4t: "شاهد قبل أن تشتري",
+    ab4d: "لكل مشروع في أعمالي نسخة تجريبية، تقدر تجرّب شغلي بنفسك قبل أن نبدأ.",
     offerT: (p, n) => `عرض الإطلاق: خصم ${p}% لأول ${n} عملاء`,
     offerD:
       "يشمل نشر موقعك مجاناً واستشارة قصيرة (15 دقيقة) قبل البدء. وبعد التسليم أكون ممتناً لرأيك الصريح.",
     offerWa: "\nأرغب في الاستفادة من عرض الإطلاق.",
     sent: "شكراً لك! سيفتح واتساب برسالتك، وسأرد عليك خلال 24 ساعة.",
+    sentMail: "سيفتح تطبيق البريد برسالتك، وسأرد عليك خلال 24 ساعة.",
     waChat: "تحدث معي على واتساب",
     waHi: "مرحباً أحمد، شاهدت معرض أعمالك وأريد الاستفسار عن مشروع.",
   });
 
+  /* ===== 6. أدوات مساعدة ===== */
   const q = (s) => document.querySelector(s);
   const store = (k, v) => {
     try {
@@ -295,13 +327,14 @@
   };
   let cur = "store";
 
+  /* ===== 7. رسم التبويبات والباقات وخيارات النموذج ===== */
   function render() {
     const t = T[lang];
     q("#waFloat").href =
       `https://wa.me/${WA}?text=${encodeURIComponent(t.waHi)}`;
     q("#tabs").innerHTML = SERVICES.map(
       (s) =>
-        `<button type="button" role="tab" aria-selected="${s.id === cur}" data-tab="${s.id}">${s[lang][0]}</button>`,
+        `<button type="button" role="tab" aria-controls="svcPanel" aria-selected="${s.id === cur}" data-tab="${s.id}">${s[lang][0]}</button>`,
     ).join("");
     const s = SERVICES.find((x) => x.id === cur);
     const [name, pitch, tiers] = s[lang];
@@ -338,6 +371,7 @@
     showRate();
   }
 
+  /* ===== 8. رسم التقييمات (تظهر فقط لو REVIEWS فيها بيانات) ===== */
   const stars = (n) => "★".repeat(n) + "☆".repeat(5 - n);
   function renderReviews() {
     q("#reviews").hidden = !REVIEWS.length;
@@ -361,6 +395,7 @@
     q("#rateMsg").textContent = n ? T[lang].rateThanks(n) : "";
   }
 
+  /* ===== 9. ربط تغيير اللغة بإعادة رسم الخدمات ===== */
   const baseSetLang = setLang;
   setLang = function (l) {
     baseSetLang(l);
@@ -368,6 +403,7 @@
   };
   setLang(lang);
 
+  /* ===== 10. الأحداث: التبويبات، اختيار باقة، النجوم، إرسال الطلب لواتساب ===== */
   q("#tabs").addEventListener("click", (e) => {
     const b = e.target.closest("[data-tab]");
     if (b) {
@@ -404,7 +440,18 @@
     q("#fMsg").value = "";
   });
 
-  /* gentle pointer parallax for the portrait */
+  /* ===== 11. إرسال الطلب بالبريد (بديل لواتساب) ===== */
+  q("#mailBtn").addEventListener("click", () => {
+    if (!q("#orderForm").reportValidity()) return;
+    const svc = q("#fSvc").selectedOptions[0].textContent;
+    const body =
+      T[lang].wa(q("#fName").value.trim(), svc, q("#fMsg").value.trim()) +
+      (OFFER.left > 0 ? T[lang].offerWa : "");
+    location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(svc)}&body=${encodeURIComponent(body)}`;
+    q("#orderMsg").textContent = T[lang].sentMail;
+  });
+
+  /* ===== 12. حركة خفيفة لصورتك مع الماوس ===== */
   if (
     !matchMedia("(prefers-reduced-motion: reduce)").matches &&
     matchMedia("(hover: hover)").matches
@@ -422,9 +469,10 @@
     });
   }
 
-  /* click-to-zoom for project screenshots */
+  /* ===== 13. تكبير صور المشاريع عند الضغط ===== */
   const lb = document.createElement("dialog");
   lb.className = "lb";
+  lb.setAttribute("aria-label", "Project preview");
   lb.innerHTML =
     '<button type="button" class="lb-x" aria-label="Close">×</button><div class="lb-box"><img alt="" /></div>';
   document.body.append(lb);

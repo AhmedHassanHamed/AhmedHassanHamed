@@ -6,9 +6,9 @@
     <title>Ahmed Hassan | Front-End Developer</title>
     <meta
       name="description"
-      content="Ahmed Hassan, Front-End Developer building responsive websites, stores and web tools in Arabic and English. Fixed prices from $30."
+      content="Ahmed Hassan, Front-End Developer building responsive websites, stores and web tools in Arabic and English. Fixed prices from $20."
     />
-    <meta name="theme-color" content="#0c1222" />
+    <meta name="theme-color" content="#0f1226" />
     <link
       rel="canonical"
       href="https://ahmedhassanhamed.github.io/AhmedHassanHamed/"
@@ -34,21 +34,42 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <!-- بيانات منظّمة لمحركات البحث (الاسم والمهنة وحساباتك) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ahmed Hassan",
+        "jobTitle": "Front-End Developer",
+        "url": "https://ahmedhassanhamed.github.io/AhmedHassanHamed/",
+        "sameAs": [
+          "https://github.com/AhmedHassanHamed",
+          "https://khamsat.com/user/hassanhamed_cz",
+          "https://mostaql.com/u/Ahmed_Hassan_CZ",
+          "https://www.upwork.com/freelancers/~017e71c52f4947b2a6",
+          "https://www.freelancer.com/u/hassanhamed3",
+          "https://www.fiverr.com/s/ZooZpjQ"
+        ]
+      }
+    </script>
     <link rel="icon" href="imgs1/Ahmed.jpeg" />
+    <!-- ترتيب الملفات مهم: style.css ثم pricing.css ثم script.js ثم pricing.js -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="pricing.css" />
     <script src="script.js" defer></script>
     <script src="pricing.js" defer></script>
   </head>
   <body>
+    <!-- رابط تخطّى للمحتوى (إمكانية الوصول) -->
     <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
+    <!-- ===== شريط التنقل: الروابط + زرار اللغة والثيم + قائمة الموبايل ===== -->
     <nav class="nav" aria-label="Main">
       <div class="wrap">
         <a href="#top" class="brand" data-i18n="brand">Ahmed Hassan</a>
         <ul class="links" id="links">
-          <li><a href="#services" data-i18n="nav1">Services</a></li>
           <li><a href="#work" data-i18n="nav2">Work</a></li>
+          <li><a href="#services" data-i18n="nav1">Services</a></li>
           <li><a href="#about" data-i18n="nav3">About</a></li>
           <li><a href="#contact" data-i18n="nav4">Contact</a></li>
         </ul>
@@ -69,10 +90,13 @@
     </nav>
 
     <main id="main">
+      <!-- ===== القسم الأول (Hero): الترحيب والعنوان وصورتك ===== -->
       <header class="hero" id="top">
         <div class="wrap">
           <div>
-            <p class="hi" data-i18n="hi"></p>
+            <p class="hi" data-i18n="hi">
+              Welcome! I'm Ahmed, a front-end developer.
+            </p>
             <p class="badge" data-i18n="badge">Available for freelance work</p>
             <h1 data-i18n="h1">
               I build fast websites that work in Arabic and English.
@@ -89,7 +113,9 @@
               <li>
                 <b id="nProjects">4</b><span data-i18n="f1">Live projects</span>
               </li>
-              <li><b>24h</b><span data-i18n="f2">Reply time</span></li>
+              <li>
+                <b data-i18n="f2v">24h</b><span data-i18n="f2">Reply time</span>
+              </li>
               <li><b>2</b><span data-i18n="f4">Free revision rounds</span></li>
             </ul>
           </div>
@@ -109,18 +135,38 @@
         </div>
       </header>
 
+      <!-- ===== رسالة الترحيب الثانية ===== -->
+
       <section class="sec pitch" id="pitch">
         <div class="wrap">
-          <h2 data-i18n="ptTitle"></h2>
-          <p class="lead" data-i18n="ptLead"></p>
+          <h2 data-i18n="ptTitle">
+            Your business is good. Your website should show it.
+          </h2>
+          <p class="lead" data-i18n="ptLead">
+            Many owners sell well but struggle to show their products online. I
+            design your website or store around your brand, your customers, and
+            the way you sell, so it feels like yours and not like a template.
+          </p>
           <ul class="trust">
-            <li data-i18n="pt1"></li>
-            <li data-i18n="pt2"></li>
-            <li data-i18n="pt3"></li>
+            <li data-i18n="pt1">
+              Built around you: your colors, your products, your voice.
+            </li>
+            <li data-i18n="pt2">
+              No two clients get the same store. Each one is designed from
+              scratch.
+            </li>
+            <li data-i18n="pt3">
+              Easy for your customers: browse, choose, and order on WhatsApp in
+              a few taps.
+            </li>
           </ul>
-          <a class="btn" href="#order" data-i18n="ptCta"></a>
+          <a class="btn" href="#order" data-i18n="ptCta"
+            >Tell me about your business</a
+          >
         </div>
       </section>
+
+      <!-- ===== الأعمال (بتتملي من script.js) ===== -->
 
       <section class="sec" id="work">
         <div class="wrap">
@@ -132,33 +178,59 @@
         </div>
       </section>
 
+      <!-- ===== الخدمات والأسعار (بتتملي من pricing.js) ===== -->
+
       <section class="sec" id="services">
         <div class="wrap">
           <h2 data-i18n="sTitle">Services and prices</h2>
           <p class="lead" data-i18n="sLead">Fixed prices.</p>
           <div class="tabs" id="tabs" role="tablist"></div>
           <div id="svcPanel" role="tabpanel"></div>
-          <p class="note" data-i18n="hourly"></p>
-          <h3 class="subh" data-i18n="pTitle"></h3>
+          <p class="note" data-i18n="hourly">
+            Need a small change on a site you already have? Updating text or
+            images, fixing a layout problem, or adding a section is $12 per
+            hour, with a 1-hour minimum. I'll tell you the estimated hours
+            before I start. Bigger work, like new pages or a redesign, gets a
+            fixed quote instead.
+          </p>
+          <h3 class="subh" data-i18n="pTitle">How it works</h3>
           <ol class="steps">
-            <li data-i18n="p1"></li>
-            <li data-i18n="p2"></li>
-            <li data-i18n="p3"></li>
-            <li data-i18n="p4"></li>
+            <li data-i18n="p1">
+              1. Tell me about your project. I reply within 24 hours.
+            </li>
+            <li data-i18n="p2">
+              2. You get a fixed quote with the price and delivery date.
+            </li>
+            <li data-i18n="p3">
+              3. You pay 50% to start, and the rest on delivery.
+            </li>
+            <li data-i18n="p4">
+              4. I deliver, make 2 free revisions, and fix any bug within 7 days
+              (30 days in Premium).
+            </li>
           </ol>
           <ul class="trust">
-            <li data-i18n="tr1"></li>
-            <li data-i18n="tr2"></li>
-            <li data-i18n="tr3"></li>
+            <li data-i18n="tr1">
+              Prefer a safety net? Order through my Khamsat or Mostaql profile
+              and pay through their escrow.
+            </li>
+            <li data-i18n="tr2">
+              You own all the code and files once the job is paid.
+            </li>
+            <li data-i18n="tr3">
+              Every project in my portfolio has a live demo you can test first.
+            </li>
           </ul>
         </div>
       </section>
 
+      <!-- ===== آراء العملاء (مخفي حتى يوجد رأي حقيقي) ===== -->
+
       <section class="sec" id="reviews" hidden>
         <div class="wrap">
-          <h2 data-i18n="rvTitle"></h2>
+          <h2 data-i18n="rvTitle">Ratings and client reviews</h2>
           <div class="rate">
-            <p data-i18n="rateQ"></p>
+            <p data-i18n="rateQ">How do you rate this portfolio?</p>
             <div id="stars" role="group"></div>
             <p id="rateMsg" role="status"></p>
           </div>
@@ -166,11 +238,15 @@
         </div>
       </section>
 
+      <!-- ===== نموذج طلب عرض السعر ===== -->
+
       <section class="sec" id="order">
         <div class="wrap">
           <div class="box form-box">
             <h2 data-i18n="oTitle">Tell me about your project</h2>
-            <p class="lead" data-i18n="oLead"></p>
+            <p class="lead" data-i18n="oLead">
+              Send the details and I'll reply on WhatsApp with a fixed quote.
+            </p>
             <form id="orderForm" class="form">
               <label
                 ><span data-i18n="fName">Your name</span
@@ -184,34 +260,79 @@
                 ><span data-i18n="fMsg">What do you need?</span
                 ><textarea id="fMsg" rows="4" required></textarea>
               </label>
-              <button class="btn" type="submit" data-i18n="fSend">
-                Send on WhatsApp
-              </button>
+              <div class="form-actions">
+                <button class="btn" type="submit" data-i18n="fSend">
+                  Send on WhatsApp
+                </button>
+                <button
+                  class="btn ghost"
+                  type="button"
+                  id="mailBtn"
+                  data-i18n="fMail"
+                >
+                  Send by email
+                </button>
+              </div>
             </form>
             <p class="status" id="orderMsg" role="status"></p>
           </div>
         </div>
       </section>
-
+      <!-- ===== نبذة عني ===== -->
       <section class="sec" id="about">
-        <div class="wrap about">
-          <div>
+        <div class="wrap">
+          <div class="about-top">
             <h2 data-i18n="aTitle">About me</h2>
-            <p class="lead" data-i18n="aText">I started coding in 2026.</p>
+            <p class="lead" data-i18n="aText">
+              I'm Ahmed Hassan, a front-end developer. I turn your idea or
+              design into a fast, good-looking website.
+            </p>
+            <a class="btn" href="#order" data-i18n="aCta">Start your project</a>
           </div>
-          <div>
-            <h3 data-i18n="aTools">Tools I use</h3>
-            <ul class="tech">
-              <li>HTML5</li>
-              <li>CSS3</li>
-              <li>JavaScript</li>
-              <li>Git &amp; GitHub</li>
-              <li>Responsive design</li>
-              <li>RTL / LTR</li>
-            </ul>
-          </div>
+          <ul class="why">
+            <li>
+              <h3 data-i18n="ab1t">Built for Arabic and English</h3>
+              <p data-i18n="ab1d">
+                Every project I build supports right-to-left and left-to-right
+                layouts properly, so text, fonts, and numbers look right in both
+                languages.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="ab2t">Fast on every screen</h3>
+              <p data-i18n="ab2d">
+                Clean code with no heavy libraries, so pages open quickly and
+                work on phones, tablets, and desktops.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="ab3t">Clear and on time</h3>
+              <p data-i18n="ab3d">
+                A fixed price and a delivery date agreed in writing, a reply
+                within 24 hours, and 2 free revision rounds.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="ab4t">See it before you buy</h3>
+              <p data-i18n="ab4d">
+                Each project in my portfolio has a live demo, so you can test my
+                work yourself before we start.
+              </p>
+            </li>
+          </ul>
+          <h3 data-i18n="aTools">Tools I use</h3>
+          <ul class="tech">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>Git &amp; GitHub</li>
+            <li>Responsive design</li>
+            <li>RTL / LTR</li>
+          </ul>
         </div>
       </section>
+
+      <!-- ===== التواصل ===== -->
 
       <section class="sec" id="contact">
         <div class="wrap">
@@ -315,12 +436,14 @@
       </section>
     </main>
 
+    <!-- ===== الفوتر ===== -->
     <footer>
       <p>
         &copy; <span id="year">2026</span>
         <span data-i18n="foot">Ahmed Hassan. All rights reserved.</span>
       </p>
     </footer>
+    <!-- ===== زرار واتساب العائم (رابطه بيتظبط من pricing.js) ===== -->
     <a
       class="wa-float"
       id="waFloat"
