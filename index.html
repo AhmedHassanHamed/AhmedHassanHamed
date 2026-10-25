@@ -25,9 +25,9 @@
     />
     <meta
       property="og:image"
-      content="https://ahmedhassanhamed.github.io/AhmedHassanHamed/imgs1/Ahmed.jpeg"
+      content="https://ahmedhassanhamed.github.io/AhmedHassanHamed/imgs1/profile"
     />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -238,6 +238,39 @@
         </div>
       </section>
 
+      <!-- ===== الأسئلة الشائعة ===== -->
+      <section class="sec" id="faq">
+        <div class="wrap">
+          <h2 data-i18n="faqT">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary data-i18n="faq1q"></summary>
+              <p data-i18n="faq1a"></p>
+            </details>
+            <details>
+              <summary data-i18n="faq2q"></summary>
+              <p data-i18n="faq2a"></p>
+            </details>
+            <details>
+              <summary data-i18n="faq3q"></summary>
+              <p data-i18n="faq3a"></p>
+            </details>
+            <details>
+              <summary data-i18n="faq4q"></summary>
+              <p data-i18n="faq4a"></p>
+            </details>
+            <details>
+              <summary data-i18n="faq5q"></summary>
+              <p data-i18n="faq5a"></p>
+            </details>
+            <details>
+              <summary data-i18n="faq6q"></summary>
+              <p data-i18n="faq6a"></p>
+            </details>
+          </div>
+        </div>
+      </section>
+
       <!-- ===== نموذج طلب عرض السعر ===== -->
 
       <section class="sec" id="order">
@@ -260,6 +293,11 @@
                 ><span data-i18n="fMsg">What do you need?</span
                 ><textarea id="fMsg" rows="4" required></textarea>
               </label>
+              <label>
+                <span data-i18n="fCode">Client code (optional)</span>
+                <input id="fCode" autocomplete="off" />
+              </label>
+              <p class="note" data-i18n="returnD"></p>
               <div class="form-actions">
                 <button class="btn" type="submit" data-i18n="fSend">
                   Send on WhatsApp

@@ -7,7 +7,7 @@
   /* ===== 1. الإعدادات (عدّل هنا) ===== */
   const WA = "201147729020"; // رقم واتساب بدون + ، وغيّره لرقم الشغل لما تجيبه
   // عرض الإطلاق: left = عدد العملاء المتبقين (اجعله 0 لإيقاف العرض)، pct = نسبة الخصم %
-  const OFFER = { left: 3, pct: 15 };
+  const OFFER = { left: 5, pct: 25 };
   // disc: يحسب السعر بعد الخصم، offerBox: يرسم شريط العرض فوق الباقات
   const disc = (p) =>
     OFFER.left > 0 ? Math.round((p * (100 - OFFER.pct)) / 100) : p;
@@ -96,6 +96,46 @@
           ["صفحة واحدة متجاوبة", "نصوصك وصورك", "زر واتساب"],
           ["عربي + إنجليزي", "نموذج تواصل إلى واتساب", "حركات خفيفة"],
           ["تصميم مفصّل من هويتك", "سرعة وSEO أساسي", "دعم 30 يوماً"],
+        ],
+      ],
+    },
+    {
+      id: "portfolio",
+      img: "imgs1/svc-portfolio.svg",
+      prices: [30, 55, 90],
+      days: ["3-4", "5-7", "7-10"],
+      en: [
+        "Personal portfolio website",
+        "A clean website that shows your work, skills, and contact details, so clients and employers can find you and trust you.",
+        [
+          [
+            "One-page portfolio",
+            "Up to 4 projects with links",
+            "Mobile-friendly design",
+          ],
+          [
+            "Arabic + English",
+            "Dark and light mode",
+            "Contact form to WhatsApp",
+          ],
+          [
+            "Custom design from your brand",
+            "Free deployment + basic SEO",
+            "30 days support",
+          ],
+        ],
+      ],
+      ar: [
+        "موقع بورتفوليو شخصي",
+        "موقع أنيق يعرض أعمالك ومهاراتك وبيانات التواصل، ليجدك العملاء وأصحاب العمل ويثقوا بك.",
+        [
+          [
+            "بورتفوليو من صفحة واحدة",
+            "حتى 4 مشاريع بروابطها",
+            "تصميم متجاوب مع الموبايل",
+          ],
+          ["عربي + إنجليزي", "وضع ليلي ونهاري", "نموذج تواصل إلى واتساب"],
+          ["تصميم مفصّل من هويتك", "نشر مجاني + SEO أساسي", "دعم 30 يوماً"],
         ],
       ],
     },
@@ -240,6 +280,29 @@
       "Your email app is opening with your message. I'll reply within 24 hours.",
     waChat: "Chat on WhatsApp",
     waHi: "Hi Ahmed, I saw your portfolio and I'd like to ask about a project.",
+    fCode: "Client code (optional)",
+    returnT: "Returning client?",
+    returnD:
+      "Enter your client code to get 10% off your second order, and 15% off plus a free hour of edits from your third order.",
+    codeWa: (c) => `\nClient code: ${c}`,
+    faqT: "Frequently asked questions",
+    faq1q: "What does the store include, and what does it not include?",
+    faq1a:
+      "The store includes a home page, product listing, a cart, and ordering through WhatsApp, in a responsive design. Search, filters, bilingual pages, and extra product pages depend on the package you choose. It does not include online payment, an admin dashboard, or a database, because it is a front-end store.",
+    faq2q: "How long does a project take?",
+    faq2a:
+      "Each package shows its delivery time, from 1 to 2 days for design to code up to 14 to 20 days for the largest store package. I confirm the exact date in writing before I start.",
+    faq3q: "How do I pay?",
+    faq3a:
+      "You pay 50% to start and the rest on delivery. If you prefer extra protection, you can order through my Khamsat or Mostaql profile and pay through their escrow.",
+    faq4q: "What if I need changes after delivery?",
+    faq4a:
+      "Every package includes 2 free revision rounds on the agreed work. Small edits to an existing site cost $12 per hour with a 1-hour minimum, and bigger changes get a fixed quote.",
+    faq5q: "Do I own the code?",
+    faq5a: "Yes. Once the project is paid, all the code and files are yours.",
+    faq6q: "Who handles hosting and the domain?",
+    faq6a:
+      "I can publish your site on free hosting and send you the link. A paid domain name is bought on your own account, and I can help you connect it.",
   });
   /* ===== 5. النصوص العربية الإضافية (تُضاف إلى T.ar) ===== */
   Object.assign(T.ar, {
@@ -314,6 +377,29 @@
     sentMail: "سيفتح تطبيق البريد برسالتك، وسأرد عليك خلال 24 ساعة.",
     waChat: "تحدث معي على واتساب",
     waHi: "مرحباً أحمد، شاهدت معرض أعمالك وأريد الاستفسار عن مشروع.",
+    fCode: "كود العميل (اختياري)",
+    returnT: "عميل سابق؟",
+    returnD:
+      "اكتب كود العميل الخاص بك لتحصل على خصم 10% على طلبك الثاني، وخصم 15% مع ساعة تعديلات مجانية من طلبك الثالث.",
+    codeWa: (c) => `\nكود العميل: ${c}`,
+    faqT: "أسئلة شائعة",
+    faq1q: "ماذا يشمل المتجر وماذا لا يشمل؟",
+    faq1a:
+      "يشمل المتجر صفحة رئيسية وعرضاً للمنتجات وسلة مشتريات وإتمام الطلب عبر واتساب بتصميم متجاوب. أما البحث والفلاتر واللغتان وصفحات المنتجات الإضافية فتختلف حسب الباقة. ولا يشمل الدفع الإلكتروني ولا لوحة تحكم ولا قاعدة بيانات، لأنه متجر واجهة أمامية.",
+    faq2q: "كم تستغرق مدة المشروع؟",
+    faq2a:
+      "كل باقة توضح مدة تسليمها، من يوم أو يومين لتحويل التصميم إلى كود، حتى 14 إلى 20 يوماً لأكبر باقة متجر. وأؤكد لك الموعد الدقيق كتابةً قبل أن أبدأ.",
+    faq3q: "كيف أدفع؟",
+    faq3a:
+      "تدفع 50% للبدء والباقي عند التسليم. وإن فضّلت ضماناً أكثر، يمكنك الطلب عبر ملفي على خمسات أو مستقل والدفع من خلال نظام الضمان عندهم.",
+    faq4q: "ماذا لو احتجت تعديلات بعد التسليم؟",
+    faq4a:
+      "كل باقة تشمل جولتي تعديل مجانيتين على العمل المتفق عليه. والتعديلات الصغيرة على موقع موجود بـ 12 دولاراً للساعة بحد أدنى ساعة، والتغييرات الأكبر لها عرض سعر ثابت.",
+    faq5q: "هل أملك الكود؟",
+    faq5a: "نعم. بعد دفع المشروع، كل الكود والملفات ملكك.",
+    faq6q: "من يتولى الاستضافة والدومين؟",
+    faq6a:
+      "أستطيع نشر موقعك على استضافة مجانية وأرسل لك الرابط. أما اسم النطاق المدفوع فتشتريه على حسابك، ويمكنني مساعدتك في ربطه.",
   });
 
   /* ===== 6. أدوات مساعدة ===== */
@@ -423,14 +509,28 @@
     }
   });
 
+  /* يبني نص الطلب المرسل (واتساب أو بريد): الاسم والباقة والرسالة وعرض الإطلاق وكود العميل */
+  const orderText = (svc) => {
+    const code = q("#fCode") ? q("#fCode").value.trim() : "";
+    return (
+      T[lang].wa(q("#fName").value.trim(), svc, q("#fMsg").value.trim()) +
+      (OFFER.left > 0 ? T[lang].offerWa : "") +
+      (code ? T[lang].codeWa(code) : "")
+    );
+  };
+
   q("#orderForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    const text =
-      T[lang].wa(
-        q("#fName").value.trim(),
-        q("#fSvc").selectedOptions[0].textContent,
-        q("#fMsg").value.trim(),
-      ) + (OFFER.left > 0 ? T[lang].offerWa : "");
+    const text = orderText(q("#fSvc").selectedOptions[0].textContent);
+    T[lang].wa(
+      q("#fName").value.trim(),
+      q("#fSvc").selectedOptions[0].textContent,
+      q("#fMsg").value.trim(),
+    ) +
+      (OFFER.left > 0 ? T[lang].offerWa : "") +
+      (q("#fCode").value.trim()
+        ? T[lang].codeWa(q("#fCode").value.trim())
+        : "");
     window.open(
       `https://wa.me/${WA}?text=${encodeURIComponent(text)}`,
       "_blank",
@@ -444,9 +544,12 @@
   q("#mailBtn").addEventListener("click", () => {
     if (!q("#orderForm").reportValidity()) return;
     const svc = q("#fSvc").selectedOptions[0].textContent;
-    const body =
-      T[lang].wa(q("#fName").value.trim(), svc, q("#fMsg").value.trim()) +
-      (OFFER.left > 0 ? T[lang].offerWa : "");
+    const body = orderText(svc);
+    T[lang].wa(q("#fName").value.trim(), svc, q("#fMsg").value.trim()) +
+      (OFFER.left > 0 ? T[lang].offerWa : "") +
+      (q("#fCode").value.trim()
+        ? T[lang].codeWa(q("#fCode").value.trim())
+        : "");
     location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(svc)}&body=${encodeURIComponent(body)}`;
     q("#orderMsg").textContent = T[lang].sentMail;
   });
