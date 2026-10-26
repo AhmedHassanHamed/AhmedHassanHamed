@@ -614,3 +614,25 @@ body::before {
 .faq details p {
   padding-bottom: 18px;
 }
+.rev footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.rev footer small {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+.rev-av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.rev-link {
+  margin-inline-start: auto;
+  color: var(--accent);
+  font-size: 0.85rem;
+}

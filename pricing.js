@@ -201,9 +201,7 @@
       ],
     },
   ];
-  /* ===== 3. آراء العملاء (حقيقية فقط) =====
-     أضف رأياً بعد إذن العميل: { name: "منى", stars: 5, text: "شغل ممتاز", service: "متجر" }
-     القسم مخفي وبيظهر لوحده أول ما تضيف رأياً. */
+  // آراء العملاء
   const REVIEWS = [];
 
   /* ===== 4. النصوص الإنجليزية الإضافية (تُضاف إلى T.en في script.js) ===== */
@@ -303,6 +301,9 @@
     faq6q: "Who handles hosting and the domain?",
     faq6a:
       "I can publish your site on free hosting and send you the link. A paid domain name is bought on your own account, and I can help you connect it.",
+    payNote:
+      "Payment methods: Vodafone Cash and InstaPay (I send you the transfer details when we agree), or through the Khamsat and Mostaql escrow.",
+    revSrc: "View on the platform",
   });
   /* ===== 5. النصوص العربية الإضافية (تُضاف إلى T.ar) ===== */
   Object.assign(T.ar, {
@@ -400,6 +401,9 @@
     faq6q: "من يتولى الاستضافة والدومين؟",
     faq6a:
       "أستطيع نشر موقعك على استضافة مجانية وأرسل لك الرابط. أما اسم النطاق المدفوع فتشتريه على حسابك، ويمكنني مساعدتك في ربطه.",
+    payNote:
+      "طرق الدفع: فودافون كاش وإنستا باي (أرسل لك بيانات التحويل عند الاتفاق)، أو عبر نظام الضمان في خمسات ومستقل.",
+    revSrc: "شاهد التقييم على المنصة",
   });
 
   /* ===== 6. أدوات مساعدة ===== */
@@ -459,6 +463,14 @@
 
   /* ===== 8. رسم التقييمات (تظهر فقط لو REVIEWS فيها بيانات) ===== */
   const stars = (n) => "★".repeat(n) + "☆".repeat(5 - n);
+  const who = (r, t) =>
+    (r.avatar
+      ? `<img class="rev-av" src="${r.avatar}" alt="" width="40" height="40" loading="lazy" />`
+      : "") +
+    `<span><b>${r.name}</b>${r.country ? " · " + r.country[lang] : ""}${r.service ? `<small>${r.service}</small>` : ""}</span>` +
+    (r.link
+      ? `<a class="rev-link" href="${r.link}" target="_blank" rel="noopener">${t.revSrc}</a>`
+      : "");
   function renderReviews() {
     q("#reviews").hidden = !REVIEWS.length;
     const t = T[lang];
@@ -466,9 +478,23 @@
       ? (REVIEWS.reduce((a, r) => a + r.stars, 0) / REVIEWS.length).toFixed(1)
       : null;
     q("#reviewList").innerHTML = avg
-      ? `<p class="avg"><b>${avg}</b> <span aria-hidden="true">★</span> ${t.of5} (${REVIEWS.length})</p><div class="revs">${REVIEWS.map((r) => `<blockquote class="rev"><p class="st" aria-label="${r.stars} / 5">${stars(r.stars)}</p><p>${r.text}</p><footer>${r.name}${r.service ? " · " + r.service : ""}</footer></blockquote>`).join("")}</div>`
+      ? `<p class="avg"><b>${avg}</b> <span aria-hidden="true">★</span> ${t.of5} (${REVIEWS.length})</p><div class="revs">${REVIEWS.map((r) => `<blockquote class="rev"><p class="st" aria-label="${r.stars} / 5">${stars(r.stars)}</p><p>${r.text}</p><footer>${who(r, t)}</footer></blockquote>`).join("")}</div>`
       : `<p class="empty">${t.noRev}</p>`;
   }
+
+  /*
+   ====== عند إضافة تقييم العميل ======
+  const REVIEWS = [
+  {
+    name: "Mona",
+    country: { ar: "مصر", en: "Egypt" },
+    stars: 5,
+    text: "نص التقييم زي ما كتبه العميل بالظبط",
+    service: "Store",
+    avatar: "imgs1/reviews/mona.jpg", // اختياري وبإذنه
+    link: "https://رابط-صفحة-التقييم-على-المنصة",
+  },
+]; */
 
   function showRate() {
     const n = +store("myRating") || 0;
