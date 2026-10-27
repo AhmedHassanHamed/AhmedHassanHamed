@@ -240,7 +240,7 @@
       "Need a small change on a site you already have? Updating text or images, fixing a layout problem, or adding a section is $12 per hour, with a 1-hour minimum. I'll tell you the estimated hours before I start. Bigger work, like new pages or a redesign, gets a fixed quote instead.",
     fSvc: "Package",
     pTitle: "How it works",
-    tr1: "Prefer a safety net? Order through my Khamsat or Mostaql profile and pay through their escrow.",
+    tr1: "Prefer a safety net? Order through my Khamsat or Nafezly profile and pay through the platform.",
     tr2: "You own all the code and files once the job is paid.",
     tr3: "Every project in my portfolio has a live demo you can test first.",
     oTitle: "Tell me about your project",
@@ -292,7 +292,7 @@
       "Each package shows its delivery time, from 1 to 2 days for design to code up to 14 to 20 days for the largest store package. I confirm the exact date in writing before I start.",
     faq3q: "How do I pay?",
     faq3a:
-      "You pay 50% to start and the rest on delivery. If you prefer extra protection, you can order through my Khamsat or Mostaql profile and pay through their escrow.",
+      "You pay 50% to start and the rest on delivery. If you prefer extra protection, you can order through my Khamsat or Nafezly profile and pay through the platform.",
     faq4q: "What if I need changes after delivery?",
     faq4a:
       "Every package includes 2 free revision rounds on the agreed work. Small edits to an existing site cost $12 per hour with a 1-hour minimum, and bigger changes get a fixed quote.",
@@ -302,8 +302,45 @@
     faq6a:
       "I can publish your site on free hosting and send you the link. A paid domain name is bought on your own account, and I can help you connect it.",
     payNote:
-      "Payment methods: Vodafone Cash and InstaPay (I send you the transfer details when we agree), or through the Khamsat and Mostaql escrow.",
+      "Payment methods: Vodafone Cash and InstaPay (I send you the transfer details when we agree), or through the payment system of Khamsat or Nafezly.",
     revSrc: "View on the platform",
+    platT: "Prefer to order through a platform?",
+    platD:
+      "Start with a starter package on Khamsat or Nafezly, and that platform's own payment and dispute rules apply. Larger packages are in the services section above.",
+    pending: "under review",
+    trustT: "Why you can trust me",
+    tw1t: "Work you can test first",
+    tw1d: "Every project in my portfolio has a live demo you can open before we start.",
+    tw2t: "Real profiles you can check",
+    tw2d: "I have public profiles on freelance platforms, so you can verify who I am.",
+    tw3t: "A clear written agreement",
+    tw3d: "Price, scope, and delivery date are written before I start, with no hidden costs.",
+    tw4t: "You own the work",
+    tw4d: "After payment, all the code and files are yours.",
+    checkMe: "Check my profiles:",
+    cliT: "Already worked with me?",
+    cliD: "Thank you for trusting me. This is how I look after clients once the project is delivered.",
+    cl1: "I check in 1 to 2 days after delivery to make sure everything works for you.",
+    cl2: "Found a problem? Tell me and I'll fix it within the support period.",
+    cl3: "Returning clients get a discount, and from the third order a free hour of edits. Referring a friend earns you a discount too.",
+    issueB: "Report a problem",
+    feedB: "Share feedback",
+    issueWa:
+      "Hi Ahmed, I'm an existing client and I have a problem with my project: ",
+    feedWa: "Hi Ahmed, I'd like to share feedback about my project: ",
+    refT: "Refer a friend, get rewarded",
+    refD: "Know someone who needs a website or a store? Share your personal link. If they place an order, you get a reward after the project is delivered and paid.",
+    rt1: "Orders $15 to $49",
+    rt2: "Orders $50 to $149",
+    rt3: "Orders $150 to $299",
+    rt4: "Orders $300 and above",
+    rf1: "Your friend gets 10% off their first order (not combined with the launch offer).",
+    rf2: "The reward is paid after the project is paid in full, delivered, and 7 days pass with no dispute or refund. One reward per new client.",
+    rf3: "Self-referrals and referrals within the same household do not count. Rewards are paid by Vodafone Cash or InstaPay, or as a discount worth 1.5 times the amount.",
+    refB: "Get my referral link",
+    refWa: "Hi Ahmed, I'd like a referral code and link, please.",
+    refFrom: (c) =>
+      `You came through a referral (code ${c}). Your first order gets 10% off.`,
   });
   /* ===== 5. النصوص العربية الإضافية (تُضاف إلى T.ar) ===== */
   Object.assign(T.ar, {
@@ -341,7 +378,7 @@
       "تحتاج تعديلاً بسيطاً على موقع موجود عندك؟ تغيير النصوص أو الصور، أو إصلاح مشكلة في الشكل، أو إضافة قسم، تُحسب بـ 12 دولاراً للساعة بحد أدنى ساعة واحدة. أخبرك بعدد الساعات المتوقع قبل أن أبدأ. أما الأعمال الأكبر مثل صفحات جديدة أو إعادة تصميم فلها عرض سعر ثابت.",
     fSvc: "الباقة",
     pTitle: "كيف نعمل",
-    tr1: "تفضّل ضماناً أكثر؟ اطلب عبر ملفي على خمسات أو مستقل وادفع من خلال نظام الضمان عندهم.",
+    tr1: "تفضّل ضماناً أكثر؟ اطلب عبر ملفي على خمسات أو نفذلي وادفع من خلال نظام الدفع في المنصة.",
     tr2: "تملك كل الكود والملفات بعد دفع المشروع.",
     tr3: "كل مشروع في أعمالي له نسخة تجريبية تقدر تجربها أولاً.",
     oTitle: "أخبرني عن مشروعك",
@@ -392,7 +429,7 @@
       "كل باقة توضح مدة تسليمها، من يوم أو يومين لتحويل التصميم إلى كود، حتى 14 إلى 20 يوماً لأكبر باقة متجر. وأؤكد لك الموعد الدقيق كتابةً قبل أن أبدأ.",
     faq3q: "كيف أدفع؟",
     faq3a:
-      "تدفع 50% للبدء والباقي عند التسليم. وإن فضّلت ضماناً أكثر، يمكنك الطلب عبر ملفي على خمسات أو مستقل والدفع من خلال نظام الضمان عندهم.",
+      "تدفع 50% للبدء والباقي عند التسليم. وإن فضّلت ضماناً أكثر، يمكنك الطلب عبر ملفي على خمسات أو نفذلي والدفع من خلال نظام الدفع في المنصة.",
     faq4q: "ماذا لو احتجت تعديلات بعد التسليم؟",
     faq4a:
       "كل باقة تشمل جولتي تعديل مجانيتين على العمل المتفق عليه. والتعديلات الصغيرة على موقع موجود بـ 12 دولاراً للساعة بحد أدنى ساعة، والتغييرات الأكبر لها عرض سعر ثابت.",
@@ -402,8 +439,43 @@
     faq6a:
       "أستطيع نشر موقعك على استضافة مجانية وأرسل لك الرابط. أما اسم النطاق المدفوع فتشتريه على حسابك، ويمكنني مساعدتك في ربطه.",
     payNote:
-      "طرق الدفع: فودافون كاش وإنستا باي (أرسل لك بيانات التحويل عند الاتفاق)، أو عبر نظام الضمان في خمسات ومستقل.",
+      "طرق الدفع: فودافون كاش وإنستا باي (أرسل لك بيانات التحويل عند الاتفاق)، أو عبر نظام الدفع في خمسات أو نفذلي.",
     revSrc: "شاهد التقييم على المنصة",
+    platT: "تفضّل الطلب عبر منصة؟",
+    platD:
+      "ابدأ بباقة مبدئية على خمسات أو نفذلي، وتسري عليك قواعد الدفع وحل النزاعات الخاصة بالمنصة. الباقات الأكبر في قسم الخدمات أعلاه.",
+    pending: "قيد المراجعة",
+    trustT: "لماذا تثق بي",
+    tw1t: "عمل تجربه قبل أن تطلب",
+    tw1d: "كل مشروع في أعمالي له نسخة تجريبية تفتحها قبل أن نبدأ.",
+    tw2t: "حسابات حقيقية تتحقق منها",
+    tw2d: "لدي ملفات عامة على منصات العمل الحر، فتتأكد من هويتي بنفسك.",
+    tw3t: "اتفاق مكتوب وواضح",
+    tw3d: "السعر والنطاق وموعد التسليم مكتوبة قبل أن أبدأ، بلا تكاليف مخفية.",
+    tw4t: "العمل ملكك",
+    tw4d: "بعد الدفع، كل الكود والملفات ملكك.",
+    checkMe: "تحقق من حساباتي:",
+    cliT: "سبق وتعاملت معي؟",
+    cliD: "شكراً لثقتك. هذه طريقتي في رعاية العملاء بعد تسليم المشروع.",
+    cl1: "أتواصل معك بعد التسليم بيوم أو يومين للتأكد أن كل شيء يعمل لديك.",
+    cl2: "وجدت مشكلة؟ أخبرني وسأصلحها خلال فترة الدعم.",
+    cl3: "العميل العائد يحصل على خصم، ومن الطلب الثالث ساعة تعديلات مجانية. وترشيح صديق يمنحك خصماً أيضاً.",
+    issueB: "أبلغ عن مشكلة",
+    feedB: "شاركني رأيك",
+    issueWa: "مرحباً أحمد، أنا عميل سابق ولدي مشكلة في مشروعي: ",
+    feedWa: "مرحباً أحمد، أود مشاركة رأيي عن مشروعي: ",
+    refT: "رشّح صديقاً واحصل على مكافأة",
+    refD: "تعرف أحداً يحتاج موقعاً أو متجراً؟ شارك رابطك الشخصي. إن طلب خدمة، تحصل على مكافأة بعد تسليم المشروع ودفعه.",
+    rt1: "طلبات من 15$ إلى 49$",
+    rt2: "طلبات من 50$ إلى 149$",
+    rt3: "طلبات من 150$ إلى 299$",
+    rt4: "طلبات من 300$ فأكثر",
+    rf1: "صديقك يحصل على خصم 10% على أول طلب (لا يجتمع مع عرض الإطلاق).",
+    rf2: "تُصرف المكافأة بعد دفع المشروع بالكامل وتسليمه ومرور 7 أيام بدون نزاع أو استرداد. مكافأة واحدة لكل عميل جديد.",
+    rf3: "لا يُحتسب ترشيح النفس أو أفراد الأسرة نفسها. تُصرف المكافأة بفودافون كاش أو إنستا باي، أو كخصم بقيمة مرة ونصف المبلغ.",
+    refB: "احصل على رابط الترشيح",
+    refWa: "مرحباً أحمد، أريد كود ورابط ترشيح من فضلك.",
+    refFrom: (c) => `وصلت عبر ترشيح (كود ${c}). طلبك الأول بخصم 10%.`,
   });
 
   /* ===== 6. أدوات مساعدة ===== */
@@ -417,11 +489,96 @@
   };
   let cur = "store";
 
+  /* ===== خدمات المنصات: خمسات ونفذلي فقط (مستقل معرض أعمال مش خدمات للشراء) =====
+     ضع رابط كل خدمة في links. لو رابط خمسات فاضي وكتبت اسمه في pending بيظهر "قيد المراجعة". */
+  const PLATFORMS = [
+    { key: "khamsat", ar: "خمسات", en: "Khamsat" },
+    { key: "nafezly", ar: "نفذلي", en: "Nafezly" },
+  ];
+  const PLATFORM_SERVICES = [
+    {
+      ar: "متجر إلكتروني",
+      en: "Online store",
+      from: 25,
+      links: {
+        khamsat: "",
+        nafezly:
+          "https://nafezly.com/service/99320-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%AA%D8%AC%D8%B1-%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-%D9%88%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A",
+      },
+      pending: ["khamsat"],
+    },
+    {
+      ar: "موقع بورتفوليو شخصي",
+      en: "Personal portfolio",
+      from: 15,
+      links: {
+        khamsat:
+          "https://khamsat.com/programming/custom-website-development/4478320-%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D9%8A%D8%A8%D9%87%D8%B1-%D8%B9%D9%85%D9%84%D8%A7%D8%A1%D9%83-%D9%88%D9%8A%D8%A8%D8%B1%D8%B2-%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%83",
+        nafezly:
+          "https://nafezly.com/service/96879-%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D9%8A%D8%A8%D9%87%D8%B1-%D8%B9%D9%85%D9%84%D8%A7%D8%A1%D9%83-%D9%88%D9%8A%D8%A8%D8%B1%D8%B2-%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%83",
+      },
+      pending: [],
+    },
+    {
+      ar: "سيرة ذاتية احترافية",
+      en: "Professional CV",
+      from: 15,
+      links: {
+        khamsat:
+          "https://khamsat.com/designing/resume-design/4474137-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%B3%D9%8A%D8%B1%D8%A9-%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9-%D8%AC%D8%A7%D9%87%D8%B2%D8%A9-%D9%84%D9%84%D8%A5%D8%B1%D8%B3%D8%A7%D9%84-%D8%A8%D8%B5%D9%8A%D8%BA%D8%A9-pdf",
+        nafezly:
+          "https://nafezly.com/service/96885-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%B3%D9%8A%D8%B1%D8%A9-%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9-%D8%AC%D8%A7%D9%87%D8%B2%D8%A9-%D9%84%D9%84%D8%A5%D8%B1%D8%B3%D8%A7%D9%84-%D8%A8%D8%B5%D9%8A%D8%BA%D8%A9-PDF",
+      },
+      pending: [],
+    },
+  ];
+  function renderPlatforms() {
+    const t = T[lang],
+      grid = q("#platGrid");
+    if (!grid) return;
+    grid.innerHTML = PLATFORM_SERVICES.map(
+      (s) => `<article class="plat">
+      <h3>${s[lang]}</h3>
+      <p class="from">${t.from} <b>${t.usd}${s.from}</b></p>
+      <div class="plat-btns">${PLATFORMS.map((p) => {
+        const u = s.links[p.key];
+        if (u)
+          return `<a class="btn ghost" href="${u}" target="_blank" rel="noopener">${p[lang]}</a>`;
+        return s.pending.includes(p.key)
+          ? `<span class="btn ghost off">${p[lang]}: ${t.pending}</span>`
+          : "";
+      }).join("")}</div></article>`,
+    ).join("");
+  }
+
+  /* ===== رابط الترشيح: ?ref=CODE يملأ خانة الكود تلقائياً ===== */
+  const refCode = (new URLSearchParams(location.search).get("ref") || "")
+    .replace(/[^\w-]/g, "")
+    .slice(0, 24);
+  function applyRef() {
+    const t = T[lang],
+      n = q("#refNote"),
+      b = q("#refBtn");
+    if (b) b.href = `https://wa.me/${WA}?text=${encodeURIComponent(t.refWa)}`;
+    if (!refCode || !n) return;
+    if (q("#fCode")) q("#fCode").value = refCode;
+    n.hidden = false;
+    n.textContent = t.refFrom(refCode);
+  }
+
   /* ===== 7. رسم التبويبات والباقات وخيارات النموذج ===== */
   function render() {
     const t = T[lang];
+    applyRef();
     q("#waFloat").href =
       `https://wa.me/${WA}?text=${encodeURIComponent(t.waHi)}`;
+    const ib = q("#issueBtn"),
+      fb = q("#feedbackBtn");
+    if (ib)
+      ib.href = `https://wa.me/${WA}?text=${encodeURIComponent(t.issueWa)}`;
+    if (fb)
+      fb.href = `https://wa.me/${WA}?text=${encodeURIComponent(t.feedWa)}`;
+    renderPlatforms();
     q("#tabs").innerHTML = SERVICES.map(
       (s) =>
         `<button type="button" role="tab" aria-controls="svcPanel" aria-selected="${s.id === cur}" data-tab="${s.id}">${s[lang][0]}</button>`,

@@ -636,3 +636,75 @@ body::before {
   color: var(--accent);
   font-size: 0.85rem;
 }
+/* ===== برنامج الترشيح ===== */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+  list-style: none;
+}
+.tiers li {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  text-align: center;
+}
+.tiers b {
+  display: block;
+  color: var(--head);
+  font-size: 2rem;
+  line-height: 1.2;
+}
+#referral .trust {
+  margin: 0 0 24px;
+}
+
+/* ===== المنصات والثقة والعميل السابق ===== */
+.plat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.plat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.plat h3 {
+  font-size: 1.1rem;
+}
+.plat .from b {
+  color: var(--head);
+  font-size: 1.6rem;
+}
+.plat-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+.plat-btns .btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+.btn.off {
+  border-style: dashed;
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+#trust .also {
+  justify-content: flex-start;
+}
+
+/* مسافة تحت عناوين الأقسام اللي بعدها مباشرة قائمة أو شبكة (بدون وصف) */
+#trust h2,
+#faq h2,
+#reviews h2 {
+  margin-bottom: 28px;
+}
