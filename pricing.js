@@ -501,7 +501,8 @@
       en: "Online store",
       from: 25,
       links: {
-        khamsat: "",
+        khamsat:
+          "https://khamsat.com/programming/ecommerce-development-services/4490414-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%AA%D8%AC%D8%B1-%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-%D9%88%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A",
         nafezly:
           "https://nafezly.com/service/99320-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%AA%D8%AC%D8%B1-%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-%D9%88%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A",
       },
