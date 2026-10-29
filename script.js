@@ -121,8 +121,8 @@ const PROJECTS = [
   },
   {
     img: "imgs1/CV.png",
-    live: "https://ahmedhassanhamed.github.io/CV_Builder/",
-    buy: "https://khamsat.com/programming/scripting/4473545-%D8%A3%D8%AF%D8%A7%D8%A9-%D8%AC%D8%A7%D9%87%D8%B2%D8%A9-%D9%84%D8%A5%D9%86%D8%B4%D8%A7%D8%A1-%D8%B3%D9%8A%D8%B1%D8%A9-%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9-%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-%D9%88%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A",
+    live: "https://ahmedhassanhamed.github.io/CV_Builder",
+    buy: "https://khamsat.com/designing/resume-design/4474137-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%B3%D9%8A%D8%B1%D8%A9-%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9-%D8%AC%D8%A7%D9%87%D8%B2%D8%A9-%D9%84%D9%84%D8%A5%D8%B1%D8%B3%D8%A7%D9%84-%D8%A8%D8%B5%D9%8A%D8%BA%D8%A9-pdf",
     tech: [
       "HTML",
       "CSS",
@@ -171,7 +171,8 @@ const PROJECTS = [
 ];
 
 /* ===== 3. اللغة والعرض ===== */
-let lang = get("lang", navigator.language.startsWith("ar") ? "ar" : "en");
+// اللغة الافتراضية: العربية (لو الزائر اختار لغة قبل كده بتتحفظ وتتحمّل بدلها)
+let lang = get("lang", "ar");
 
 /* يرسم كروت الأعمال بحسب اللغة الحالية */
 function renderProjects() {

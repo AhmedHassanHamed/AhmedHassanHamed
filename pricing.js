@@ -5,6 +5,11 @@
    ===================================================== */
 (function () {
   /* ===== 1. الإعدادات (عدّل هنا) ===== */
+  // سعر الدولار بالجنيه المصري (حدّثه يدوياً كل فترة). آخر تحديث: 29 أكتوبر 2026 (حوالي 56.17 في البنوك)
+  const RATE = 56;
+  // يحوّل الدولار لجنيه مقرّباً لأقرب 10 ويكتبه بفاصلة الآلاف (مثال: 1,120)
+  const egp = (usd) =>
+    (Math.round((usd * RATE) / 10) * 10).toLocaleString("en-US");
   const WA = "201147729020"; // رقم واتساب بدون + ، وغيّره لرقم الشغل لما تجيبه
   // عرض الإطلاق: left = عدد العملاء المتبقين (اجعله 0 لإيقاف العرض)، pct = نسبة الخصم %
   const OFFER = { left: 5, pct: 25 };
@@ -102,7 +107,8 @@
     {
       id: "portfolio",
       img: "imgs1/svc-portfolio.svg",
-      prices: [30, 55, 90],
+      // الأساسية 27$ فتبقى 20$ بعد خصم الإطلاق 25% (27 × 0.75 = 20.25 ≈ 20)
+      prices: [27, 55, 90],
       days: ["3-4", "5-7", "7-10"],
       en: [
         "Personal portfolio website",
@@ -214,9 +220,10 @@
     f2v: "24h",
     sTitle: "Services and prices",
     sLead:
-      "Pick a service, then pick the package that fits your budget. Fixed prices in USD, agreed in writing. Every package includes 2 revision rounds.",
+      "Pick a service, then pick the package that fits your budget. Fixed prices in USD, agreed in writing. The Egyptian pound amount is an estimate at today's rate and is confirmed in writing when we agree. Every package includes 2 revision rounds.",
     from: "From",
     usd: "$",
+    egpFmt: (n) => `≈ EGP ${n}`,
     perPage: "/ page",
     days: "days",
     order: "Choose this package",
@@ -236,8 +243,7 @@
     rateThanks: (n) => `Thank you! You rated it ${n} out of 5.`,
     noRev: "Client reviews will appear here after my first projects.",
     of5: "out of 5",
-    hourly:
-      "Need a small change on a site you already have? Updating text or images, fixing a layout problem, or adding a section is $12 per hour, with a 1-hour minimum. I'll tell you the estimated hours before I start. Bigger work, like new pages or a redesign, gets a fixed quote instead.",
+    hourly: `Need a small change on a site you already have? Updating text or images, fixing a layout problem, or adding a section is $12 per hour (about EGP ${egp(12)}), with a 1-hour minimum. I'll tell you the estimated hours before I start. Bigger work, like new pages or a redesign, gets a fixed quote instead.`,
     fSvc: "Package",
     pTitle: "How it works",
     tr1: "Prefer a safety net? Order through my Khamsat or Nafezly profile and pay through the platform.",
@@ -294,8 +300,7 @@
     faq3a:
       "You pay 50% to start and the rest on delivery. If you prefer extra protection, you can order through my Khamsat or Nafezly profile and pay through the platform.",
     faq4q: "What if I need changes after delivery?",
-    faq4a:
-      "Every package includes 2 free revision rounds on the agreed work. Small edits to an existing site cost $12 per hour with a 1-hour minimum, and bigger changes get a fixed quote.",
+    faq4a: `Every package includes 2 free revision rounds on the agreed work. Small edits to an existing site cost $12 per hour (about EGP ${egp(12)}) with a 1-hour minimum, and bigger changes get a fixed quote.`,
     faq5q: "Do I own the code?",
     faq5a: "Yes. Once the project is paid, all the code and files are yours.",
     faq6q: "Who handles hosting and the domain?",
@@ -340,7 +345,7 @@
     refB: "Get my referral link",
     refWa: "Hi Ahmed, I'd like a referral code and link, please.",
     refFrom: (c) =>
-      `You came through a referral (code ${c}). Your first order gets 10% off.`,
+      `You came through a referral (code ${c}). Your first order gets 10% off${OFFER.left > 0 ? " (not combined with the launch offer)" : ""}.`,
   });
   /* ===== 5. النصوص العربية الإضافية (تُضاف إلى T.ar) ===== */
   Object.assign(T.ar, {
@@ -352,9 +357,10 @@
     f2v: "24 ساعة",
     sTitle: "الخدمات والأسعار",
     sLead:
-      "اختر الخدمة ثم الباقة التي تناسب ميزانيتك. أسعار ثابتة بالدولار نتفق عليها كتابةً، وكل باقة تشمل جولتين تعديل.",
+      "اختر الخدمة ثم الباقة التي تناسب ميزانيتك. أسعار ثابتة بالدولار نتفق عليها كتابةً، والمبلغ بالجنيه المصري تقريبي حسب سعر الصرف اليوم ويُؤكَّد كتابةً عند الاتفاق. وكل باقة تشمل جولتين تعديل.",
     from: "تبدأ من",
     usd: "$",
+    egpFmt: (n) => `≈ ${n} ج.م`,
     perPage: "/ للصفحة",
     days: "أيام",
     order: "اختر هذه الباقة",
@@ -374,8 +380,7 @@
     rateThanks: (n) => `شكراً! قيّمته ${n} من 5.`,
     noRev: "ستظهر آراء العملاء هنا بعد أولى مشاريعي.",
     of5: "من 5",
-    hourly:
-      "تحتاج تعديلاً بسيطاً على موقع موجود عندك؟ تغيير النصوص أو الصور، أو إصلاح مشكلة في الشكل، أو إضافة قسم، تُحسب بـ 12 دولاراً للساعة بحد أدنى ساعة واحدة. أخبرك بعدد الساعات المتوقع قبل أن أبدأ. أما الأعمال الأكبر مثل صفحات جديدة أو إعادة تصميم فلها عرض سعر ثابت.",
+    hourly: `تحتاج تعديلاً بسيطاً على موقع موجود عندك؟ تغيير النصوص أو الصور، أو إصلاح مشكلة في الشكل، أو إضافة قسم، تُحسب بـ 12 دولاراً (≈ ${egp(12)} ج.م) للساعة بحد أدنى ساعة واحدة. أخبرك بعدد الساعات المتوقع قبل أن أبدأ. أما الأعمال الأكبر مثل صفحات جديدة أو إعادة تصميم فلها عرض سعر ثابت.`,
     fSvc: "الباقة",
     pTitle: "كيف نعمل",
     tr1: "تفضّل ضماناً أكثر؟ اطلب عبر ملفي على خمسات أو نفذلي وادفع من خلال نظام الدفع في المنصة.",
@@ -431,8 +436,7 @@
     faq3a:
       "تدفع 50% للبدء والباقي عند التسليم. وإن فضّلت ضماناً أكثر، يمكنك الطلب عبر ملفي على خمسات أو نفذلي والدفع من خلال نظام الدفع في المنصة.",
     faq4q: "ماذا لو احتجت تعديلات بعد التسليم؟",
-    faq4a:
-      "كل باقة تشمل جولتي تعديل مجانيتين على العمل المتفق عليه. والتعديلات الصغيرة على موقع موجود بـ 12 دولاراً للساعة بحد أدنى ساعة، والتغييرات الأكبر لها عرض سعر ثابت.",
+    faq4a: `كل باقة تشمل جولتي تعديل مجانيتين على العمل المتفق عليه. والتعديلات الصغيرة على موقع موجود بـ 12 دولاراً (≈ ${egp(12)} ج.م) للساعة بحد أدنى ساعة، والتغييرات الأكبر لها عرض سعر ثابت.`,
     faq5q: "هل أملك الكود؟",
     faq5a: "نعم. بعد دفع المشروع، كل الكود والملفات ملكك.",
     faq6q: "من يتولى الاستضافة والدومين؟",
@@ -475,7 +479,8 @@
     rf3: "لا يُحتسب ترشيح النفس أو أفراد الأسرة نفسها. تُصرف المكافأة بفودافون كاش أو إنستا باي، أو كخصم بقيمة مرة ونصف المبلغ.",
     refB: "احصل على رابط الترشيح",
     refWa: "مرحباً أحمد، أريد كود ورابط ترشيح من فضلك.",
-    refFrom: (c) => `وصلت عبر ترشيح (كود ${c}). طلبك الأول بخصم 10%.`,
+    refFrom: (c) =>
+      `وصلت عبر ترشيح (كود ${c}). طلبك الأول بخصم 10%${OFFER.left > 0 ? " (لا يجتمع مع عرض الإطلاق)" : ""}.`,
   });
 
   /* ===== 6. أدوات مساعدة ===== */
@@ -511,7 +516,7 @@
     {
       ar: "موقع بورتفوليو شخصي",
       en: "Personal portfolio",
-      from: 15,
+      from: 20,
       links: {
         khamsat:
           "https://khamsat.com/programming/custom-website-development/4478320-%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D9%8A%D8%A8%D9%87%D8%B1-%D8%B9%D9%85%D9%84%D8%A7%D8%A1%D9%83-%D9%88%D9%8A%D8%A8%D8%B1%D8%B2-%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%83",
@@ -540,7 +545,7 @@
     grid.innerHTML = PLATFORM_SERVICES.map(
       (s) => `<article class="plat">
       <h3>${s[lang]}</h3>
-      <p class="from">${t.from} <b>${t.usd}${s.from}</b></p>
+      <p class="from">${t.from} <b>${t.usd}${s.from}</b> <span class="egp">${t.egpFmt(egp(s.from))}</span></p>
       <div class="plat-btns">${PLATFORMS.map((p) => {
         const u = s.links[p.key];
         if (u)
@@ -593,7 +598,7 @@
         .map(
           (f, i) => `<article class="pkg${i === 1 ? " pop" : ""}">
         ${i === 1 ? `<span class="tag">${t.pop}</span>` : ""}<h3>${t.tn[i]}</h3>
-        <p class="price">${OFFER.left > 0 ? `<s>${t.usd}${s.prices[i]}</s>` : ""}<b>${t.usd}${disc(s.prices[i])}</b>${s.per ? `<small>${t.perPage}</small>` : ""}</p>
+        <p class="price">${OFFER.left > 0 ? `<s>${t.usd}${s.prices[i]}</s>` : ""}<b>${t.usd}${disc(s.prices[i])}</b>${s.per ? `<small>${t.perPage}</small>` : ""}<span class="egp">${t.egpFmt(egp(disc(s.prices[i])))}</span></p>
         <p class="eta">${s.days[i]} ${t.days}</p>
         <ul>${i ? `<li class="all">${t["all" + i]}</li>` : ""}${f.map((x) => `<li>${x}</li>`).join("")}</ul>
         <a class="btn${i === 1 ? "" : " ghost"}" href="#order" data-svc="${s.id}-${i}">${t.order}</a></article>`,
@@ -606,7 +611,7 @@
       t.tn.forEach((n, i) =>
         sel.add(
           new Option(
-            `${x[lang][0]} - ${n} (${t.usd}${disc(x.prices[i])}${x.per ? " " + t.perPage : ""})`,
+            `${x[lang][0]} - ${n} (${t.usd}${disc(x.prices[i])} ${t.egpFmt(egp(disc(x.prices[i])))}${x.per ? " " + t.perPage : ""})`,
             `${x.id}-${i}`,
           ),
         ),
@@ -706,15 +711,6 @@
   q("#orderForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const text = orderText(q("#fSvc").selectedOptions[0].textContent);
-    T[lang].wa(
-      q("#fName").value.trim(),
-      q("#fSvc").selectedOptions[0].textContent,
-      q("#fMsg").value.trim(),
-    ) +
-      (OFFER.left > 0 ? T[lang].offerWa : "") +
-      (q("#fCode").value.trim()
-        ? T[lang].codeWa(q("#fCode").value.trim())
-        : "");
     window.open(
       `https://wa.me/${WA}?text=${encodeURIComponent(text)}`,
       "_blank",
@@ -729,11 +725,6 @@
     if (!q("#orderForm").reportValidity()) return;
     const svc = q("#fSvc").selectedOptions[0].textContent;
     const body = orderText(svc);
-    T[lang].wa(q("#fName").value.trim(), svc, q("#fMsg").value.trim()) +
-      (OFFER.left > 0 ? T[lang].offerWa : "") +
-      (q("#fCode").value.trim()
-        ? T[lang].codeWa(q("#fCode").value.trim())
-        : "");
     location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(svc)}&body=${encodeURIComponent(body)}`;
     q("#orderMsg").textContent = T[lang].sentMail;
   });

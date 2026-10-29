@@ -708,3 +708,17 @@ body::before {
 #reviews h2 {
   margin-bottom: 28px;
 }
+
+/* ===== السعر بالجنيه المصري بجانب الدولار ===== */
+.price .egp {
+  display: block;
+  margin-top: 6px;
+  color: var(--ok);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.plat .from .egp {
+  display: inline;
+  margin-inline-start: 8px;
+  font-size: 0.85rem;
+}
