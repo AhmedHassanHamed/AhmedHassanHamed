@@ -290,6 +290,8 @@
       "Enter your client code to get 10% off your second order, and 15% off plus a free hour of edits from your third order.",
     codeWa: (c) => `\nClient code: ${c}`,
     refLine: (c, d) => `\nReferral code: ${c} (first visit: ${d})`,
+    refAlt: (c, d) => `\nLatest other link: ${c} (${d})`,
+    refAltNote: (c) => `The latest link you opened used code ${c}.`,
     faqT: "Frequently asked questions",
     faq1q: "What does the store include, and what does it not include?",
     faq1a:
@@ -427,6 +429,8 @@
       "اكتب كود العميل الخاص بك لتحصل على خصم 10% على طلبك الثاني، وخصم 15% مع ساعة تعديلات مجانية من طلبك الثالث.",
     codeWa: (c) => `\nكود العميل: ${c}`,
     refLine: (c, d) => `\nكود الترشيح: ${c} (أول زيارة: ${d})`,
+    refAlt: (c, d) => `\nرابط مسوّق آخر: ${c} (${d})`,
+    refAltNote: (c) => `آخر رابط فتحته كان بكود ${c}.`,
     faqT: "أسئلة شائعة",
     faq1q: "ماذا يشمل المتجر وماذا لا يشمل؟",
     faq1a:
@@ -521,7 +525,7 @@
       from: 20,
       links: {
         khamsat:
-          "https://khamsat.com/programming/custom-website-development/4478320-%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D9%8A%D8%A8%D9%87%D8%B1-%D8%B9%D9%85%D9%84%D8%A7%D8%A1%D9%83-%D9%88%D9%8A%D8%A8%D8%B1%D8%B2-%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%83",
+          "https://khamsat.com/programming/custom-website-development/4493794-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D9%85%D9%88%D9%82%D8%B9-%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88-%D8%B4%D8%AE%D8%B5%D9%8A-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A",
         nafezly:
           "https://nafezly.com/service/96879-%D8%A8%D9%88%D8%B1%D8%AA%D9%81%D9%88%D9%84%D9%8A%D9%88-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D9%8A%D8%A8%D9%87%D8%B1-%D8%B9%D9%85%D9%84%D8%A7%D8%A1%D9%83-%D9%88%D9%8A%D8%A8%D8%B1%D8%B2-%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%83",
       },
@@ -565,13 +569,26 @@
       .replace(/[^\w-]/g, "")
       .slice(0, 24)
       .toUpperCase();
+  const day = (ms) => new Date(ms).toISOString().slice(0, 10);
   function loadRef() {
     let saved = null;
     try {
       saved = JSON.parse(store("ref") || "null");
     } catch (e) {}
-    if (saved && saved.c && Date.now() - saved.t < 30 * 864e5) return saved;
     const c = cleanRef(new URLSearchParams(location.search).get("ref"));
+    if (saved && saved.c && Date.now() - saved.t < 30 * 864e5) {
+      // الأول يبقى هو المعتمد، وآخر رابط مختلف يُسجَّل بجانبه
+      if (c && c === saved.c && saved.l) {
+        delete saved.l;
+        delete saved.lt;
+        store("ref", JSON.stringify(saved));
+      } else if (c && c !== saved.c && c !== saved.l) {
+        saved.l = c;
+        saved.lt = Date.now();
+        store("ref", JSON.stringify(saved));
+      }
+      return saved;
+    }
     if (!c) return null;
     const rec = { c, t: Date.now() };
     store("ref", JSON.stringify(rec));
@@ -580,8 +597,31 @@
   const ref = loadRef();
   const refLine = () =>
     ref
-      ? T[lang].refLine(ref.c, new Date(ref.t).toISOString().slice(0, 10))
+      ? T[lang].refLine(ref.c, day(ref.t)) +
+        (ref.l ? T[lang].refAlt(ref.l, day(ref.lt)) : "")
       : "";
+
+  /* ===== اتصال اختياري بالباك اند: اتركه فارغاً لو لم تنشره بعد ===== */
+  const API_URL = "";
+  function sendLead(svc) {
+    if (!API_URL) return;
+    fetch(`${API_URL}/api/leads`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      keepalive: true,
+      body: JSON.stringify({
+        name: q("#fName").value.trim(),
+        service: svc,
+        message: q("#fMsg").value.trim(),
+        lang,
+        refCode: ref ? ref.c : "",
+        firstVisit: ref ? day(ref.t) : "",
+        altRefCode: ref && ref.l ? ref.l : "",
+        altVisit: ref && ref.l ? day(ref.lt) : "",
+        clientCode: q("#fCode") ? q("#fCode").value.trim() : "",
+      }),
+    }).catch(() => {});
+  }
   const waLink = (txt) => `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`;
   function applyRef() {
     const t = T[lang],
@@ -590,7 +630,7 @@
     if (b) b.href = waLink(t.refWa);
     if (!ref || !n) return;
     n.hidden = false;
-    n.textContent = t.refFrom(ref.c);
+    n.textContent = t.refFrom(ref.c) + (ref.l ? " " + t.refAltNote(ref.l) : "");
   }
 
   /* ===== 7. رسم التبويبات والباقات وخيارات النموذج ===== */
@@ -733,7 +773,9 @@
 
   q("#orderForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    const text = orderText(q("#fSvc").selectedOptions[0].textContent);
+    const svc = q("#fSvc").selectedOptions[0].textContent;
+    const text = orderText(svc);
+    sendLead(svc);
     window.open(
       `https://wa.me/${WA}?text=${encodeURIComponent(text)}`,
       "_blank",
@@ -748,6 +790,7 @@
     if (!q("#orderForm").reportValidity()) return;
     const svc = q("#fSvc").selectedOptions[0].textContent;
     const body = orderText(svc);
+    sendLead(svc);
     location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(svc)}&body=${encodeURIComponent(body)}`;
     q("#orderMsg").textContent = T[lang].sentMail;
   });
