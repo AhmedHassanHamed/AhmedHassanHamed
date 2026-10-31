@@ -289,6 +289,7 @@
     returnD:
       "Enter your client code to get 10% off your second order, and 15% off plus a free hour of edits from your third order.",
     codeWa: (c) => `\nClient code: ${c}`,
+    refLine: (c, d) => `\nReferral code: ${c} (first visit: ${d})`,
     faqT: "Frequently asked questions",
     faq1q: "What does the store include, and what does it not include?",
     faq1a:
@@ -425,6 +426,7 @@
     returnD:
       "اكتب كود العميل الخاص بك لتحصل على خصم 10% على طلبك الثاني، وخصم 15% مع ساعة تعديلات مجانية من طلبك الثالث.",
     codeWa: (c) => `\nكود العميل: ${c}`,
+    refLine: (c, d) => `\nكود الترشيح: ${c} (أول زيارة: ${d})`,
     faqT: "أسئلة شائعة",
     faq1q: "ماذا يشمل المتجر وماذا لا يشمل؟",
     faq1a:
@@ -557,27 +559,47 @@
     ).join("");
   }
 
-  /* ===== رابط الترشيح: ?ref=CODE يملأ خانة الكود تلقائياً ===== */
-  const refCode = (new URLSearchParams(location.search).get("ref") || "")
-    .replace(/[^\w-]/g, "")
-    .slice(0, 24);
+  /* ===== رابط الترشيح: أول كود يُحفظ 30 يوماً ويُرسل مع كل رسالة طلب ===== */
+  const cleanRef = (v) =>
+    (v || "")
+      .replace(/[^\w-]/g, "")
+      .slice(0, 24)
+      .toUpperCase();
+  function loadRef() {
+    let saved = null;
+    try {
+      saved = JSON.parse(store("ref") || "null");
+    } catch (e) {}
+    if (saved && saved.c && Date.now() - saved.t < 30 * 864e5) return saved;
+    const c = cleanRef(new URLSearchParams(location.search).get("ref"));
+    if (!c) return null;
+    const rec = { c, t: Date.now() };
+    store("ref", JSON.stringify(rec));
+    return rec;
+  }
+  const ref = loadRef();
+  const refLine = () =>
+    ref
+      ? T[lang].refLine(ref.c, new Date(ref.t).toISOString().slice(0, 10))
+      : "";
+  const waLink = (txt) => `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`;
   function applyRef() {
     const t = T[lang],
       n = q("#refNote"),
       b = q("#refBtn");
-    if (b) b.href = `https://wa.me/${WA}?text=${encodeURIComponent(t.refWa)}`;
-    if (!refCode || !n) return;
-    if (q("#fCode")) q("#fCode").value = refCode;
+    if (b) b.href = waLink(t.refWa);
+    if (!ref || !n) return;
     n.hidden = false;
-    n.textContent = t.refFrom(refCode);
+    n.textContent = t.refFrom(ref.c);
   }
 
   /* ===== 7. رسم التبويبات والباقات وخيارات النموذج ===== */
   function render() {
     const t = T[lang];
     applyRef();
-    q("#waFloat").href =
-      `https://wa.me/${WA}?text=${encodeURIComponent(t.waHi)}`;
+    q("#waFloat").href = waLink(t.waHi + refLine());
+    if (ref && q("#waContact"))
+      q("#waContact").href = waLink(t.waHi + refLine());
     const ib = q("#issueBtn"),
       fb = q("#feedbackBtn");
     if (ib)
@@ -704,7 +726,8 @@
     return (
       T[lang].wa(q("#fName").value.trim(), svc, q("#fMsg").value.trim()) +
       (OFFER.left > 0 ? T[lang].offerWa : "") +
-      (code ? T[lang].codeWa(code) : "")
+      (code ? T[lang].codeWa(code) : "") +
+      refLine()
     );
   };
 
