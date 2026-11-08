@@ -4,14 +4,11 @@
    الأماكن اللي بتعدّلها بنفسك: 1 (الإعدادات) و 2 (الخدمات) و 3 (التقييمات)
    ===================================================== */
 (function () {
-  /* ===== 1. الإعدادات (عدّل هنا) ===== */
-  // سعر الدولار بالجنيه المصري (حدّثه يدوياً كل فترة). آخر تحديث: 29 أكتوبر 2026 (حوالي 56.17 في البنوك)
   const RATE = 56;
   // يحوّل الدولار لجنيه مقرّباً لأقرب 10 ويكتبه بفاصلة الآلاف (مثال: 1,120)
   const egp = (usd) =>
     (Math.round((usd * RATE) / 10) * 10).toLocaleString("en-US");
-  const WA = "201147729020"; // رقم واتساب بدون + ، وغيّره لرقم الشغل لما تجيبه
-  // عرض الإطلاق: left = عدد العملاء المتبقين (اجعله 0 لإيقاف العرض)، pct = نسبة الخصم %
+  const WA = "201147729020";
   const OFFER = { left: 5, pct: 25 };
   // disc: يحسب السعر بعد الخصم، offerBox: يرسم شريط العرض فوق الباقات
   const disc = (p) =>
@@ -207,9 +204,6 @@
       ],
     },
   ];
-  // آراء العملاء
-  const REVIEWS = [];
-
   /* ===== 4. النصوص الإنجليزية الإضافية (تُضاف إلى T.en في script.js) ===== */
   Object.assign(T.en, {
     nav1: "Services & prices",
@@ -238,9 +232,8 @@
     pt2: "No two clients get the same store. Each one is designed from scratch.",
     pt3: "Easy for your customers: browse, choose, and order on WhatsApp in a few taps.",
     ptCta: "Tell me about your business",
-    rvTitle: "Ratings and client reviews",
-    rateQ: "How do you rate this portfolio?",
-    rateThanks: (n) => `Thank you! You rated it ${n} out of 5.`,
+    rvTitle: "Client reviews",
+    toTop: "Back to top",
     noRev: "Client reviews will appear here after my first projects.",
     of5: "out of 5",
     hourly: `Need a small change on a site you already have? Updating text or images, fixing a layout problem, or adding a section is $12 per hour (about EGP ${egp(12)}), with a 1-hour minimum. I'll tell you the estimated hours before I start. Bigger work, like new pages or a redesign, gets a fixed quote instead.`,
@@ -378,9 +371,8 @@
     pt2: "لا يوجد عميلان بنفس المتجر. كل تجربة تُصمَّم من الصفر.",
     pt3: "سهل على عملائك: يتصفحون ويختارون ويطلبون عبر واتساب بضغطات قليلة.",
     ptCta: "أخبرني عن عملك",
-    rvTitle: "التقييم وآراء العملاء",
-    rateQ: "كيف تقيّم هذا المعرض؟",
-    rateThanks: (n) => `شكراً! قيّمته ${n} من 5.`,
+    rvTitle: "آراء العملاء",
+    toTop: "العودة للأعلى",
     noRev: "ستظهر آراء العملاء هنا بعد أولى مشاريعي.",
     of5: "من 5",
     hourly: `تحتاج تعديلاً بسيطاً على موقع موجود عندك؟ تغيير النصوص أو الصور، أو إصلاح مشكلة في الشكل، أو إضافة قسم، تُحسب بـ 12 دولاراً (≈ ${egp(12)} ج.م) للساعة بحد أدنى ساعة واحدة. أخبرك بعدد الساعات المتوقع قبل أن أبدأ. أما الأعمال الأكبر مثل صفحات جديدة أو إعادة تصميم فلها عرض سعر ثابت.`,
@@ -649,9 +641,10 @@
     renderPlatforms();
     q("#tabs").innerHTML = SERVICES.map(
       (s) =>
-        `<button type="button" role="tab" aria-controls="svcPanel" aria-selected="${s.id === cur}" data-tab="${s.id}">${s[lang][0]}</button>`,
+        `<button type="button" role="tab" id="tab-${s.id}" aria-controls="svcPanel" aria-selected="${s.id === cur}" tabindex="${s.id === cur ? 0 : -1}" data-tab="${s.id}">${s[lang][0]}</button>`,
     ).join("");
     const s = SERVICES.find((x) => x.id === cur);
+    q("#svcPanel").setAttribute("aria-labelledby", "tab-" + cur);
     const [name, pitch, tiers] = s[lang];
     q("#svcPanel").innerHTML =
       offerBox(t) +
@@ -683,18 +676,17 @@
     if (keep) sel.value = keep;
     markZoom();
     renderReviews();
-    showRate();
   }
 
   /* ===== 8. رسم التقييمات (تظهر فقط لو REVIEWS فيها بيانات) ===== */
   const stars = (n) => "★".repeat(n) + "☆".repeat(5 - n);
   const who = (r, t) =>
     (r.avatar
-      ? `<img class="rev-av" src="${r.avatar}" alt="" width="40" height="40" loading="lazy" />`
+      ? `<img class="rev-av" src="${encodeURI(r.avatar)}" alt="" width="40" height="40" loading="lazy" />`
       : "") +
     `<span><b>${r.name}</b>${r.country ? " · " + r.country[lang] : ""}${r.service ? `<small>${r.service}</small>` : ""}</span>` +
     (r.link
-      ? `<a class="rev-link" href="${r.link}" target="_blank" rel="noopener">${t.revSrc}</a>`
+      ? `<a class="rev-link" href="${r.link}" target="_blank" rel="noopener">${t.revSrc}<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg></a>`
       : "");
   function renderReviews() {
     q("#reviews").hidden = !REVIEWS.length;
@@ -703,34 +695,25 @@
       ? (REVIEWS.reduce((a, r) => a + r.stars, 0) / REVIEWS.length).toFixed(1)
       : null;
     q("#reviewList").innerHTML = avg
-      ? `<p class="avg"><b>${avg}</b> <span aria-hidden="true">★</span> ${t.of5} (${REVIEWS.length})</p><div class="revs">${REVIEWS.map((r) => `<blockquote class="rev"><p class="st" aria-label="${r.stars} / 5">${stars(r.stars)}</p><p>${r.text}</p><footer>${who(r, t)}</footer></blockquote>`).join("")}</div>`
+      ? `<p class="avg"><b>${avg}</b> <span aria-hidden="true">★</span> ${t.of5} (${REVIEWS.length})</p><div class="revs">${REVIEWS.map((r) => `<blockquote class="rev"><p class="st" aria-label="${r.stars} / 5">${stars(r.stars)}</p><p>${typeof r.text === "object" ? r.text[lang] : r.text}</p><footer>${who(r, t)}</footer></blockquote>`).join("")}</div>`
       : `<p class="empty">${t.noRev}</p>`;
   }
 
-  /*
-   ====== عند إضافة تقييم العميل ======
+  // ====== عند إضافة تقييم العميل ======
   const REVIEWS = [
-  {
-    name: "Mona",
-    country: { ar: "مصر", en: "Egypt" },
-    stars: 5,
-    text: "نص التقييم زي ما كتبه العميل بالظبط",
-    service: "Store",
-    avatar: "imgs1/reviews/mona.jpg", // اختياري وبإذنه
-    link: "https://رابط-صفحة-التقييم-على-المنصة",
-  },
-]; */
-
-  function showRate() {
-    const n = +store("myRating") || 0;
-    q("#stars").innerHTML = [1, 2, 3, 4, 5]
-      .map(
-        (i) =>
-          `<button type="button" data-star="${i}" aria-label="${i} / 5" class="${i <= n ? "on" : ""}">★</button>`,
-      )
-      .join("");
-    q("#rateMsg").textContent = n ? T[lang].rateThanks(n) : "";
-  }
+    {
+      name: "Faisal",
+      country: { ar: "السعودية", en: "Saudi Arabia" },
+      stars: 5,
+      text: {
+        ar: "من أفضل المصممين للمتاجر في الموقع",
+        en: "One of the best store designers on the site.",
+      },
+      service: "متجر إلكتروني",
+      avatar: "imgs1/reviews/فيصل.jpg",
+      link: "https://mostaql.com/u/Ahmed_Hassan_CZ/reviews/10236041",
+    },
+  ];
 
   /* ===== 9. ربط تغيير اللغة بإعادة رسم الخدمات ===== */
   const baseSetLang = setLang;
@@ -751,13 +734,6 @@
   q("#svcPanel").addEventListener("click", (e) => {
     const a = e.target.closest("[data-svc]");
     if (a) q("#fSvc").value = a.dataset.svc;
-  });
-  q("#stars").addEventListener("click", (e) => {
-    const b = e.target.closest("[data-star]");
-    if (b) {
-      store("myRating", b.dataset.star);
-      showRate();
-    }
   });
 
   /* يبني نص الطلب المرسل (واتساب أو بريد): الاسم والباقة والرسالة وعرض الإطلاق وكود العميل */
@@ -840,6 +816,81 @@
   lb.addEventListener("click", (e) => {
     if (e.target === lb || e.target.closest(".lb-x")) lb.close();
   });
+  /* ===== 14. تنقّل بالأسهم في التبويبات (يراعي اتجاه RTL) ===== */
+  q("#tabs").addEventListener("keydown", (e) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+    e.preventDefault();
+    const ids = SERVICES.map((x) => x.id);
+    let i = ids.indexOf(cur);
+    if (e.key === "Home") i = 0;
+    else if (e.key === "End") i = ids.length - 1;
+    else {
+      const step = e.key === "ArrowRight" ? 1 : -1;
+      const rtl = document.documentElement.dir === "rtl";
+      i = (i + (rtl ? -step : step) + ids.length) % ids.length;
+    }
+    cur = ids[i];
+    render();
+    q(`[data-tab="${cur}"]`).focus();
+  });
+
+  /* ===== 15. تمييز القسم الحالي في القائمة العلوية ===== */
+  if ("IntersectionObserver" in window) {
+    const navLinks = [...document.querySelectorAll(".links a")];
+    const byId = new Map(
+      navLinks.map((a) => [a.getAttribute("href").slice(1), a]),
+    );
+    const spy = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          navLinks.forEach((a) => a.removeAttribute("aria-current"));
+          const a = byId.get(en.target.id);
+          if (a) a.setAttribute("aria-current", "true");
+        }),
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    ["top", ...byId.keys()].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) spy.observe(el);
+    });
+  }
+
+  /* ===== 16. ظهور تدريجي للعناصر الثابتة عند التمرير ===== */
+  if (
+    "IntersectionObserver" in window &&
+    !matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const reveal = new IntersectionObserver(
+      (entries, o) =>
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add("in");
+            o.unobserve(en.target);
+          }
+        }),
+      { threshold: 0.12 },
+    );
+    document
+      .querySelectorAll(
+        ".sec .wrap > h2, .why li, .steps li, .tiers li, .box, .faq details",
+      )
+      .forEach((el) => {
+        el.classList.add("rv");
+        reveal.observe(el);
+      });
+  }
+
+  /* ===== 17. زرار الطلوع لفوق: يظهر بعد النزول حوالي شاشة ونص ===== */
+  const toTop = q("#toTop");
+  const toggleTop = () =>
+    toTop.classList.toggle("show", window.scrollY > innerHeight * 0.6);
+  addEventListener("scroll", toggleTop, { passive: true });
+  toggleTop();
+
+  // كل شيء جاهز: أظهر الصفحة (كانت مخفية لحد ما تتم الترجمة)
+  document.documentElement.classList.remove("i18n-pending");
+
   function markZoom() {
     document.querySelectorAll(".frame img").forEach((im) => {
       im.tabIndex = 0;

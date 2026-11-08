@@ -9,12 +9,32 @@
       content="أحمد حسن، مطوّر واجهات أمامية. مواقع ومتاجر وأدوات ويب متجاوبة بالعربية والإنجليزية، بأسعار ثابتة تبدأ من 20$."
     />
     <meta name="theme-color" content="#0f1226" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="author" content="Ahmed Hassan" />
+    <!-- يطبّق اللغة والثيم المحفوظين قبل الرسم، ويخفي المحتوى لحظة صغيرة لحد ما النصوص تتترجم (منعاً لوميض نص إنجليزي) -->
+    <script>
+      (function (d) {
+        try {
+          var t = localStorage.getItem("theme"),
+            l = localStorage.getItem("lang") || "ar";
+          d.dataset.theme = t === "light" ? "light" : "dark";
+          d.lang = l;
+          d.dir = l === "ar" ? "rtl" : "ltr";
+        } catch (e) {}
+        d.classList.add("i18n-pending");
+        setTimeout(function () {
+          d.classList.remove("i18n-pending");
+        }, 3000);
+      })(document.documentElement);
+    </script>
     <link
       rel="canonical"
       href="https://ahmedhassanhamed.github.io/AhmedHassanHamed/"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="ar_AR" />
+    <meta property="og:locale" content="ar_EG" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:site_name" content="Ahmed Hassan" />
     <meta property="og:title" content="أحمد حسن | مطوّر واجهات أمامية" />
     <meta
       property="og:description"
@@ -28,7 +48,17 @@
       property="og:image"
       content="https://ahmedhassanhamed.github.io/AhmedHassanHamed/imgs1/og-image.png"
     />
+    <meta property="og:image:alt" content="أحمد حسن، مطوّر واجهات أمامية" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="أحمد حسن | مطوّر واجهات أمامية" />
+    <meta
+      name="twitter:description"
+      content="مواقع ومتاجر وأدوات ويب متجاوبة بالعربية والإنجليزية."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ahmedhassanhamed.github.io/AhmedHassanHamed/imgs1/og-image.png"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -42,13 +72,23 @@
         "@type": "Person",
         "name": "Ahmed Hassan",
         "jobTitle": "Front-End Developer",
+        "knowsAbout": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Responsive web design",
+          "RTL / Arabic web interfaces"
+        ],
+        "image": "https://ahmedhassanhamed.github.io/AhmedHassanHamed/imgs1/Ahmed.jpeg",
         "url": "https://ahmedhassanhamed.github.io/AhmedHassanHamed/",
         "sameAs": [
           "https://github.com/AhmedHassanHamed",
           "https://khamsat.com/user/hassanhamed_cz",
           "https://mostaql.com/u/Ahmed_Hassan_CZ",
           "https://www.freelancer.com/u/hassanhamed3",
-          "https://www.fiverr.com/s/ZooZpjQ"
+          "https://www.fiverr.com/s/ZooZpjQ",
+          "https://www.upwork.com/freelancers/~017e71c52f4947b2a6",
+          "https://www.linkedin.com/in/hassan-hamed-undefined-42180a445/"
         ]
       }
     </script>
@@ -60,6 +100,13 @@
     <script src="pricing.js" defer></script>
   </head>
   <body>
+    <noscript>
+      <p class="noscript-note">
+        الموقع يحتاج JavaScript ليعمل بالكامل. / This site needs JavaScript to
+        work fully.
+        <a href="https://wa.me/201147729020">WhatsApp</a>
+      </p>
+    </noscript>
     <!-- رابط تخطّى للمحتوى (إمكانية الوصول) -->
     <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
@@ -126,6 +173,8 @@
                 alt="Ahmed Hassan"
                 width="340"
                 height="425"
+                fetchpriority="high"
+                decoding="async"
               />
             </div>
             <span class="chip c1" aria-hidden="true">HTML</span>
@@ -166,8 +215,29 @@
         </div>
       </section>
 
+      <!-- ===== الأعمال (بتتملي من script.js) ===== -->
+
+      <section class="sec" id="work">
+        <div class="wrap">
+          <h2 data-i18n="wTitle">Selected work</h2>
+          <p class="lead" data-i18n="wLead">
+            Real projects with live demos you can open and try.
+          </p>
+          <div id="cases"></div>
+        </div>
+      </section>
+
+      <!-- ===== آراء العملاء (مخفي حتى يوجد رأي حقيقي) ===== -->
+
+      <section class="sec" id="reviews" hidden>
+        <div class="wrap">
+          <h2 data-i18n="rvTitle">Client reviews</h2>
+          <div id="reviewList"></div>
+        </div>
+      </section>
+
       <!-- ===== ليه تثق فيّ ===== -->
-      <section class="sec" id="trust">
+      <section class="sec alt" id="trust">
         <div class="wrap">
           <h2 data-i18n="trustT">Why you can trust me</h2>
           <ul class="why">
@@ -223,18 +293,6 @@
         </div>
       </section>
 
-      <!-- ===== الأعمال (بتتملي من script.js) ===== -->
-
-      <section class="sec" id="work">
-        <div class="wrap">
-          <h2 data-i18n="wTitle">Selected work</h2>
-          <p class="lead" data-i18n="wLead">
-            Real projects with live demos you can open and try.
-          </p>
-          <div id="cases"></div>
-        </div>
-      </section>
-
       <!-- ===== الخدمات والأسعار (بتتملي من pricing.js) ===== -->
 
       <section class="sec" id="services">
@@ -276,12 +334,6 @@
               Prefer a safety net? Order through my Khamsat or Nafezly profile
               and pay through the platform.
             </li>
-            <li data-i18n="tr2">
-              You own all the code and files once the job is paid.
-            </li>
-            <li data-i18n="tr3">
-              Every project in my portfolio has a live demo you can test first.
-            </li>
           </ul>
         </div>
       </section>
@@ -299,17 +351,57 @@
         </div>
       </section>
 
-      <!-- ===== آراء العملاء (مخفي حتى يوجد رأي حقيقي) ===== -->
-
-      <section class="sec" id="reviews" hidden>
+      <!-- ===== نبذة عني ===== -->
+      <section class="sec alt" id="about">
         <div class="wrap">
-          <h2 data-i18n="rvTitle">Ratings and client reviews</h2>
-          <div class="rate">
-            <p data-i18n="rateQ">How do you rate this portfolio?</p>
-            <div id="stars" role="group"></div>
-            <p id="rateMsg" role="status"></p>
+          <div class="about-top">
+            <h2 data-i18n="aTitle">About me</h2>
+            <p class="lead" data-i18n="aText">
+              I'm Ahmed Hassan, a front-end developer. I turn your idea or
+              design into a fast, good-looking website.
+            </p>
+            <a class="btn" href="#order" data-i18n="aCta">Start your project</a>
           </div>
-          <div id="reviewList"></div>
+          <ul class="why">
+            <li>
+              <h3 data-i18n="ab1t">Built for Arabic and English</h3>
+              <p data-i18n="ab1d">
+                Every project I build supports right-to-left and left-to-right
+                layouts properly, so text, fonts, and numbers look right in both
+                languages.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="ab2t">Fast on every screen</h3>
+              <p data-i18n="ab2d">
+                Clean code with no heavy libraries, so pages open quickly and
+                work on phones, tablets, and desktops.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="ab3t">Clear and on time</h3>
+              <p data-i18n="ab3d">
+                A fixed price and a delivery date agreed in writing, a reply
+                within 24 hours, and 2 free revision rounds.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="ab4t">See it before you buy</h3>
+              <p data-i18n="ab4d">
+                Each project in my portfolio has a live demo, so you can test my
+                work yourself before we start.
+              </p>
+            </li>
+          </ul>
+          <h3 data-i18n="aTools">Tools I use</h3>
+          <ul class="tech">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>Git &amp; GitHub</li>
+            <li>Responsive design</li>
+            <li>RTL / LTR</li>
+          </ul>
         </div>
       </section>
 
@@ -376,6 +468,56 @@
         </div>
       </section>
 
+      <!-- ===== نموذج طلب عرض السعر ===== -->
+
+      <section class="sec" id="order">
+        <div class="wrap">
+          <div class="box form-box">
+            <h2 data-i18n="oTitle">Tell me about your project</h2>
+            <p class="lead" data-i18n="oLead">
+              Send the details and I'll reply on WhatsApp with a fixed quote.
+            </p>
+            <p class="note" id="refNote" hidden></p>
+            <form id="orderForm" class="form">
+              <label
+                ><span data-i18n="fName">Your name</span
+                ><input id="fName" required autocomplete="name"
+              /></label>
+              <label
+                ><span data-i18n="fSvc">Service</span
+                ><select id="fSvc"></select
+              ></label>
+              <label
+                ><span data-i18n="fMsg">What do you need?</span
+                ><textarea id="fMsg" rows="4" required></textarea>
+              </label>
+              <label>
+                <span data-i18n="fCode">Client code (optional)</span>
+                <input id="fCode" autocomplete="off" />
+              </label>
+              <p class="note" data-i18n="returnD">
+                Enter your client code to get 10% off your second order, and 15%
+                off plus a free hour of edits from your third order.
+              </p>
+              <div class="form-actions">
+                <button class="btn" type="submit" data-i18n="fSend">
+                  Send on WhatsApp
+                </button>
+                <button
+                  class="btn ghost"
+                  type="button"
+                  id="mailBtn"
+                  data-i18n="fMail"
+                >
+                  Send by email
+                </button>
+              </div>
+            </form>
+            <p class="status" id="orderMsg" role="status"></p>
+          </div>
+        </div>
+      </section>
+
       <!-- ===== عميل سابق؟ ===== -->
       <section class="sec" id="clients">
         <div class="wrap">
@@ -427,7 +569,7 @@
       </section>
 
       <!-- ===== برنامج الترشيح ===== -->
-      <section class="sec" id="referral">
+      <section class="sec alt" id="referral">
         <div class="wrap">
           <h2 data-i18n="refT">Refer a friend, get rewarded</h2>
           <p class="lead" data-i18n="refD">
@@ -471,109 +613,6 @@
         </div>
       </section>
 
-      <!-- ===== نموذج طلب عرض السعر ===== -->
-
-      <section class="sec" id="order">
-        <div class="wrap">
-          <div class="box form-box">
-            <h2 data-i18n="oTitle">Tell me about your project</h2>
-            <p class="lead" data-i18n="oLead">
-              Send the details and I'll reply on WhatsApp with a fixed quote.
-            </p>
-            <p class="note" id="refNote" hidden></p>
-            <form id="orderForm" class="form">
-              <label
-                ><span data-i18n="fName">Your name</span
-                ><input id="fName" required autocomplete="name"
-              /></label>
-              <label
-                ><span data-i18n="fSvc">Service</span
-                ><select id="fSvc"></select
-              ></label>
-              <label
-                ><span data-i18n="fMsg">What do you need?</span
-                ><textarea id="fMsg" rows="4" required></textarea>
-              </label>
-              <label>
-                <span data-i18n="fCode">Client code (optional)</span>
-                <input id="fCode" autocomplete="off" />
-              </label>
-              <p class="note" data-i18n="returnD">
-                Enter your client code to get 10% off your second order, and 15%
-                off plus a free hour of edits from your third order.
-              </p>
-              <div class="form-actions">
-                <button class="btn" type="submit" data-i18n="fSend">
-                  Send on WhatsApp
-                </button>
-                <button
-                  class="btn ghost"
-                  type="button"
-                  id="mailBtn"
-                  data-i18n="fMail"
-                >
-                  Send by email
-                </button>
-              </div>
-            </form>
-            <p class="status" id="orderMsg" role="status"></p>
-          </div>
-        </div>
-      </section>
-      <!-- ===== نبذة عني ===== -->
-      <section class="sec" id="about">
-        <div class="wrap">
-          <div class="about-top">
-            <h2 data-i18n="aTitle">About me</h2>
-            <p class="lead" data-i18n="aText">
-              I'm Ahmed Hassan, a front-end developer. I turn your idea or
-              design into a fast, good-looking website.
-            </p>
-            <a class="btn" href="#order" data-i18n="aCta">Start your project</a>
-          </div>
-          <ul class="why">
-            <li>
-              <h3 data-i18n="ab1t">Built for Arabic and English</h3>
-              <p data-i18n="ab1d">
-                Every project I build supports right-to-left and left-to-right
-                layouts properly, so text, fonts, and numbers look right in both
-                languages.
-              </p>
-            </li>
-            <li>
-              <h3 data-i18n="ab2t">Fast on every screen</h3>
-              <p data-i18n="ab2d">
-                Clean code with no heavy libraries, so pages open quickly and
-                work on phones, tablets, and desktops.
-              </p>
-            </li>
-            <li>
-              <h3 data-i18n="ab3t">Clear and on time</h3>
-              <p data-i18n="ab3d">
-                A fixed price and a delivery date agreed in writing, a reply
-                within 24 hours, and 2 free revision rounds.
-              </p>
-            </li>
-            <li>
-              <h3 data-i18n="ab4t">See it before you buy</h3>
-              <p data-i18n="ab4d">
-                Each project in my portfolio has a live demo, so you can test my
-                work yourself before we start.
-              </p>
-            </li>
-          </ul>
-          <h3 data-i18n="aTools">Tools I use</h3>
-          <ul class="tech">
-            <li>HTML5</li>
-            <li>CSS3</li>
-            <li>JavaScript</li>
-            <li>Git &amp; GitHub</li>
-            <li>Responsive design</li>
-            <li>RTL / LTR</li>
-          </ul>
-        </div>
-      </section>
-
       <!-- ===== التواصل ===== -->
 
       <section class="sec" id="contact">
@@ -594,6 +633,7 @@
                   alt=""
                   width="48"
                   height="48"
+                  loading="lazy"
                 /><span>WhatsApp</span></a
               >
               <a href="mailto:ahmed.hassan.dev77@gmail.com"
@@ -602,6 +642,7 @@
                   alt=""
                   width="48"
                   height="48"
+                  loading="lazy"
                 /><span data-i18n="email">Email</span></a
               >
               <a
@@ -613,6 +654,7 @@
                   alt=""
                   width="48"
                   height="48"
+                  loading="lazy"
                 /><span>GitHub</span></a
               >
               <a
@@ -624,6 +666,7 @@
                   alt=""
                   width="48"
                   height="48"
+                  loading="lazy"
                 /><span data-i18n="khamsat">Khamsat</span></a
               >
               <a
@@ -635,6 +678,7 @@
                   alt=""
                   width="48"
                   height="48"
+                  loading="lazy"
                 /><span data-i18n="mostaql">Mostaql</span></a
               >
             </div>
@@ -657,6 +701,12 @@
                 target="_blank"
                 rel="noopener"
                 >LinkedIn</a
+              >
+              <a
+                href="https://www.upwork.com/freelancers/~017e71c52f4947b2a6"
+                target="_blank"
+                rel="noopener"
+                >Upwork</a
               >
             </p>
             <button
@@ -690,6 +740,23 @@
     >
       <img src="imgs1/WhatsApp.jpeg" alt="" width="44" height="44" />
       <span data-i18n="waChat">Chat on WhatsApp</span>
+    </a>
+    <!-- ===== زرار الطلوع لفوق: يظهر بعد النزول شوية، وعلى الجانب المقابل لزرار واتساب ===== -->
+    <a class="to-top" id="toTop" href="#top">
+      <svg
+        viewBox="0 0 24 24"
+        width="22"
+        height="22"
+        aria-hidden="true"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+      <span class="sr-only" data-i18n="toTop">Back to top</span>
     </a>
   </body>
 </html>

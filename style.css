@@ -451,8 +451,8 @@ h3 {
   font-size: 0.9rem;
   color: var(--accent);
 }
-/* ===== 7. الفوتر ===== */
-footer {
+/* ===== 7. الفوتر (body > footer عشان ما يأثرش على footer جوه كروت التقييم) ===== */
+body > footer {
   padding: 28px 0;
   border-top: 1px solid var(--line);
   text-align: center;

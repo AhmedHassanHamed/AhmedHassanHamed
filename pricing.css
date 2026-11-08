@@ -337,44 +337,6 @@ body::before {
 }
 
 /* ===== 7. التقييمات (القسم مخفي حتى يوجد تقييم حقيقي) ===== */
-.rate {
-  margin-bottom: 28px;
-}
-#stars {
-  display: flex;
-  gap: 4px;
-  margin: 8px 0;
-}
-#stars button {
-  border: 0;
-  background: none;
-  color: var(--line);
-  font-size: 2rem;
-  line-height: 1;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    color 0.2s;
-}
-#stars button.on {
-  color: var(--accent);
-}
-@media (hover: hover) {
-  #stars:hover button {
-    color: var(--accent);
-  }
-  #stars button:hover ~ button {
-    color: var(--line);
-  }
-  #stars button:hover {
-    transform: scale(1.2);
-  }
-}
-#rateMsg {
-  min-height: 1.7em;
-  color: var(--accent);
-  font-size: 0.92rem;
-}
 .empty {
   padding: 28px;
   border: 1px dashed var(--line);
@@ -526,7 +488,7 @@ body::before {
 }
 
 @media (max-width: 760px) {
-  footer {
+  body > footer {
     padding-bottom: 90px;
   }
 }
@@ -615,6 +577,9 @@ body::before {
   padding-bottom: 18px;
 }
 .rev footer {
+  padding: 14px 0 0;
+  border-top: 1px solid var(--line);
+  text-align: start;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -632,9 +597,41 @@ body::before {
   object-fit: cover;
 }
 .rev-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin-inline-start: auto;
-  color: var(--accent);
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--head);
   font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+:lang(ar) .rev-link svg {
+  transform: scaleX(-1);
+}
+@media (hover: hover) {
+  .rev-link:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+.rev > p:not(.st) {
+  color: var(--head);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+.rev .st {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
 }
 /* ===== برنامج الترشيح ===== */
 .tiers {
@@ -721,4 +718,100 @@ body::before {
   display: inline;
   margin-inline-start: 8px;
   font-size: 0.85rem;
+}
+
+/* ===== 12. تحسينات إضافية (ضبط الخطوط والحركة والتنقل) ===== */
+/* العربي بيتبوّظ لو فيه letter-spacing (بيفصل الحروف المتصلة) */
+:lang(ar) .hero h1 {
+  letter-spacing: 0;
+}
+/* الشارات حوالين الصورة كانت بتعمل سكرول أفقي على الموبايل */
+.hero {
+  overflow-x: clip;
+}
+/* منع وميض النص الإنجليزي قبل الترجمة */
+.i18n-pending main,
+.i18n-pending body > footer,
+.i18n-pending .wa-float {
+  visibility: hidden;
+}
+.noscript-note {
+  padding: 12px 20px;
+  background: var(--surface);
+  color: var(--head);
+  text-align: center;
+}
+/* القسم الحالي في القائمة العلوية */
+.links a[aria-current="true"] {
+  color: var(--head);
+  border-color: var(--accent);
+}
+/* أقسام بخلفية مختلفة قليلاً لتكسر الرتابة */
+.sec.alt {
+  border-block: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+}
+/* ظهور تدريجي عند التمرير (يُفعَّل من pricing.js ويتوقف مع تقليل الحركة) */
+.rv {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+@media print {
+  .rv {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* زر الطلوع لفوق: عائم، على الجانب المقابل لواتساب، ويظهر بعد النزول */
+.to-top {
+  position: fixed;
+  inset-inline-start: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--head);
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s,
+    visibility 0.3s,
+    background-color 0.2s,
+    color 0.2s;
+}
+.to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+@media (hover: hover) {
+  .to-top.show:hover {
+    transform: translateY(-3px);
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
