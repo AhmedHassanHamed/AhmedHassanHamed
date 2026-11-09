@@ -226,7 +226,8 @@ function setLang(l) {
 
 /* ===== 4. التشغيل وأزرار الهيدر (لغة، ثيم، قائمة الموبايل، نسخ البريد) ===== */
 root.dataset.theme = get("theme", "dark");
-$("#nProjects").textContent = PROJECTS.length;
+// +1 لأن منصة شبكة ليها قسم خاص (#shabaka) خارج قائمة PROJECTS
+$("#nProjects").textContent = PROJECTS.length + 1;
 $("#year").textContent = new Date().getFullYear();
 setLang(lang);
 

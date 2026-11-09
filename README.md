@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="imgs1/profile.png" alt="Ahmed Hassan, Front-End Developer" width="100%" />
+<img src="imgs1/og-image.png" alt="Ahmed Hassan, Front-End Developer" width="100%" />
 
 # Hi, I'm Ahmed Hassan 👋
 
@@ -24,12 +24,13 @@ I build responsive websites, stores, and web tools with HTML, CSS, and JavaScrip
 
 ## 🚀 Featured Projects
 
-| Project                          | What it is                                                                                  | Links                                                               |
-| -------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| 🕯️ **Shamaet Nour Store**        | Bilingual storefront with search, filters, cart, wishlist, dark mode, and WhatsApp checkout | [Live demo](https://ahmedhassanhamed.github.io/Shamaet-Nour-Store/) |
-| 📄 **CV Builder (AR/EN)**        | 7 templates, live preview, PDF and Word export, cover letter generator                      | [Live demo](https://ahmedhassanhamed.github.io/CV_Builder/)         |
-| 🧾 **Invoice Generator (AR/EN)** | PDF/PNG export, WhatsApp sharing, dark mode, deposit calculator                             | [Live demo](https://ahmedhassanhamed.github.io/Invoice_Generator/)  |
-| 💸 **Expense Tracker**           | Daily spending by category with progress bars, saved privately in the browser               | [Live demo](https://ahmedhassanhamed.github.io/expense-tracker/)    |
+| Project                          | What it is                                                                                                                                                                  | Links                                                               |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 🌐 **Shabaka (شبكة)**            | Bilingual platform connecting Arab business owners with vetted freelancers: two-stage payment, private messages, community requests, reviews, and profiles (Supabase + RLS) | [Live demo](https://ahmedhassanhamed.github.io/shabaka/)            |
+| 🕯️ **Shamaet Nour Store**        | Bilingual storefront with search, filters, cart, wishlist, dark mode, and WhatsApp checkout                                                                                 | [Live demo](https://ahmedhassanhamed.github.io/Shamaet-Nour-Store/) |
+| 📄 **CV Builder (AR/EN)**        | 7 templates, live preview, PDF and Word export, cover letter generator                                                                                                      | [Live demo](https://ahmedhassanhamed.github.io/CV_Builder/)         |
+| 🧾 **Invoice Generator (AR/EN)** | PDF/PNG export, WhatsApp sharing, dark mode, deposit calculator                                                                                                             | [Live demo](https://ahmedhassanhamed.github.io/Invoice_Generator/)  |
+| 💸 **Expense Tracker**           | Daily spending by category with progress bars, saved privately in the browser                                                                                               | [Live demo](https://ahmedhassanhamed.github.io/expense-tracker/)    |
 
 ## 🛠️ Skills
 

@@ -234,6 +234,19 @@
     ptCta: "Tell me about your business",
     rvTitle: "Client reviews",
     toTop: "Back to top",
+    shTag: "My own platform",
+    shTitle: "Shabaka: a platform for Arab freelancers",
+    shLead:
+      "A live platform I designed and built end to end. It connects business owners with vetted freelancers through fixed, two-stage payments.",
+    shF1: "Vetted freelancers, reviewed before approval",
+    shF2: "Pay 50% before and 50% on delivery",
+    shF3: "Private messages between project parties",
+    shF4: "Community to request services you can't find",
+    shF5: "Client reviews and public member profiles",
+    shF6: "Arabic and English, RTL, dark mode",
+    shCta: "Visit the platform",
+    shFoot: "My platform: Shabaka",
+    shFootSub: "A platform for Arab freelancers",
     noRev: "Client reviews will appear here after my first projects.",
     of5: "out of 5",
     hourly: `Need a small change on a site you already have? Updating text or images, fixing a layout problem, or adding a section is $12 per hour (about EGP ${egp(12)}), with a 1-hour minimum. I'll tell you the estimated hours before I start. Bigger work, like new pages or a redesign, gets a fixed quote instead.`,
@@ -305,6 +318,7 @@
     payNote:
       "Payment methods: Vodafone Cash and InstaPay (I send you the transfer details when we agree), or through the payment system of Khamsat or Nafezly.",
     revSrc: "View on the platform",
+    revWork: "Delivered project",
     platT: "Prefer to order through a platform?",
     platD:
       "Start with a starter package on Khamsat or Nafezly, and that platform's own payment and dispute rules apply. Larger packages are in the services section above.",
@@ -373,6 +387,19 @@
     ptCta: "أخبرني عن عملك",
     rvTitle: "آراء العملاء",
     toTop: "العودة للأعلى",
+    shTag: "منصتي الخاصة",
+    shTitle: "شبكة: منصة للمستقلين العرب",
+    shLead:
+      "منصة حقيقية صمّمتها وبنيتها بالكامل. تربط أصحاب المشاريع بمستقلين تمت مراجعة أعمالهم، بدفع ثابت على مرحلتين.",
+    shF1: "مستقلون تُراجَع أعمالهم قبل القبول",
+    shF2: "دفع 50% قبل البدء و50% عند الاستلام",
+    shF3: "رسائل خاصة بين طرفي المشروع",
+    shF4: "مجتمع لطلب الخدمات التي لا تجدها",
+    shF5: "تقييمات العملاء وملفات عامة للأعضاء",
+    shF6: "عربي وإنجليزي، RTL، ووضع ليلي",
+    shCta: "زر المنصة وسجّل",
+    shFoot: "منصتي: شبكة",
+    shFootSub: "منصة للمستقلين العرب، سجّل وجرّبها",
     noRev: "ستظهر آراء العملاء هنا بعد أولى مشاريعي.",
     of5: "من 5",
     hourly: `تحتاج تعديلاً بسيطاً على موقع موجود عندك؟ تغيير النصوص أو الصور، أو إصلاح مشكلة في الشكل، أو إضافة قسم، تُحسب بـ 12 دولاراً (≈ ${egp(12)} ج.م) للساعة بحد أدنى ساعة واحدة. أخبرك بعدد الساعات المتوقع قبل أن أبدأ. أما الأعمال الأكبر مثل صفحات جديدة أو إعادة تصميم فلها عرض سعر ثابت.`,
@@ -443,6 +470,7 @@
     payNote:
       "طرق الدفع: فودافون كاش وإنستا باي (أرسل لك بيانات التحويل عند الاتفاق)، أو عبر نظام الدفع في خمسات أو نفذلي.",
     revSrc: "شاهد التقييم على المنصة",
+    revWork: "المشروع المُسلَّم",
     platT: "تفضّل الطلب عبر منصة؟",
     platD:
       "ابدأ بباقة مبدئية على خمسات أو نفذلي، وتسري عليك قواعد الدفع وحل النزاعات الخاصة بالمنصة. الباقات الأكبر في قسم الخدمات أعلاه.",
@@ -688,6 +716,9 @@
     (r.link
       ? `<a class="rev-link" href="${r.link}" target="_blank" rel="noopener">${t.revSrc}<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg></a>`
       : "");
+  /* بلوك "المشروع المُسلَّم": بيظهر لو للتقييم work (رابط الشغل اللي سلّمته للعميل) */
+  const workLink = (w, t) =>
+    `<a class="rev-work" href="${w.url}" target="_blank" rel="noopener"><span class="rev-work-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg></span><span class="rev-work-tx"><small>${t.revWork}</small><b>${w.name[lang]}</b><span>${new URL(w.url).host}</span></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>`;
   function renderReviews() {
     q("#reviews").hidden = !REVIEWS.length;
     const t = T[lang];
@@ -695,7 +726,7 @@
       ? (REVIEWS.reduce((a, r) => a + r.stars, 0) / REVIEWS.length).toFixed(1)
       : null;
     q("#reviewList").innerHTML = avg
-      ? `<p class="avg"><b>${avg}</b> <span aria-hidden="true">★</span> ${t.of5} (${REVIEWS.length})</p><div class="revs">${REVIEWS.map((r) => `<blockquote class="rev"><p class="st" aria-label="${r.stars} / 5">${stars(r.stars)}</p><p>${typeof r.text === "object" ? r.text[lang] : r.text}</p><footer>${who(r, t)}</footer></blockquote>`).join("")}</div>`
+      ? `<p class="avg"><b>${avg}</b> <span aria-hidden="true">★</span> ${t.of5} (${REVIEWS.length})</p><div class="revs">${REVIEWS.map((r) => `<blockquote class="rev"><p class="st" aria-label="${r.stars} / 5">${stars(r.stars)}</p><p>${typeof r.text === "object" ? r.text[lang] : r.text}</p>${r.work ? workLink(r.work, t) : ""}<footer>${who(r, t)}</footer></blockquote>`).join("")}</div>`
       : `<p class="empty">${t.noRev}</p>`;
   }
 
@@ -710,6 +741,11 @@
         en: "One of the best store designers on the site.",
       },
       service: "متجر إلكتروني",
+      // الشغل اللي سلّمته للعميل (اختياري): url + الاسم بالعربي والإنجليزي
+      work: {
+        url: "https://logitex.sa/",
+        name: { ar: "متجر لوجيتكس الإلكتروني", en: "Logitex online store" },
+      },
       avatar: "imgs1/reviews/فيصل.jpg",
       link: "https://mostaql.com/u/Ahmed_Hassan_CZ/reviews/10236041",
     },
