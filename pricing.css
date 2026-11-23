@@ -816,141 +816,6 @@ body::before {
   white-space: nowrap;
 }
 
-/* ===== 13. قسم منصة شبكة (قسم خاص بهويتها: أخضر وذهبي) ===== */
-.sh-card {
-  display: grid;
-  gap: 28px;
-  align-items: center;
-  padding: 32px 24px;
-  border: 1px solid color-mix(in srgb, #0e6b57 65%, var(--line));
-  border-radius: 24px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, #0e6b57 30%, var(--surface)),
-    var(--surface) 72%
-  );
-  box-shadow: 0 30px 60px -36px color-mix(in srgb, #0e6b57 80%, transparent);
-}
-@media (min-width: 860px) {
-  .sh-card {
-    grid-template-columns: auto 1fr;
-    gap: 44px;
-    padding: 48px;
-  }
-}
-.sh-logo {
-  width: 112px;
-  height: 112px;
-  border-radius: 26px;
-  box-shadow: 0 18px 36px -16px rgba(0, 0, 0, 0.55);
-}
-@media (min-width: 860px) {
-  .sh-logo {
-    width: 160px;
-    height: 160px;
-    border-radius: 36px;
-  }
-}
-.sh-tag {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 3px 14px;
-  border-radius: 999px;
-  background: #e8a317;
-  color: #2b1d00;
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-.sh-card .lead {
-  margin-bottom: 20px;
-}
-.sh-feats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 10px 20px;
-  margin-bottom: 26px;
-  list-style: none;
-  font-size: 0.95rem;
-}
-.sh-feats li {
-  position: relative;
-  padding-inline-start: 24px;
-}
-.sh-feats li::before {
-  content: "✓";
-  position: absolute;
-  inset-inline-start: 0;
-  color: #e8a317;
-  font-weight: 700;
-}
-.sh-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 18px;
-}
-.btn.gold {
-  border-color: #e8a317;
-  background: #e8a317;
-  color: #2b1d00;
-}
-.sh-actions small {
-  max-width: 34ch;
-  font-size: 0.85rem;
-}
-.sh-card .tech {
-  margin-bottom: 0;
-}
-/* بطاقة منصة شبكة في الفوتر (بارزة) */
-.foot-sh {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 22px;
-  padding: 12px 20px;
-  border: 1px solid color-mix(in srgb, #0e6b57 70%, var(--line));
-  border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, #0e6b57 28%, var(--surface)),
-    var(--surface)
-  );
-  color: var(--head);
-  text-align: start;
-  text-decoration: none;
-  transition:
-    transform 0.2s,
-    border-color 0.2s;
-}
-.foot-sh img {
-  border-radius: 12px;
-}
-.foot-sh-txt b {
-  display: block;
-  font-size: 1.02rem;
-  line-height: 1.4;
-}
-.foot-sh-txt small {
-  display: block;
-  font-size: 0.82rem;
-  opacity: 0.85;
-}
-.foot-sh svg {
-  color: #e8a317;
-}
-:lang(ar) .foot-sh svg {
-  transform: scaleX(-1);
-}
-@media (hover: hover) {
-  .foot-sh:hover {
-    transform: translateY(-3px);
-    border-color: #e8a317;
-  }
-}
-:root[data-theme="light"] .sh-feats li::before {
-  color: #0e6b57;
-}
-
 /* ===== 14. بلوك "المشروع المُسلَّم" داخل كارت التقييم ===== */
 .rev-work {
   display: flex;
@@ -1007,4 +872,37 @@ body::before {
     transform: translateY(-2px);
     border-color: var(--accent);
   }
+}
+
+/* ===== 15. قسم الدفع والتحويل المباشر ===== */
+.pay-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  max-width: 640px;
+  margin: 0 auto 8px;
+}
+.pay-card {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 24px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+}
+.pay-card h3 {
+  font-size: 1.2rem;
+}
+.pay-for {
+  font-size: 0.9rem;
+}
+.pay-card .btn {
+  padding: 9px 18px;
+  font-size: 0.9rem;
+}
+#pay .note {
+  max-width: 640px;
+  margin: 20px auto 24px;
+  text-align: start;
 }

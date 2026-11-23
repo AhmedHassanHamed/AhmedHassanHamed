@@ -1,5 +1,5 @@
 /* =====================================================
-   pricing.js: الخدمات والأسعار + عرض الإطلاق + التقييمات + النموذج
+   pricing.js: الخدمات والأسعار + التقييمات + النموذج
    يتحمل بعد script.js ويستخدم متغيراته (T, lang, EMAIL...)
    الأماكن اللي بتعدّلها بنفسك: 1 (الإعدادات) و 2 (الخدمات) و 3 (التقييمات)
    ===================================================== */
@@ -9,14 +9,6 @@
   const egp = (usd) =>
     (Math.round((usd * RATE) / 10) * 10).toLocaleString("en-US");
   const WA = "201147729020";
-  const OFFER = { left: 5, pct: 25 };
-  // disc: يحسب السعر بعد الخصم، offerBox: يرسم شريط العرض فوق الباقات
-  const disc = (p) =>
-    OFFER.left > 0 ? Math.round((p * (100 - OFFER.pct)) / 100) : p;
-  const offerBox = (t) =>
-    OFFER.left > 0
-      ? `<p class="offer"><b>${t.offerT(OFFER.pct, OFFER.left)}</b>${t.offerD}</p>`
-      : "";
   /* ===== 2. الخدمات والباقات (عدّل الأسعار والمدد والمميزات) =====
      prices = أسعار الباقات [أساسية، متوسطة، متكاملة] ، days = مدة التسليم
      per = true لو السعر للصفحة ، en/ar = [الاسم، الوصف، مميزات كل باقة] */
@@ -104,7 +96,6 @@
     {
       id: "portfolio",
       img: "imgs1/svc-portfolio.svg",
-      // الأساسية 27$ فتبقى 20$ بعد خصم الإطلاق 25% (27 × 0.75 = 20.25 ≈ 20)
       prices: [27, 55, 90],
       days: ["3-4", "5-7", "7-10"],
       en: [
@@ -234,19 +225,6 @@
     ptCta: "Tell me about your business",
     rvTitle: "Client reviews",
     toTop: "Back to top",
-    shTag: "My own platform",
-    shTitle: "Shabaka: a platform for Arab freelancers",
-    shLead:
-      "A live platform I designed and built end to end. It connects business owners with vetted freelancers through fixed, two-stage payments.",
-    shF1: "Vetted freelancers, reviewed before approval",
-    shF2: "Pay 50% before and 50% on delivery",
-    shF3: "Private messages between project parties",
-    shF4: "Community to request services you can't find",
-    shF5: "Client reviews and public member profiles",
-    shF6: "Arabic and English, RTL, dark mode",
-    shCta: "Visit the platform",
-    shFoot: "My platform: Shabaka",
-    shFootSub: "A platform for Arab freelancers",
     noRev: "Client reviews will appear here after my first projects.",
     of5: "out of 5",
     hourly: `Need a small change on a site you already have? Updating text or images, fixing a layout problem, or adding a section is $12 per hour (about EGP ${egp(12)}), with a 1-hour minimum. I'll tell you the estimated hours before I start. Bigger work, like new pages or a redesign, gets a fixed quote instead.`,
@@ -265,7 +243,7 @@
     wa: (n, s, m) => `Hi Ahmed, I'm ${n}. I'm interested in: ${s}.\n${m}`,
 
     hi: "Welcome! I'm Ahmed, a front-end developer.",
-    sub: "I design and build fast, good-looking websites, stores, and landing pages that work on every screen, in Arabic and English.",
+    sub: "I design and build websites, online stores, and landing pages that load fast and look right on every screen, in Arabic and English, for a fixed price and a clear delivery date.",
     p1: "1. Tell me about your project. I reply within 24 hours.",
     p2: "2. You get a fixed quote with the price and delivery date.",
     p3: "3. You pay 50% to start, and the rest on delivery.",
@@ -281,10 +259,6 @@
     ab3d: "A fixed price and a delivery date agreed in writing, a reply within 24 hours, and 2 free revision rounds.",
     ab4t: "See it before you buy",
     ab4d: "Each project in my portfolio has a live demo, so you can test my work yourself before we start.",
-    offerT: (p, n) => `Launch offer: ${p}% off for my first ${n} clients`,
-    offerD:
-      "Includes free deployment of your site and a 15-minute consultation before we start. After delivery, I'd appreciate an honest review.",
-    offerWa: "\nI'd like to use the launch offer.",
     sent: "Thank you! WhatsApp is opening with your message. I'll reply within 24 hours.",
     sentMail:
       "Your email app is opening with your message. I'll reply within 24 hours.",
@@ -316,7 +290,20 @@
     faq6a:
       "I can publish your site on free hosting and send you the link. A paid domain name is bought on your own account, and I can help you connect it.",
     payNote:
-      "Payment methods: Vodafone Cash and InstaPay (I send you the transfer details when we agree), or through the payment system of Khamsat or Nafezly.",
+      "Payment methods: PayPal, InstaPay, or Vodafone Cash (I send you the number when we agree), or through the payment system of Khamsat or Nafezly. PayPal and InstaPay details are in the payment section at the bottom of this page.",
+    payT: "Payment and direct transfer",
+    payD: "After we agree on the quote, send the 50% deposit with either method below. I start work once the deposit arrives and you send me the receipt.",
+    payPPd: "Pay in US dollars",
+    payIPd: "Transfers inside Egypt, in EGP",
+    payCopyPP: "Copy PayPal email",
+    payCopyIP: "Copy InstaPay number",
+    payWarn:
+      "Check the email or number before you send, and do not pay before we agree on the quote in writing.",
+    payWaBtn: "Send the transfer receipt on WhatsApp",
+    payWaMsg:
+      "Hi Ahmed, I sent the deposit for my project. Here is the transfer receipt:",
+    payCopied: "Copied.",
+    payCopyFail: "Could not copy. Please copy it by hand: ",
     revSrc: "View on the platform",
     revWork: "Delivered project",
     platT: "Prefer to order through a platform?",
@@ -349,13 +336,13 @@
     rt2: "Orders $50 to $149",
     rt3: "Orders $150 to $299",
     rt4: "Orders $300 and above",
-    rf1: "Your friend gets 10% off their first order (not combined with the launch offer).",
+    rf1: "Your friend gets 10% off their first order.",
     rf2: "The reward is paid after the project is paid in full, delivered, and 7 days pass with no dispute or refund. One reward per new client.",
     rf3: "Self-referrals and referrals within the same household do not count. Rewards are paid by Vodafone Cash or InstaPay, or as a discount worth 1.5 times the amount.",
     refB: "Get my referral link",
     refWa: "Hi Ahmed, I'd like a referral code and link, please.",
     refFrom: (c) =>
-      `You came through a referral (code ${c}). Your first order gets 10% off${OFFER.left > 0 ? " (not combined with the launch offer)" : ""}.`,
+      `You came through a referral (code ${c}). Your first order gets 10% off.`,
   });
   /* ===== 5. النصوص العربية الإضافية (تُضاف إلى T.ar) ===== */
   Object.assign(T.ar, {
@@ -387,19 +374,6 @@
     ptCta: "أخبرني عن عملك",
     rvTitle: "آراء العملاء",
     toTop: "العودة للأعلى",
-    shTag: "منصتي الخاصة",
-    shTitle: "شبكة: منصة للمستقلين العرب",
-    shLead:
-      "منصة حقيقية صمّمتها وبنيتها بالكامل. تربط أصحاب المشاريع بمستقلين تمت مراجعة أعمالهم، بدفع ثابت على مرحلتين.",
-    shF1: "مستقلون تُراجَع أعمالهم قبل القبول",
-    shF2: "دفع 50% قبل البدء و50% عند الاستلام",
-    shF3: "رسائل خاصة بين طرفي المشروع",
-    shF4: "مجتمع لطلب الخدمات التي لا تجدها",
-    shF5: "تقييمات العملاء وملفات عامة للأعضاء",
-    shF6: "عربي وإنجليزي، RTL، ووضع ليلي",
-    shCta: "زر المنصة وسجّل",
-    shFoot: "منصتي: شبكة",
-    shFootSub: "منصة للمستقلين العرب، سجّل وجرّبها",
     noRev: "ستظهر آراء العملاء هنا بعد أولى مشاريعي.",
     of5: "من 5",
     hourly: `تحتاج تعديلاً بسيطاً على موقع موجود عندك؟ تغيير النصوص أو الصور، أو إصلاح مشكلة في الشكل، أو إضافة قسم، تُحسب بـ 12 دولاراً (≈ ${egp(12)} ج.م) للساعة بحد أدنى ساعة واحدة. أخبرك بعدد الساعات المتوقع قبل أن أبدأ. أما الأعمال الأكبر مثل صفحات جديدة أو إعادة تصميم فلها عرض سعر ثابت.`,
@@ -418,7 +392,7 @@
     wa: (n, s, m) => `مرحباً أحمد، أنا ${n}. مهتم بـ: ${s}.\n${m}`,
 
     hi: "أهلاً بك! أنا أحمد، مطوّر واجهات أمامية.",
-    sub: "أصمّم وأبني مواقع ومتاجر وصفحات هبوط سريعة وأنيقة، تعمل بسلاسة على كل الشاشات وبالعربية والإنجليزية.",
+    sub: "أصمّم وأبني مواقع ومتاجر إلكترونية وصفحات هبوط تفتح بسرعة وتظهر بشكل سليم على كل الشاشات، بالعربية والإنجليزية، بسعر ثابت وموعد تسليم واضح.",
     p1: "1. تحكي لي عن مشروعك، وأرد عليك خلال 24 ساعة.",
     p2: "2. تستلم عرضاً ثابتاً بالسعر وموعد التسليم.",
     p3: "3. تدفع 50% للبدء، والباقي عند التسليم.",
@@ -434,10 +408,6 @@
     ab3d: "سعر ثابت وموعد تسليم متفق عليهما كتابةً، ورد خلال 24 ساعة، وجولتا تعديل مجانيتان.",
     ab4t: "شاهد قبل أن تشتري",
     ab4d: "لكل مشروع في أعمالي نسخة تجريبية، تقدر تجرّب شغلي بنفسك قبل أن نبدأ.",
-    offerT: (p, n) => `عرض الإطلاق: خصم ${p}% لأول ${n} عملاء`,
-    offerD:
-      "يشمل نشر موقعك مجاناً واستشارة قصيرة (15 دقيقة) قبل البدء. وبعد التسليم أكون ممتناً لرأيك الصريح.",
-    offerWa: "\nأرغب في الاستفادة من عرض الإطلاق.",
     sent: "شكراً لك! سيفتح واتساب برسالتك، وسأرد عليك خلال 24 ساعة.",
     sentMail: "سيفتح تطبيق البريد برسالتك، وسأرد عليك خلال 24 ساعة.",
     waChat: "تحدث معي على واتساب",
@@ -468,7 +438,19 @@
     faq6a:
       "أستطيع نشر موقعك على استضافة مجانية وأرسل لك الرابط. أما اسم النطاق المدفوع فتشتريه على حسابك، ويمكنني مساعدتك في ربطه.",
     payNote:
-      "طرق الدفع: فودافون كاش وإنستا باي (أرسل لك بيانات التحويل عند الاتفاق)، أو عبر نظام الدفع في خمسات أو نفذلي.",
+      "طرق الدفع: PayPal أو إنستا باي أو فودافون كاش (أرسل لك الرقم عند الاتفاق)، أو عبر نظام الدفع في خمسات أو نفذلي. وبيانات PayPal وإنستا باي موجودة في قسم الدفع أسفل الصفحة.",
+    payT: "الدفع والتحويل المباشر",
+    payD: "بعد أن نتفق على العرض، حوّل العربون (50%) بإحدى الطريقتين التاليتين. أبدأ العمل عند وصول العربون وإرسالك إيصال التحويل.",
+    payPPd: "للدفع بالدولار الأمريكي",
+    payIPd: "للتحويل داخل مصر بالجنيه",
+    payCopyPP: "نسخ بريد PayPal",
+    payCopyIP: "نسخ رقم إنستا باي",
+    payWarn:
+      "تأكد من البريد أو الرقم قبل التحويل، ولا تدفع أي مبلغ قبل أن نتفق على العرض كتابةً.",
+    payWaBtn: "أرسل إيصال التحويل على واتساب",
+    payWaMsg: "مرحباً أحمد، حوّلت عربون مشروعي. هذا إيصال التحويل:",
+    payCopied: "تم النسخ.",
+    payCopyFail: "تعذّر النسخ، انسخه يدوياً: ",
     revSrc: "شاهد التقييم على المنصة",
     revWork: "المشروع المُسلَّم",
     platT: "تفضّل الطلب عبر منصة؟",
@@ -500,13 +482,12 @@
     rt2: "طلبات من 50$ إلى 149$",
     rt3: "طلبات من 150$ إلى 299$",
     rt4: "طلبات من 300$ فأكثر",
-    rf1: "صديقك يحصل على خصم 10% على أول طلب (لا يجتمع مع عرض الإطلاق).",
+    rf1: "صديقك يحصل على خصم 10% على أول طلب.",
     rf2: "تُصرف المكافأة بعد دفع المشروع بالكامل وتسليمه ومرور 7 أيام بدون نزاع أو استرداد. مكافأة واحدة لكل عميل جديد.",
     rf3: "لا يُحتسب ترشيح النفس أو أفراد الأسرة نفسها. تُصرف المكافأة بفودافون كاش أو إنستا باي، أو كخصم بقيمة مرة ونصف المبلغ.",
     refB: "احصل على رابط الترشيح",
     refWa: "مرحباً أحمد، أريد كود ورابط ترشيح من فضلك.",
-    refFrom: (c) =>
-      `وصلت عبر ترشيح (كود ${c}). طلبك الأول بخصم 10%${OFFER.left > 0 ? " (لا يجتمع مع عرض الإطلاق)" : ""}.`,
+    refFrom: (c) => `وصلت عبر ترشيح (كود ${c}). طلبك الأول بخصم 10%.`,
   });
 
   /* ===== 6. أدوات مساعدة ===== */
@@ -666,6 +647,8 @@
       ib.href = `https://wa.me/${WA}?text=${encodeURIComponent(t.issueWa)}`;
     if (fb)
       fb.href = `https://wa.me/${WA}?text=${encodeURIComponent(t.feedWa)}`;
+    const pw = q("#payWa");
+    if (pw) pw.href = waLink(t.payWaMsg);
     renderPlatforms();
     q("#tabs").innerHTML = SERVICES.map(
       (s) =>
@@ -675,13 +658,12 @@
     q("#svcPanel").setAttribute("aria-labelledby", "tab-" + cur);
     const [name, pitch, tiers] = s[lang];
     q("#svcPanel").innerHTML =
-      offerBox(t) +
       `<div class="svc-head"><img src="${s.img}" alt="" loading="lazy" onerror="this.remove()" /><div><h3>${name}</h3><p>${pitch}</p></div></div>
       <div class="pkgs">${tiers
         .map(
           (f, i) => `<article class="pkg${i === 1 ? " pop" : ""}">
         ${i === 1 ? `<span class="tag">${t.pop}</span>` : ""}<h3>${t.tn[i]}</h3>
-        <p class="price">${OFFER.left > 0 ? `<s>${t.usd}${s.prices[i]}</s>` : ""}<b>${t.usd}${disc(s.prices[i])}</b>${s.per ? `<small>${t.perPage}</small>` : ""}<span class="egp">${t.egpFmt(egp(disc(s.prices[i])))}</span></p>
+        <p class="price"><b>${t.usd}${s.prices[i]}</b>${s.per ? `<small>${t.perPage}</small>` : ""}<span class="egp">${t.egpFmt(egp(s.prices[i]))}</span></p>
         <p class="eta">${s.days[i]} ${t.days}</p>
         <ul>${i ? `<li class="all">${t["all" + i]}</li>` : ""}${f.map((x) => `<li>${x}</li>`).join("")}</ul>
         <a class="btn${i === 1 ? "" : " ghost"}" href="#order" data-svc="${s.id}-${i}">${t.order}</a></article>`,
@@ -694,7 +676,7 @@
       t.tn.forEach((n, i) =>
         sel.add(
           new Option(
-            `${x[lang][0]} - ${n} (${t.usd}${disc(x.prices[i])} ${t.egpFmt(egp(disc(x.prices[i])))}${x.per ? " " + t.perPage : ""})`,
+            `${x[lang][0]} - ${n} (${t.usd}${x.prices[i]} ${t.egpFmt(egp(x.prices[i]))}${x.per ? " " + t.perPage : ""})`,
             `${x.id}-${i}`,
           ),
         ),
@@ -772,12 +754,11 @@
     if (a) q("#fSvc").value = a.dataset.svc;
   });
 
-  /* يبني نص الطلب المرسل (واتساب أو بريد): الاسم والباقة والرسالة وعرض الإطلاق وكود العميل */
+  /* يبني نص الطلب المرسل (واتساب أو بريد): الاسم والباقة والرسالة وكود العميل */
   const orderText = (svc) => {
     const code = q("#fCode") ? q("#fCode").value.trim() : "";
     return (
       T[lang].wa(q("#fName").value.trim(), svc, q("#fMsg").value.trim()) +
-      (OFFER.left > 0 ? T[lang].offerWa : "") +
       (code ? T[lang].codeWa(code) : "") +
       refLine()
     );
@@ -795,6 +776,20 @@
     );
     q("#orderMsg").textContent = T[lang].sent;
     q("#fMsg").value = "";
+  });
+
+  /* ===== 10ب. نسخ بيانات التحويل (PayPal / InstaPay) ===== */
+  q("#pay").addEventListener("click", async (e) => {
+    const b = e.target.closest("[data-copy]");
+    if (!b) return;
+    const st = q("#payStatus");
+    try {
+      await navigator.clipboard.writeText(b.dataset.copy);
+      st.textContent = T[lang].payCopied;
+    } catch (err) {
+      st.textContent = T[lang].payCopyFail + b.dataset.copy;
+    }
+    setTimeout(() => (st.textContent = ""), 3000);
   });
 
   /* ===== 11. إرسال الطلب بالبريد (بديل لواتساب) ===== */

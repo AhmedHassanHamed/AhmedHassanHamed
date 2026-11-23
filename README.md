@@ -9,6 +9,7 @@
 <a href="https://ahmedhassanhamed.github.io/AhmedHassanHamed/"><img src="https://img.shields.io/badge/Portfolio-Visit-8b9cff?style=for-the-badge&logo=googlechrome&logoColor=0f1226" alt="Portfolio" /></a>
 <a href="https://khamsat.com/user/hassanhamed_cz"><img src="https://img.shields.io/badge/Khamsat-Hire_me-2a3060?style=for-the-badge" alt="Khamsat" /></a>
 <a href="https://mostaql.com/u/Ahmed_Hassan_CZ"><img src="https://img.shields.io/badge/Mostaql-Profile-2a3060?style=for-the-badge" alt="Mostaql" /></a>
+<a href="https://nafezly.com/u/ahmed_hassan_dev"><img src="https://img.shields.io/badge/Nafezly-Profile-2a3060?style=for-the-badge" alt="Nafezly" /></a>
 
 </div>
 
@@ -24,13 +25,12 @@ I build responsive websites, stores, and web tools with HTML, CSS, and JavaScrip
 
 ## 🚀 Featured Projects
 
-| Project                          | What it is                                                                                                                                                                  | Links                                                               |
-| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| 🌐 **Shabaka (شبكة)**            | Bilingual platform connecting Arab business owners with vetted freelancers: two-stage payment, private messages, community requests, reviews, and profiles (Supabase + RLS) | [Live demo](https://ahmedhassanhamed.github.io/shabaka/)            |
-| 🕯️ **Shamaet Nour Store**        | Bilingual storefront with search, filters, cart, wishlist, dark mode, and WhatsApp checkout                                                                                 | [Live demo](https://ahmedhassanhamed.github.io/Shamaet-Nour-Store/) |
-| 📄 **CV Builder (AR/EN)**        | 7 templates, live preview, PDF and Word export, cover letter generator                                                                                                      | [Live demo](https://ahmedhassanhamed.github.io/CV_Builder/)         |
-| 🧾 **Invoice Generator (AR/EN)** | PDF/PNG export, WhatsApp sharing, dark mode, deposit calculator                                                                                                             | [Live demo](https://ahmedhassanhamed.github.io/Invoice_Generator/)  |
-| 💸 **Expense Tracker**           | Daily spending by category with progress bars, saved privately in the browser                                                                                               | [Live demo](https://ahmedhassanhamed.github.io/expense-tracker/)    |
+| Project                          | What it is                                                                                  | Links                                                               |
+| -------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 🕯️ **Shamaet Nour Store**        | Bilingual storefront with search, filters, cart, wishlist, dark mode, and WhatsApp checkout | [Live demo](https://ahmedhassanhamed.github.io/Shamaet-Nour-Store/) |
+| 📄 **CV Builder (AR/EN)**        | 7 templates, live preview, PDF and Word export, cover letter generator                      | [Live demo](https://ahmedhassanhamed.github.io/CV_Builder/)         |
+| 🧾 **Invoice Generator (AR/EN)** | PDF/PNG export, WhatsApp sharing, dark mode, deposit calculator                             | [Live demo](https://ahmedhassanhamed.github.io/Invoice_Generator/)  |
+| 💸 **Expense Tracker**           | Daily spending by category with progress bars, saved privately in the browser               | [Live demo](https://ahmedhassanhamed.github.io/expense-tracker/)    |
 
 ## 🛠️ Skills
 
@@ -51,16 +51,14 @@ I build responsive websites, stores, and web tools with HTML, CSS, and JavaScrip
 
 ## 🤝 Let's work together
 
-| Platform      | Link                                                                               |
-| ------------- | ---------------------------------------------------------------------------------- |
-| 🌐 Portfolio  | [ahmedhassanhamed.github.io](https://ahmedhassanhamed.github.io/AhmedHassanHamed/) |
-| 🛒 Khamsat    | [khamsat.com/user/hassanhamed_cz](https://khamsat.com/user/hassanhamed_cz)         |
-| 💼 Mostaql    | [mostaql.com/u/Ahmed_Hassan_CZ](https://mostaql.com/u/Ahmed_Hassan_CZ)             |
-| 🧑‍💻 Upwork     | [Upwork profile](https://www.upwork.com/freelancers/~017e71c52f4947b2a6)           |
-| 🌍 Freelancer | [freelancer.com/u/hassanhamed3](https://www.freelancer.com/u/hassanhamed3)         |
-| 🎯 Fiverr     | [Fiverr profile](https://www.fiverr.com/s/ZooZpjQ)                                 |
-| 💬 WhatsApp   | [Message me](https://wa.me/201147729020)                                           |
-| ✉️ Email      | [ahmed.hassan.dev77@gmail.com](mailto:ahmed.hassan.dev77@gmail.com)                |
+| Platform     | Link                                                                               |
+| ------------ | ---------------------------------------------------------------------------------- |
+| 🌐 Portfolio | [ahmedhassanhamed.github.io](https://ahmedhassanhamed.github.io/AhmedHassanHamed/) |
+| 🛒 Khamsat   | [khamsat.com/user/hassanhamed_cz](https://khamsat.com/user/hassanhamed_cz)         |
+| 💼 Mostaql   | [mostaql.com/u/Ahmed_Hassan_CZ](https://mostaql.com/u/Ahmed_Hassan_CZ)             |
+| 🤝 Nafezly   | [nafezly.com/u/ahmed_hassan_dev](https://nafezly.com/u/ahmed_hassan_dev)           |
+| 💬 WhatsApp  | [Message me](https://wa.me/201147729020)                                           |
+| ✉️ Email     | [ahmed.hassan.dev77@gmail.com](mailto:ahmed.hassan.dev77@gmail.com)                |
 
 <div align="center">
 

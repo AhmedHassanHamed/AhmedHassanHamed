@@ -38,7 +38,7 @@ const T = {
     themeLight: "Switch to light theme",
     themeDark: "Switch to dark theme",
     badge: "Available for freelance work",
-    h1: "I build fast websites that work in Arabic and English.",
+    h1: "Fast, professional websites for your business, in Arabic and English.",
     sub: "Front-end developer. Landing pages, stores, and web tools made with HTML, CSS, and JavaScript.",
     cta1: "See my work",
     f1: "Live projects",
@@ -52,11 +52,12 @@ const T = {
     aTitle: "About me",
     aTools: "Tools I use",
     cTitle: "Let's work together",
-    cText: "Tell me about your project and I'll get back to you.",
+    cText:
+      "Have a project in mind? Send me a message and I'll reply within 24 hours.",
     email: "Email",
     khamsat: "Khamsat",
     mostaql: "Mostaql",
-    also: "Also find me on",
+    nafezly: "Nafezly",
     copy: "Copy email address",
     copied: "Email copied.",
     copyFail: "Could not copy. The address is ",
@@ -74,7 +75,7 @@ const T = {
     themeLight: "التبديل إلى الوضع النهاري",
     themeDark: "التبديل إلى الوضع الليلي",
     badge: "متاح لمشاريع العمل الحر",
-    h1: "أبني مواقع سريعة تعمل بالعربية والإنجليزية.",
+    h1: "مواقع سريعة واحترافية لنشاطك، بالعربية والإنجليزية.",
     sub: "مطوّر واجهات أمامية. صفحات هبوط ومتاجر وأدوات ويب بـ HTML، CSS، JavaScript.",
     cta1: "شاهد أعمالي",
     f1: "مشاريع منشورة",
@@ -88,11 +89,11 @@ const T = {
     aTitle: "نبذة عني",
     aTools: "الأدوات التي أستخدمها",
     cTitle: "لنعمل معاً",
-    cText: "أخبرني عن مشروعك وسأرد عليك.",
+    cText: "لديك مشروع في ذهنك؟ راسلني وسأرد عليك خلال 24 ساعة.",
     email: "البريد",
     khamsat: "خمسات",
     mostaql: "مستقل",
-    also: "تجدني أيضاً على",
+    nafezly: "نفذلي",
     copy: "نسخ البريد الإلكتروني",
     copied: "تم نسخ البريد.",
     copyFail: "تعذّر النسخ. العنوان هو ",
@@ -226,8 +227,7 @@ function setLang(l) {
 
 /* ===== 4. التشغيل وأزرار الهيدر (لغة، ثيم، قائمة الموبايل، نسخ البريد) ===== */
 root.dataset.theme = get("theme", "dark");
-// +1 لأن منصة شبكة ليها قسم خاص (#shabaka) خارج قائمة PROJECTS
-$("#nProjects").textContent = PROJECTS.length + 1;
+$("#nProjects").textContent = PROJECTS.length;
 $("#year").textContent = new Date().getFullYear();
 setLang(lang);
 
